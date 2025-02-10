@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaRegMoon, FaRegSun } from "react-icons/fa";
-import { CustomHeaderButton } from "~/components/button";
 import type { Route } from "../+types/root";
 
 export function meta({}: Route.MetaArgs) {
@@ -69,10 +68,6 @@ export default function Home() {
                                 </li>
                             ))}
                         </ul>
-                        <CustomHeaderButton
-                            icon={<FaRegSun />}
-                            link={"https://github.com/jtentis"}
-                        />
                     </nav>
                 </div>
                 <button
