@@ -15,17 +15,16 @@
     @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-fira;
   }
   
-  .toggleMode,
-  a,
-  li {
-    @apply active:translate-y-1 transition-all cursor-pointer;
-  }
-
-  .customHeaderButton{
-    @apply border-2
+  button,
+  a{
+    @apply active:translate-y-0.5 active:translate-x-0.5 transition-all cursor-pointer active:shadow-none;
   }
 
   .navLinks{
-    @apply border-2 p-2 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] ;
+    @apply border-2 w-[40px] h-[40px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
+  }
+
+  .navLinksInternal{
+    @apply border-2 px-2 h-[40px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
   }
 }
