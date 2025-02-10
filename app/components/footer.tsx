@@ -1,7 +1,9 @@
 export function Footer() {
     return (
-        <footer className="bg-primary text-secondary dark:bg-secondary dark:text-primary p-4 text-center">
-            <p>&copy; 2024 My Website. All rights reserved.</p>
+        <footer className="bg-primary text-secondary dark:bg-secondary dark:text-primary flex justify-center gap-10">
+            <p>Code</p>
+            <p>Made by João Tentis</p>
+            <p>Contacts</p>
         </footer>
     );
 }
