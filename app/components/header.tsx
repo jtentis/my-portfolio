@@ -21,6 +21,16 @@ function isThemeSetToDark() {
     );
 }
 
+const download = () => {
+    const pdf: string = "../public/Curriculo_JOAO_TENTIS.pdf";
+    const link: any = document.createElement("a");
+    link.href = pdf;
+    link.download = "Curriculo_JOAO_TENTIS.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
 export function Header() {
     const location = useLocation();
     const [pageTitle, setPageTitle] = useState("");
@@ -64,25 +74,24 @@ export function Header() {
     }
 
     return (
-        <main className="flex items-center justify-around pt-16 pb-4">
-            <div className="flex gap-4">
+        <main className="flex items-center justify-center relative">
+            <div className="absolute left-0 flex gap-4">
                 <button
                     className="navLinksInternal flex gap-2 items-center"
                     type="button"
                 >
-                    <ReactSVG
-                        src="../public/flag.svg"
-                    ></ReactSVG>
+                    <ReactSVG src="../public/flag.svg"></ReactSVG>
                     pt
                 </button>
                 <button
+                    onClick={() => download()}
                     className="navLinksInternal flex gap-2 items-center"
                     type="button"
                 >
-                    <FaDownload></FaDownload> currículo
+                    <FaDownload size={15} /> currículo
                 </button>
             </div>
-            <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary">
+            <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary ">
                 <nav>
                     <ul className="flex gap-4">
                         <li>
@@ -124,17 +133,17 @@ export function Header() {
                     </ul>
                 </nav>
             </header>
-            <div className="flex justify-between gap-4">
+            <div className="flex justify-between gap-4 absolute right-0">
                 <CustomHeaderButton
-                    icon={<FaEnvelope />}
+                    icon={<FaEnvelope size={15} />}
                     link={"mailto:jps.tentis@gmail.com"}
                 />
                 <CustomHeaderButton
-                    icon={<FaLinkedin />}
+                    icon={<FaLinkedin size={15} />}
                     link={"https://www.linkedin.com/in/jtentis/"}
                 />
                 <CustomHeaderButton
-                    icon={<FaGithub />}
+                    icon={<FaGithub size={15} />}
                     link={"https://github.com/jtentis"}
                 />
                 <div className="h-[25px] self-center w-1 bg-secondary dark:bg-primary" />
@@ -142,11 +151,7 @@ export function Header() {
                     onClick={toggleTheme}
                     className="navLinks cursor-pointer"
                 >
-                    {isDarkMode ? (
-                        <FaRegMoon/>
-                    ) : (
-                        <FaRegSun/>
-                    )}
+                    {isDarkMode ? <FaRegMoon /> : <FaRegSun />}
                 </button>
             </div>
         </main>
