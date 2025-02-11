@@ -10,6 +10,7 @@ import {
 import { Link, useLocation } from "react-router";
 import { ReactSVG } from "react-svg";
 import { CustomHeaderButton } from "./button";
+import { DownloadCv } from "./download";
 
 function isThemeSetToDark() {
     if (typeof window === "undefined") return false;
@@ -24,18 +25,8 @@ function isThemeSetToDark() {
 function isLanguageSetToBR() {
     if (typeof window === "undefined") return false;
 
-    return localStorage.getItem("language") === "US";
+    return localStorage.getItem("language") === "BR";
 }
-
-const download = () => {
-    const pdf: string = "../public/Curriculo_JOAO_TENTIS.pdf";
-    const link: any = document.createElement("a");
-    link.href = pdf;
-    link.download = "Curriculo_JOAO_TENTIS.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
 
 export function Header() {
     const location = useLocation();
@@ -71,7 +62,7 @@ export function Header() {
     const toggleLanguage = () => {
         const newLanguage = !language;
         setLanguage(newLanguage);
-        localStorage.setItem("language", newLanguage ? "US" : "BR");
+        localStorage.setItem("language", newLanguage ? "BR" : "US");
         console.log('toggle', newLanguage)
     };
 
@@ -87,16 +78,12 @@ export function Header() {
                     className="navLinksInternal flex gap-2 items-center"
                     type="button"
                 >
-                    {language ? <ReactSVG src="app/assets/flagUS.svg"></ReactSVG> : <ReactSVG src="app/assets/flagBR.svg"></ReactSVG>}
-                    {language ? 'en' : 'pt'}
+                    <ReactSVG src={language ? "app/assets/flagBR.svg" : "app/assets/flagUS.svg"}></ReactSVG>
+                    {language ? 'pt' : 'en'}
                 </button>
-                <button
-                    onClick={() => download()}
-                    className="navLinksInternal flex gap-2 items-center"
-                    type="button"
-                >
+                <DownloadCv>
                     <FaDownload size={15} /> currículo
-                </button>
+                </DownloadCv>
             </div>
             <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary ">
                 <nav>
