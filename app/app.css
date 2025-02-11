@@ -12,7 +12,7 @@
 @layer base {
   html,
   body {
-    @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-fira;
+    @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-fira text-sm;
   }
   
   button,
@@ -21,10 +21,14 @@
   }
 
   .navLinks{
-    @apply border-2 w-[40px] h-[40px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
+    @apply border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
   }
 
   .navLinksInternal{
-    @apply border-2 px-2 h-[40px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
+    @apply border-2 px-4 h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
+  }
+
+  .footerHover{
+    @apply hover:opacity-70
   }
 }

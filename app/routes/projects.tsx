@@ -1,7 +1,9 @@
 
 const Projects = () => {
     return (
-        <p>aaaa</p>
+        <div className="flex items-center justify-center">
+            <p>projetos</p>
+        </div>
     )
 }
 
