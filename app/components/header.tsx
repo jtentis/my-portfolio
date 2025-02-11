@@ -21,6 +21,12 @@ function isThemeSetToDark() {
     );
 }
 
+function isLanguageSetToBR() {
+    if (typeof window === "undefined") return false;
+
+    return localStorage.getItem("language") === "US";
+}
+
 const download = () => {
     const pdf: string = "../public/Curriculo_JOAO_TENTIS.pdf";
     const link: any = document.createElement("a");
@@ -33,22 +39,15 @@ const download = () => {
 
 export function Header() {
     const location = useLocation();
-    const [pageTitle, setPageTitle] = useState("");
     const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
+    const [language, setLanguage] = useState<boolean | null>(null);
 
     useEffect(() => {
-        const titles: Record<string, string> = {
-            "/": "/início",
-            "/about": "/sobre mim",
-            "/projects": "/projetos",
-        };
-
-        setPageTitle(titles[location.pathname] || "Página não encontrada");
-    }, [location]);
-
-    useEffect(() => {
+        const currentLanguage = isLanguageSetToBR();
         const currentTheme = isThemeSetToDark();
         setIsDarkMode(currentTheme);
+        setLanguage(currentLanguage);
+        console.log(currentLanguage)
 
         if (currentTheme) {
             document.documentElement.classList.add("dark");
@@ -69,6 +68,13 @@ export function Header() {
         }
     };
 
+    const toggleLanguage = () => {
+        const newLanguage = !language;
+        setLanguage(newLanguage);
+        localStorage.setItem("language", newLanguage ? "US" : "BR");
+        console.log('toggle', newLanguage)
+    };
+
     if (isDarkMode === null) {
         return null;
     }
@@ -77,11 +83,12 @@ export function Header() {
         <main className="flex items-center justify-center relative">
             <div className="absolute left-0 flex gap-4">
                 <button
+                    onClick={toggleLanguage}
                     className="navLinksInternal flex gap-2 items-center"
                     type="button"
                 >
-                    <ReactSVG src="../public/flag.svg"></ReactSVG>
-                    pt
+                    {language ? <ReactSVG src="app/assets/flagUS.svg"></ReactSVG> : <ReactSVG src="app/assets/flagBR.svg"></ReactSVG>}
+                    {language ? 'en' : 'pt'}
                 </button>
                 <button
                     onClick={() => download()}
