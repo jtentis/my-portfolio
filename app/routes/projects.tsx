@@ -1,3 +1,10 @@
+import type { Route } from "../+types/root";
+
+export function meta({}: Route.MetaArgs) {
+    return [
+        { title: "Projetos" },
+    ];
+}
 
 const Projects = () => {
     return (

@@ -1,3 +1,11 @@
+import type { Route } from "../+types/root";
+
+export function meta({}: Route.MetaArgs) {
+    return [
+        { title: "Sobre mim" },
+    ];
+}
+
 
 const AboutMe = () => {
     return (
