@@ -1,12 +1,19 @@
-import type { Route } from "../+types/root";
+import { useEffect } from "react";
 import { useLanguage } from "../hooks/useLanguage";
-
-export function meta({}: Route.MetaArgs) {
-    return [{ title: "Projetos" }];
-}
 
 const Projects = () => {
     const { t } = useLanguage();
+
+    useEffect(() => {
+        document.title = t.projects.title;
+        const descriptionMeta = document.querySelector(
+            'meta[name="description"]'
+        );
+        if (descriptionMeta) {
+            descriptionMeta.setAttribute("content", t.projects.description);
+        }
+    }, [t.projects.title, t.projects.description]);
+
     return (
         <div className="flex items-center justify-center">
             <h1>{t.projects.title}</h1>
