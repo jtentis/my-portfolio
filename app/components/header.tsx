@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { FaRegMoon } from "react-icons/fa";
 import {
     FaDownload,
     FaEnvelope,
     FaGithub,
     FaLinkedin,
+    FaRegMoon,
     FaRegSun,
 } from "react-icons/fa6";
 import { Link, useLocation } from "react-router";
 import { ReactSVG } from "react-svg";
+import { useLanguage } from "../hooks/useLanguage";
 import { CustomHeaderButton } from "./button";
 import { DownloadCv } from "./download";
 
@@ -22,23 +23,14 @@ function isThemeSetToDark() {
     );
 }
 
-function isLanguageSetToBR() {
-    if (typeof window === "undefined") return false;
-
-    return localStorage.getItem("language") === "BR";
-}
-
 export function Header() {
     const location = useLocation();
     const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
-    const [language, setLanguage] = useState<boolean | null>(null);
+    const { language, toggleLanguage, t } = useLanguage();
 
     useEffect(() => {
-        const currentLanguage = isLanguageSetToBR();
         const currentTheme = isThemeSetToDark();
         setIsDarkMode(currentTheme);
-        setLanguage(currentLanguage);
-        console.log(currentLanguage)
 
         if (currentTheme) {
             document.documentElement.classList.add("dark");
@@ -59,13 +51,6 @@ export function Header() {
         }
     };
 
-    const toggleLanguage = () => {
-        const newLanguage = !language;
-        setLanguage(newLanguage);
-        localStorage.setItem("language", newLanguage ? "BR" : "US");
-        console.log('toggle', newLanguage)
-    };
-
     if (isDarkMode === null) {
         return null;
     }
@@ -78,11 +63,17 @@ export function Header() {
                     className="navLinksInternal flex gap-2 items-center"
                     type="button"
                 >
-                    <ReactSVG src={language ? "app/assets/flagBR.svg" : "app/assets/flagUS.svg"}></ReactSVG>
-                    {language ? 'pt' : 'en'}
+                    <ReactSVG
+                        src={
+                            language === "pt"
+                                ? "app/assets/flagBR.svg"
+                                : "app/assets/flagUS.svg"
+                        }
+                    ></ReactSVG>
+                    {language}
                 </button>
                 <DownloadCv>
-                    <FaDownload size={15} /> currículo
+                    <FaDownload size={15} /> {t.curriculum}
                 </DownloadCv>
             </div>
             <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary ">
@@ -97,7 +88,7 @@ export function Header() {
                                         : "bg-primary dark:bg-secondary"
                                 }`}
                             >
-                                /início
+                                {t.nav.home}
                             </Link>
                         </li>
                         <li>
@@ -109,7 +100,7 @@ export function Header() {
                                         : "bg-primary dark:bg-secondary"
                                 }`}
                             >
-                                /projetos
+                                {t.nav.projects}
                             </Link>
                         </li>
                         <li>
@@ -121,7 +112,7 @@ export function Header() {
                                         : "bg-primary dark:bg-secondary"
                                 }`}
                             >
-                                /sobre mim
+                                {t.nav.about}
                             </Link>
                         </li>
                     </ul>

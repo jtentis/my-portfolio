@@ -1,0 +1,24 @@
+{
+    "nav": {
+        "home": "/início",
+        "projects": "/projetos",
+        "about": "/sobre mim"
+    },
+    "home":{
+        "title": "Início",
+        "greeting": "Olá, eu sou",
+        "name": "Seu Nome",
+        "role": "Desenvolvedor Full Stack",
+        "description": "Bem-vindo ao meu portfólio! Aqui você encontrará meus projetos e habilidades.",
+        "contact": "Entre em contato"
+    },
+    "about": {
+        "title": "Sobre Mim",
+        "description": "Aqui está um pouco sobre mim."
+    },
+    "projects": {
+        "title": "Projetos",
+        "description": "Aqui estão alguns dos meus projetos."
+    },
+    "curriculum": "currículo"
+}

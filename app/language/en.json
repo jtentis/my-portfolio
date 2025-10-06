@@ -1,0 +1,24 @@
+{
+    "nav": {
+        "home": "/home",
+        "projects": "/projects",
+        "about": "/about me"
+    },
+    "home":{
+        "title": "Home",
+        "greeting": "Hello, I am",
+        "name": "Your Name",
+        "role": "Full Stack Developer",
+        "description": "Welcome to my portfolio! Here you will find my projects and skills.",
+        "contact": "Get in touch"
+    },
+    "about": {
+        "title": "About Me",
+        "description": "Here is a little bit about me."
+    },
+    "projects": {
+        "title": "Projects",
+        "description": "Here are some of my projects."
+    },
+    "curriculum": "curriculum"
+}
