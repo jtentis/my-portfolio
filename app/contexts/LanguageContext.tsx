@@ -7,6 +7,7 @@ interface LanguageContextType {
     language: Language;
     toggleLanguage: () => void;
     t: typeof pt;
+    isLoading: boolean;
 }
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

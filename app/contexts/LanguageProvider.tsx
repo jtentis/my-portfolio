@@ -9,12 +9,14 @@ const translations = { pt, en };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const [language, setLanguage] = useState<Language>("pt");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const storedLanguage = localStorage.getItem("language");
         if (storedLanguage && (storedLanguage === "pt" || storedLanguage === "en")) {
             setLanguage(storedLanguage);
         }
+        setIsLoading(false);
     }, []);
 
     const toggleLanguage = () => {
@@ -24,7 +26,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <LanguageContext.Provider value={{ language, toggleLanguage, t: translations[language] }}>
+        <LanguageContext.Provider value={{ language, toggleLanguage, t: translations[language], isLoading }}>
             {children}
         </LanguageContext.Provider>
     );

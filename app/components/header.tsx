@@ -26,7 +26,7 @@ function isThemeSetToDark() {
 export function Header() {
     const location = useLocation();
     const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
-    const { language, toggleLanguage, t } = useLanguage();
+    const { language, toggleLanguage, t, isLoading } = useLanguage();
 
     useEffect(() => {
         const currentTheme = isThemeSetToDark();
@@ -51,7 +51,7 @@ export function Header() {
         }
     };
 
-    if (isDarkMode === null) {
+    if (isDarkMode === null || isLoading) {
         return null;
     }
 

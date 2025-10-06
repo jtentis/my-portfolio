@@ -12,11 +12,7 @@ export default function Home() {
     const { t } = useLanguage();
     return (
         <div className="flex flex-col items-center justify-center">
-            <h1>{t.home.greeting}</h1>
-            <h2>{t.home.name}</h2>
-            <h3>{t.home.role}</h3>
-            <p>{t.home.description}</p>
-            <button>{t.home.contact}</button>
+            <h1>{t.home.title}</h1>
         </div>
     );
 }

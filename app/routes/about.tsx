@@ -10,7 +10,6 @@ const AboutMe = () => {
     return (
         <div className="flex items-center justify-center">
             <h1>{t.about.title}</h1>
-            <p>{t.about.description}</p>
         </div>
     );
 };
