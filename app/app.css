@@ -31,4 +31,18 @@
   .footerHover{
     @apply hover:opacity-70
   }
+
+.folder-bg {
+    @apply bg-primary dark:bg-secondary border-2 border-secondary dark:border-primary p-4 rounded-b-lg;
+    min-height: 600px;
+}
+
+.tab {
+    @apply bg-primary dark:bg-secondary border-x-2 border-t-2 border-secondary dark:border-primary px-4 py-2 rounded-t-lg w-14;
+    position: relative;
+}  .tab.active {
+    @apply bg-primary dark:bg-secondary text-secondary dark:text-primary;
+    z-index: 10;
+    margin-bottom: -2px;
+}
 }

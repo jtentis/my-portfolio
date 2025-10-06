@@ -2,6 +2,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import "./app.css";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
+import { Tabs } from "./components/tabs";
 import { LanguageProvider } from "./contexts/LanguageProvider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -20,10 +21,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </head>
                 <body className="min-w-screen min-h-screen px-54 py-18 flex flex-col justify-between">
                     <Header />
-                    <main className="m-auto">{children}</main>
+                    <div className="flex-grow flex flex-col justify-center">
+                        <Tabs />
+                        <div className="folder-bg">
+                            <main className="m-auto">{children}</main>
+                        </div>
+                    </div>
+                    <Footer />
                     <ScrollRestoration />
                     <Scripts />
-                    <Footer />
                 </body>
             </html>
         </LanguageProvider>
