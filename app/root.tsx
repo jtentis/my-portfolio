@@ -1,4 +1,11 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { useEffect, useState } from "react";
+import {
+    Links,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+} from "react-router";
 import "./app.css";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
@@ -6,6 +13,26 @@ import { Tabs } from "./components/tabs";
 import { LanguageProvider } from "./contexts/LanguageProvider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const handleLoad = () => {
+            setIsLoading(false);
+        };
+
+        // Check if the document is already loaded
+        if (document.readyState === "complete") {
+            handleLoad();
+        } else {
+            window.addEventListener("load", handleLoad);
+        }
+
+        // Cleanup the event listener
+        return () => {
+            window.removeEventListener("load", handleLoad);
+        };
+    }, []);
+
     return (
         <LanguageProvider>
             <html lang="pt" className="w-full h-full">
@@ -19,7 +46,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <Meta />
                     <Links />
                 </head>
-                <body className="min-w-screen min-h-screen px-54 py-18 flex flex-col justify-between">
+                <body
+                    className={`min-w-screen min-h-screen px-54 py-18 flex flex-col ${
+                        isLoading ? "loading" : "loaded"
+                    }`}
+                >
                     <Header />
                     <div className="flex-grow flex flex-col justify-center">
                         <Tabs />
