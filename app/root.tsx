@@ -3,8 +3,7 @@ import {
     Links,
     Meta,
     Outlet,
-    Scripts,
-    ScrollRestoration,
+    Scripts
 } from "react-router";
 import "./app.css";
 import { Footer } from "./components/footer";
@@ -20,14 +19,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             setIsLoading(false);
         };
 
-        // Check if the document is already loaded
         if (document.readyState === "complete") {
             handleLoad();
         } else {
             window.addEventListener("load", handleLoad);
         }
 
-        // Cleanup the event listener
         return () => {
             window.removeEventListener("load", handleLoad);
         };
@@ -47,19 +44,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <Links />
                 </head>
                 <body
-                    className={`min-w-screen min-h-screen px-54 py-18 flex flex-col ${
+                    className={`min-w-screen min-h-screen px-54 py-18 flex flex-col justify-between ${
                         isLoading ? "loading" : "loaded"
                     }`}
                 >
                     <Header />
-                    <div className="flex-grow flex flex-col justify-center">
+                    <div className="flex flex-col justify-center">
                         <Tabs />
                         <div className="folder-bg">
-                            <main className="m-auto">{children}</main>
+                            <main className="m-5 p-5">{children}</main>
                         </div>
                     </div>
                     <Footer />
-                    <ScrollRestoration />
+                    {/* <ScrollRestoration /> */}
                     <Scripts />
                 </body>
             </html>

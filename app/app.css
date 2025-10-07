@@ -41,7 +41,7 @@
     }
 
     .project-card{
-      @apply border-2 border-secondary dark:border-primary bg-primary dark:bg-secondary p-6 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-64 flex flex-col justify-between;
+      @apply border-2 border-secondary dark:border-primary bg-primary dark:bg-secondary p-6 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-64 flex flex-col justify-between overflow-hidden;
     }
 
     .tab {
@@ -59,10 +59,6 @@
         @apply shadow-[3px_0px_0px_0px_rgba(30,34,41,0.30)]
          dark:shadow-[3px_0px_0px_0px_rgba(245,245,244,0.3)];
     }
-
-    /* .tab:nth-child(1) {
-        z-index: 1 !important;
-    } */
 
     .loading {
         opacity: 0;
