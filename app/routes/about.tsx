@@ -16,7 +16,9 @@ const AboutMe = () => {
     }, [t.about.title, t.about.description]);
 
     return (
-        <Title title={t.about.title}/>
+        <div>
+            <Title title={t.nav.about} />
+        </div>
     );
 };
 

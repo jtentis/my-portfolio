@@ -18,7 +18,7 @@ export const Projects = () => {
 
     return (
         <div className="flex flex-col justify-between">
-            <Title title={t.projects.title}/>
+            <Title title={t.nav.projects}/>
             <div className="grid md:grid-cols-3 md:grid-rows-2 gap-4">
                 {t.projects.projectList.map((project) => (
                     <ProjectCard

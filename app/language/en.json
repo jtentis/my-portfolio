@@ -2,18 +2,15 @@
     "nav": {
         "home": "/home",
         "projects": "/projects",
-        "about": "/about me"
+        "about": "/about"
     },
     "home":{
         "title": "Home",
-        "greeting": "Hello, I am",
-        "name": "Your Name",
-        "role": "Full Stack Developer",
-        "description": "Welcome to my portfolio! Here you will find my projects and skills.",
-        "contact": "Get in touch"
+        "description":"Full Stack software developer | I like to build things! 😉",
+        "button":"See projects"
     },
     "about": {
-        "title": "About Me",
+        "title": "About",
         "description": "Here is a little bit about me."
     },
     "projects": {
