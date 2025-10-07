@@ -6,7 +6,7 @@ export function Tabs() {
     // The zIndex is now defined directly in the object.
     // Home ('/') has the highest zIndex (3), and 'about' has the lowest (1).
     const tabs = [
-        { path: "/", zIndex: 3 },
+        { path: "/", zIndex: 1 },
         { path: "/projects", zIndex: 2 },
         { path: "/about", zIndex: 1 },
     ];
@@ -25,6 +25,7 @@ export function Tabs() {
                             right: 15 * index - 20,
                         }}
                     >
+                        <div className="tab-fill" />
                     </div>
                 );
             })}

@@ -1,60 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #F5F5F4;
-  --color-secondary: #1E2229;
-  --font-fira: "Fira Mono", serif;
+    --color-primary: #f2f2f2;
+    --color-secondary: #1e2229;
+    --color-folder-primary: #F7F7F7;
+    --color-folder-secondary: #2D313B;
+    --font-fira: "Fira Mono", serif;
 }
 
 @layer base {
-  html,
-  body {
-    @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-fira text-sm;
-  }
-  
-  button,
-  a{
-    @apply active:translate-y-0.5 active:translate-x-0.5 transition-all cursor-pointer active:shadow-none;
-  }
+    html,
+    body {
+        @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-fira text-sm;
+    }
 
-  .navLinks{
-    @apply border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
-  }
+    button,
+    a {
+        @apply active:translate-y-0.5 active:translate-x-0.5 transition-all cursor-pointer active:shadow-none;
+    }
 
-  .navLinksInternal{
-    @apply border-2 px-4 h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] ;
-  }
+    .navLinks {
+        @apply border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+    }
 
-  .footerHover{
-    @apply hover:opacity-70
-  }
+    .navLinksInternal {
+        @apply border-2 px-4 h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+    }
 
-.folder-bg {
-    @apply bg-primary dark:bg-secondary border-2 border-secondary dark:border-primary p-4 rounded-br-lg rounded-bl-lg rounded-tl-lg shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
-    min-height: 600px;
-}
+    .footerHover {
+        @apply hover:opacity-70;
+    }
 
-.tab {
-    @apply bg-primary dark:bg-secondary border-x-2 border-t-2 border-secondary dark:border-primary py-2 rounded-t-lg w-14;
-}  .tab.active {
-    @apply bg-primary dark:bg-secondary text-secondary dark:text-primary pt-3;
-    margin-bottom: -2px;
-}
+    .folder-bg {
+        @apply bg-folder-primary dark:bg-folder-secondary border-2 border-secondary dark:border-primary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+        min-height: 600px;
+        max-height: 600px;
+    }
 
-.tab:nth-child(3) {
-  @apply shadow-[3px_0px_0px_0px_rgba(30,34,41,0.30)]
+    .project-card{
+      @apply border-2 border-secondary dark:border-primary bg-primary dark:bg-secondary p-6 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-64 flex flex-col justify-between;
+    }
+
+    .tab {
+        @apply bg-primary dark:bg-secondary border-x-2 border-t-2 border-secondary dark:border-primary p-2 rounded-t-lg w-14;
+    }
+    .tab.active {
+        .tab-fill {
+            @apply bg-secondary dark:bg-primary w-full h-1 rounded-t;
+        }
+        @apply bg-primary dark:bg-secondary text-secondary dark:text-primary;
+        margin-bottom: -2px;
+    }
+
+    .tab:nth-child(3) {
+        @apply shadow-[3px_0px_0px_0px_rgba(30,34,41,0.30)]
          dark:shadow-[3px_0px_0px_0px_rgba(245,245,244,0.3)];
-}
+    }
 
-.loading {
-    opacity: 0;
-}
+    /* .tab:nth-child(1) {
+        z-index: 1 !important;
+    } */
 
-.loaded {
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-}
+    .loading {
+        opacity: 0;
+    }
+
+    .loaded {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
 }

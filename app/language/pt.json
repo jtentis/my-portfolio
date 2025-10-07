@@ -18,7 +18,41 @@
     },
     "projects": {
         "title": "Projetos",
-        "description": "Aqui estão alguns dos meus projetos."
+        "description": "Aqui estão alguns dos meus projetos.",
+        "projectList": [
+            {
+                "id": 1,
+                "title": "Meu Portfólio",
+                "description": "Este site! Um portfólio pessoal para mostrar meus projetos e habilidades, construído com React, TypeScript e Tailwind CSS.",
+                "stack": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+                "completedDate": "Outubro 2025",
+                "githubUrl": "https://github.com/jtentis/my-portfolio"
+            },
+            {
+                "id": 2,
+                "title": "Projeto 2",
+                "description": "Descrição para o projeto 2.",
+                "stack": ["Next.js", "Stripe"],
+                "completedDate": "Novembro 2025",
+                "githubUrl": "https://github.com/jtentis/my-portfolio"
+            },
+            {
+                "id": 3,
+                "title": "Projeto 3",
+                "description": "Descrição para o projeto 3.",
+                "stack": ["Python", "FastAPI"],
+                "completedDate": "Dezembro 2025",
+                "githubUrl": "https://github.com/jtentis/my-portfolio"
+            },
+            {
+                "id": 4,
+                "title": "Projeto 4",
+                "description": "Descrição para o projeto 4.",
+                "stack": ["Go", "Gin"],
+                "completedDate": "Janeiro 2026",
+                "githubUrl": "https://github.com/jtentis/my-portfolio"
+            }
+        ]
     },
     "curriculum": "currículo"
 }
