@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-    FaDownload,
-    FaEnvelope,
-    FaGithub,
-    FaLinkedin,
-    FaRegMoon,
-    FaRegSun,
-} from "react-icons/fa6";
+import { FaDownload, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { Link, useLocation } from "react-router";
 import { ReactSVG } from "react-svg";
 import { useLanguage } from "../hooks/useLanguage";
-import { CustomHeaderButton } from "./button";
 import { DownloadCv } from "./download";
+import { ButtonWithIcon } from "./icon";
+import { ThemeToggleButton } from "./toggle";
 
 function isThemeSetToDark() {
     if (typeof window === "undefined") return false;
@@ -73,7 +67,7 @@ export function Header() {
                     {language}
                 </button>
                 <DownloadCv>
-                    <FaDownload size={15} /> {t.curriculum.name}
+                    <FaDownload size={14} /> {t.curriculum.name}
                 </DownloadCv>
             </div>
             <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary ">
@@ -119,25 +113,26 @@ export function Header() {
                 </nav>
             </header>
             <div className="flex justify-between gap-4 absolute right-0">
-                <CustomHeaderButton
-                    icon={<FaEnvelope size={15} />}
+                <ButtonWithIcon
+                    target="_blank"
+                    icon={<FaEnvelope />}
                     link={"mailto:jps.tentis@gmail.com"}
                 />
-                <CustomHeaderButton
-                    icon={<FaLinkedin size={15} />}
+                <ButtonWithIcon
+                    target="_blank"
+                    icon={<FaLinkedin />}
                     link={"https://www.linkedin.com/in/jtentis/"}
                 />
-                <CustomHeaderButton
-                    icon={<FaGithub size={15} />}
+                <ButtonWithIcon
+                    target="_blank"
+                    icon={<FaGithub />}
                     link={"https://github.com/jtentis"}
                 />
                 <div className="h-[25px] self-center w-1 bg-secondary dark:bg-primary" />
-                <button
-                    onClick={toggleTheme}
-                    className="navLinks cursor-pointer"
-                >
-                    {isDarkMode ? <FaRegMoon /> : <FaRegSun />}
-                </button>
+                <ThemeToggleButton
+                    isDarkMode={isDarkMode}
+                    toggleTheme={toggleTheme}
+                />
             </div>
         </main>
     );

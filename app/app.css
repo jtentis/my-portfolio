@@ -19,11 +19,19 @@
 
     button,
     a {
-        @apply active:translate-y-0.5 active:translate-x-0.5 transition-all cursor-pointer active:shadow-none;
+        @apply active:translate-y-0.5 active:translate-x-0.5 cursor-pointer active:duration-100 active:shadow-none;
     }
+/* 
+    button {
+        @apply active:translate-y-0.5 active:translate-x-0.5 cursor-pointer active:duration-100 active:shadow-none;
+    } */
 
     .navLinks {
         @apply bg-primary dark:bg-secondary border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+    }
+
+    .customHover{
+        @apply hover:transition-all duration-400 hover:ease-out;
     }
 
     .navLinksInternal {
@@ -31,7 +39,7 @@
     }
 
     .navLinksHome {
-        @apply bg-primary dark:bg-secondary border-2 p-3 flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+        @apply bg-primary dark:bg-secondary border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
     }
 
     .footerHover {
@@ -101,4 +109,10 @@
         opacity: 1;
         animation: blink 1s step-end infinite;
     }
+}
+
+@layer utilities {
+  .group:hover .group-hover-icon-fill {
+    @apply  text-primary dark:text-secondary;
+  }
 }

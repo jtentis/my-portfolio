@@ -31,7 +31,7 @@ export default function Home() {
                 <span className="text-3xl">
                     <TextAnimator text={t.home.description} />
                 </span>
-                <Link to="/projects" className={`navLinksHome`}>
+                <Link to="/projects" className={`navLinksInternal`}>
                     {t.home.button}<IoMdArrowForward className="ml-3" size={20}/>
                 </Link>
             </div>
