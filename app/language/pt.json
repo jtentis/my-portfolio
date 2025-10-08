@@ -51,5 +51,10 @@
             }
         ]
     },
-    "curriculum": "currículo"
+    "curriculum": "currículo",
+    "footer": {
+        "code": "Código",
+        "madeBy": "Feito por João Tentis",
+        "contact": "Contato"
+    }
 }
