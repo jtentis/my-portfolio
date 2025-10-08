@@ -55,7 +55,6 @@ export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, o
                         gsap.set(char, { innerHTML: initialHTML, delay: 0.03 });
                         if (position === chars.length - 1) {
                             setIsAnimating(false);
-                            // Conditionally remove the cursor based on the prop
                             if (!options.blinkOnEnd) {
                                 chars[position].classList.remove('active-cursor');
                             }
@@ -70,7 +69,7 @@ export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, o
                     },
                     repeatRefresh: true,
                     repeatDelay: 0.02,
-                    delay: position * 0.05,
+                    delay: position * 0.03,
                     innerHTML: () => lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)],
                     opacity: 1,
                 }

@@ -1,17 +1,19 @@
+import React from "react";
+import { useLanguage } from "~/hooks/useLanguage";
+
 export const DownloadCv = ({
     children,
-    pdfName = "Curriculo_JOAO_TENTIS.pdf",
-    pdfLocation = "app/assets/Curriculo_JOAO_TENTIS.pdf",
 }: {
     children: React.ReactNode;
-    pdfName?: string;
-    pdfLocation?: string;
 }) => {
+    const { t } = useLanguage();
+    const finalPdfFile = t.curriculum.file;
+    const finalPdfLocation = t.curriculum.path;
+
     const download = () => {
-        const pdf: string = pdfLocation;
-        const link: any = document.createElement("a");
-        link.href = pdf;
-        link.download = pdfName;
+        const link = document.createElement("a");
+        link.href = finalPdfLocation;
+        link.download = finalPdfFile;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

@@ -51,7 +51,11 @@
             }
         ]
     },
-    "curriculum": "currículo",
+    "curriculum": {
+        "name": "Currículo",
+        "path": "app/assets/Curriculo_JOAO_TENTIS.pdf",
+        "file": "Curriculo_JOAO_TENTIS.pdf"
+    },
     "footer": {
         "code": "Código",
         "madeBy": "Feito por João Tentis",

@@ -73,7 +73,7 @@ export function Header() {
                     {language}
                 </button>
                 <DownloadCv>
-                    <FaDownload size={15} /> {t.curriculum}
+                    <FaDownload size={15} /> {t.curriculum.name}
                 </DownloadCv>
             </div>
             <header className="bg-primary text-secondary dark:bg-secondary dark:text-primary ">
