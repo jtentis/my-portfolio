@@ -30,6 +30,10 @@
         @apply bg-primary dark:bg-secondary border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
     }
 
+    button:hover{
+        @apply scale-105 transition-transform duration-100 ease-in-out;
+    }
+
     .customHover{
         @apply hover:transition-all duration-400 hover:ease-out;
     }
@@ -47,12 +51,11 @@
     }
 
     .folder-bg {
-        @apply bg-folder-primary dark:bg-folder-secondary border-2 border-secondary dark:border-primary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
-        height: 600px;
+        @apply bg-folder-primary dark:bg-folder-secondary border-2 border-secondary dark:border-primary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] flex flex-col w-full h-[590px] p-8 gap-6;
     }
 
     .project-card {
-        @apply border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] p-6 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-64 flex flex-col justify-between overflow-hidden;
+        @apply border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-full flex flex-col justify-between overflow-hidden p-6 hover:scale-102 transition-transform duration-100 ease-in-out;
     }
 
     .tab {

@@ -1,18 +1,7 @@
-import { useEffect } from "react";
 import { useLanguage } from "~/hooks/useLanguage";
 
 export function Footer() {
     const { t } = useLanguage();
-    
-        useEffect(() => {
-            document.title = t.projects.title;
-            const descriptionMeta = document.querySelector(
-                'meta[name="description"]'
-            );
-            if (descriptionMeta) {
-                descriptionMeta.setAttribute("content", t.projects.description);
-            }
-        }, [t.projects.title, t.projects.description]);
 
     return (
         <footer className=" text-secondary dark:text-primary flex justify-center gap-10">

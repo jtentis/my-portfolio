@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Title } from "~/components/title";
 import { useLanguage } from "../hooks/useLanguage";
 
 const AboutMe = () => {
@@ -17,7 +16,11 @@ const AboutMe = () => {
 
     return (
         <div>
-            <Title title={t.nav.about} />
+        
+            <div className="w-full  flex flex-col md:flex-row gap-4">
+                <div className="w-1/3 border-2">a</div>
+                <div className="w-full border-2">a</div>
+            </div>
         </div>
     );
 };

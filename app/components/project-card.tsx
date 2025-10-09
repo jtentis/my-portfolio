@@ -21,20 +21,18 @@ export const ProjectCard = ({
     githubUrl,
 }: ProjectCardProps) => {
     return (
-        <a className="project-card" href="https://github.com/jtentis" target="_blank" rel="noopener noreferrer">
+        <a className="project-card" href={githubUrl} target="_blank" rel="noopener noreferrer">
             <div>
                 <div className="mb-4 flex items-start justify-between">
                     <h3 className="text-xl font-bold">{title}</h3>
                     <div className="flex gap-2">
-                        {githubUrl && (
-                            <VscLinkExternal
-                                size={20}
-                            />
-                        )}
+                        <VscLinkExternal
+                            size={20}
+                        />
                     </div>
                 </div>
 
-                <p className="mb-4 text-sm leading-relaxed text-secondary/80 dark:text-primary/80">
+                <p className="mb-12 text-sm leading-relaxed text-secondary/80 dark:text-primary/80">
                     {description}
                 </p>
             </div>

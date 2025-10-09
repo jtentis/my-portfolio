@@ -5,7 +5,7 @@ import { ReactSVG } from "react-svg";
 import { useLanguage } from "../hooks/useLanguage";
 import { DownloadCv } from "./download";
 import { ButtonWithIcon } from "./icon";
-import { ThemeToggleButton } from "./toggle";
+import { ThemeToggleButton } from "./toggle-theme";
 
 function isThemeSetToDark() {
     if (typeof window === "undefined") return false;
