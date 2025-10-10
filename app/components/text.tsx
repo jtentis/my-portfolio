@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../app.css";
 import { useTextAnimator } from "../hooks/useTextAnimator";
 
@@ -16,6 +16,13 @@ export const TextAnimator: React.FC<TextAnimatorProps> = ({
 }) => {
     const textRef = useRef<HTMLParagraphElement | null>(null);
     const { animate } = useTextAnimator(textRef, { blinkOnEnd, text });
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            animate();
+        }, 100);
+        return () => clearTimeout(timeoutId);
+    }, [text, animate]);
 
     return (
         <p
