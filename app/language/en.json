@@ -3,12 +3,19 @@
     "nav": {
         "home": "/home",
         "projects": "/projects",
-        "about": "/about"
+        "about": "/about",
+        "notFound": "/error"
     },
-    "home":{
+    "notFound": {
+        "title": "404 - Not Found",
+        "message": "Directory not found. (404)",
+        "path": "The path you tried to access does not exist.",
+        "return": "Return to Home"
+    },
+    "home": {
         "title": "Home",
-        "description":"Full Stack software developer | I like to build things! 😉",
-        "button":"See projects"
+        "description": "Full Stack software developer | I like to build things! 😉",
+        "button": "See projects"
     },
     "about": {
         "title": "About",
@@ -22,7 +29,12 @@
                 "id": 1,
                 "title": "My Portfolio",
                 "description": "This website! A personal portfolio to showcase my projects and skills, built with React, TypeScript, and Tailwind CSS.",
-                "stack": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+                "stack": [
+                    "React",
+                    "TypeScript",
+                    "Tailwind CSS",
+                    "Vite"
+                ],
                 "completedDate": "October 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -30,7 +42,10 @@
                 "id": 2,
                 "title": "Project 2",
                 "description": "Description for project 2.",
-                "stack": ["Next.js", "Stripe"],
+                "stack": [
+                    "Next.js",
+                    "Stripe"
+                ],
                 "completedDate": "November 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -38,7 +53,10 @@
                 "id": 3,
                 "title": "Project 3",
                 "description": "Description for project 3.",
-                "stack": ["Python", "FastAPI"],
+                "stack": [
+                    "Python",
+                    "FastAPI"
+                ],
                 "completedDate": "December 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -46,7 +64,10 @@
                 "id": 4,
                 "title": "Project 4",
                 "description": "Description for project 4.",
-                "stack": ["Go", "Gin"],
+                "stack": [
+                    "Go",
+                    "Gin"
+                ],
                 "completedDate": "January 2026",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             }

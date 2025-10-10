@@ -3,7 +3,14 @@
     "nav": {
         "home": "/inicio",
         "projects": "/projetos",
-        "about": "/sobre"
+        "about": "/sobre",
+        "notFound": "/error"
+    },
+    "notFound": {
+        "title": "404 - Não Encontrado",
+        "message": "Diretório não encontrado. (404)",
+        "path": "O caminho que você tentou acessar não existe.",
+        "return": "Voltar para o Início"
     },
     "home":{
         "title": "Início",

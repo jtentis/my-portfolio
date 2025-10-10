@@ -26,11 +26,11 @@ const LayoutShell = ({
     const location = useLocation();
     const { t } = useLanguage();
 
-    const routeKey = routeKeyMap[location.pathname] || "home";
+    const routeKey = routeKeyMap[location.pathname] || "/";
 
     const titleKey = routeKey as NavKey;
     const currentTitle =
-        t.nav && t.nav[titleKey] ? t.nav[titleKey] : "jtenv/loading...";
+        t.nav && t.nav[titleKey] ? t.nav[titleKey] : t.nav.notFound;
 
     return (
         <html lang={t.language} className="w-full h-full">
