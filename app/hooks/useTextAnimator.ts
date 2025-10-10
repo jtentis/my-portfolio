@@ -1,6 +1,5 @@
-// src/hooks/useTextAnimator.ts
 import { gsap } from 'gsap';
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useCallback, useEffect, useRef, type RefObject } from 'react';
 import { TextSplitter } from '../textSplitter';
 
 const lettersAndSymbols: string[] = [
@@ -11,16 +10,20 @@ const lettersAndSymbols: string[] = [
 
 interface AnimatorOptions {
     blinkOnEnd?: boolean;
+    text: string;
 }
 
-export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, options: AnimatorOptions = {}) => {
+export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, options: AnimatorOptions) => {
     const splitterRef = useRef<TextSplitter | null>(null);
     const originalCharsRef = useRef<string[]>([]);
-    const [isAnimating, setIsAnimating] = useState(false);
+
+    const isAnimatingRef = useRef(false);
 
     useEffect(() => {
         const element = textElementRef.current;
         if (!element) return;
+
+        gsap.killTweensOf(element.querySelectorAll('.char'));
 
         splitterRef.current = new TextSplitter(element, { splitTypeTypes: 'words, chars' });
         originalCharsRef.current = splitterRef.current.getChars().map(char => char.innerHTML);
@@ -28,19 +31,29 @@ export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, o
         return () => {
             gsap.killTweensOf(element.querySelectorAll('.char'));
         };
-    }, [textElementRef]);
+    }, [textElementRef, options.text]);
 
-    const animate = (): void => {
-        if (!splitterRef.current || isAnimating) return;
+    const animate = useCallback((): void => {
+        if (!splitterRef.current || isAnimatingRef.current) return;
 
-        setIsAnimating(true);
+        isAnimatingRef.current = true;
 
         const chars = splitterRef.current.getChars();
+
+        const timeline = gsap.timeline({
+            onComplete: () => {
+                isAnimatingRef.current = false;
+
+                if (!options.blinkOnEnd) {
+                    chars[chars.length - 1].classList.remove('active-cursor');
+                }
+            }
+        });
+
         chars.forEach((char, position) => {
             const initialHTML = originalCharsRef.current[position];
-            let repeatCount = 0;
 
-            gsap.fromTo(char,
+            timeline.fromTo(char,
                 { opacity: 0 },
                 {
                     duration: 0.02,
@@ -51,31 +64,20 @@ export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, o
                             chars[position - 1].classList.remove('active-cursor');
                         }
                     },
-                    onComplete: () => {
-                        gsap.set(char, { innerHTML: initialHTML, delay: 0.03 });
-                        if (position === chars.length - 1) {
-                            setIsAnimating(false);
-                            if (!options.blinkOnEnd) {
-                                chars[position].classList.remove('active-cursor');
-                            }
-                        }
-                    },
                     repeat: 3,
                     onRepeat: () => {
-                        repeatCount++;
-                        if (repeatCount === 1) {
-                            gsap.set(char, { '--opa': 0 });
-                        }
+                        gsap.set(char, { '--opa': 0 });
                     },
                     repeatRefresh: true,
                     repeatDelay: 0.02,
-                    delay: position * 0.03,
                     innerHTML: () => lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)],
                     opacity: 1,
-                }
-            );
+                },
+                position * 0.03
+            ).set(char, { innerHTML: initialHTML, delay: 0.03 }, position * 0.03 + 0.02 * 3 + 0.02 * 3);
         });
-    };
+
+    }, [options.blinkOnEnd, textElementRef]);
 
     return { animate };
 };

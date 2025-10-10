@@ -15,7 +15,7 @@ export const TextAnimator: React.FC<TextAnimatorProps> = ({
     blinkOnEnd
 }) => {
     const textRef = useRef<HTMLParagraphElement | null>(null);
-    const { animate } = useTextAnimator(textRef, { blinkOnEnd });
+    const { animate } = useTextAnimator(textRef, { blinkOnEnd, text });
 
     return (
         <p
