@@ -9,7 +9,7 @@
     "notFound": {
         "title": "404 - Não Encontrado",
         "message": "Diretório não encontrado. (404)",
-        "path": "O caminho que você tentou acessar não existe.",
+        "path": "Sim, temos a página not found. Agora pode voltar...",
         "return": "Voltar para o Início"
     },
     "home":{

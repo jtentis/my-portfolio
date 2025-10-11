@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { FaDownload, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { Link, useLocation } from "react-router";
-import { ReactSVG } from "react-svg";
 import { useLanguage } from "../hooks/useLanguage";
 import { DownloadCv } from "./download";
 import { ButtonWithIcon } from "./icon";
-import { ThemeToggleButton } from "./toggle-theme";
+import { ToggleLanguageButton } from "./language-toggle";
+import { ThemeToggleButton } from "./theme-toggle";
 
 function isThemeSetToDark() {
     if (typeof window === "undefined") return false;
@@ -52,20 +52,7 @@ export function Header() {
     return (
         <main className="flex items-center justify-center relative">
             <div className="absolute left-0 flex gap-4">
-                <button
-                    onClick={toggleLanguage}
-                    className="navLinksInternal flex gap-2 items-center"
-                    type="button"
-                >
-                    <ReactSVG
-                        src={
-                            language === "pt"
-                                ? "app/assets/flagBR.svg"
-                                : "app/assets/flagUS.svg"
-                        }
-                    ></ReactSVG>
-                    {language}
-                </button>
+                <ToggleLanguageButton />
                 <DownloadCv>
                     <FaDownload size={14} /> {t.curriculum.name}
                 </DownloadCv>
@@ -76,7 +63,7 @@ export function Header() {
                         <li>
                             <Link
                                 to="/"
-                                className={`navLinksInternal ${
+                                className={`navLinksInternal w-[80px] ${
                                     location.pathname === "/"
                                         ? "bg-secondary border-secondary dark:border-primary text-primary dark:bg-primary dark:text-secondary"
                                         : "bg-primary dark:bg-secondary"
@@ -88,7 +75,7 @@ export function Header() {
                         <li>
                             <Link
                                 to="/projects"
-                                className={`navLinksInternal ${
+                                className={`navLinksInternal w-[100px] ${
                                     location.pathname === "/projects"
                                         ? "bg-secondary border-secondary dark:border-primary text-primary dark:bg-primary dark:text-secondary"
                                         : "bg-primary dark:bg-secondary"
@@ -100,7 +87,7 @@ export function Header() {
                         <li>
                             <Link
                                 to="/about"
-                                className={`navLinksInternal ${
+                                className={`navLinksInternal w-[80px] ${
                                     location.pathname === "/about"
                                         ? "bg-secondary border-secondary dark:border-primary text-primary dark:bg-primary dark:text-secondary"
                                         : "bg-primary dark:bg-secondary"

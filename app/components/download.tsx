@@ -1,11 +1,7 @@
 import React from "react";
 import { useLanguage } from "~/hooks/useLanguage";
 
-export const DownloadCv = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const DownloadCv = ({ children }: { children: React.ReactNode }) => {
     const { t } = useLanguage();
     const finalPdfFile = t.curriculum.file;
     const finalPdfLocation = t.curriculum.path;
@@ -22,10 +18,12 @@ export const DownloadCv = ({
     return (
         <button
             onClick={download}
-            className="navLinksInternal flex gap-2 items-center"
+            className="navLinksInternal w-[130px] group hover:bg-secondary dark:hover:bg-primary"
             type="button"
         >
-            {children}
+            <span className="group-hover-icon-fill flex gap-2 items-center ">
+                {children}
+            </span>
         </button>
     );
 };
