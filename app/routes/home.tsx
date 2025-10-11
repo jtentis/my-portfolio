@@ -19,7 +19,6 @@ export default function Home() {
 
     return (
         <div className="flex flex-col">
-            {/* <Title title={t.nav.home} /> */}
             <div className="flex flex-col justify-center items-start h-[450px] gap-10">
                 <span className="list__item-col text-3xl">
                     <TextAnimator text="$ cat welcome.txt" blinkOnEnd={true} />

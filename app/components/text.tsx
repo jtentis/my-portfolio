@@ -25,7 +25,7 @@ export const TextAnimator: React.FC<TextAnimatorProps> = ({
     }, [text, animate]);
 
     return (
-        <p
+        <h1
             ref={textRef}
             className={clsx(
                 "hover-effect hover-effect--cursor-square",
@@ -34,6 +34,6 @@ export const TextAnimator: React.FC<TextAnimatorProps> = ({
             onMouseEnter={animate}
         >
             {text}
-        </p>
+        </h1>
     );
 };
