@@ -6,7 +6,9 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {},
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 };
 
 export default config;

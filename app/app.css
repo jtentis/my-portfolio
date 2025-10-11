@@ -12,32 +12,34 @@
     --font-jetbrainsmono: "JetBrainsMono", monospace;
 }
 
-
-
 @layer base {
+    @font-face {
+        font-family: JetBrainsMono;
+        font-weight: 700;
+        font-style: normal;
+        src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
+    }
 
     @font-face {
-  font-family: JetBrainsMono;
-  font-weight: 700;
-  font-style: normal;
-  src: url("./assets/fonts/JetBrainsMono-Bold.ttf");
-}
-
-    @font-face {
-  font-family: JetBrainsMono;
-  font-weight: 400;
-  font-style: normal;
-  src: url("./assets/fonts/JetBrainsMono-Medium.ttf");
-}
+        font-family: JetBrainsMono;
+        font-weight: 400;
+        font-style: normal;
+        src: url("./assets/fonts/JetBrainsMono-Medium.ttf");
+    }
 
     html,
     body {
         @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-jetbrainsmono text-sm bg-[url(./assets/noise.png)];
     }
 
-      h1, h2, h3, h4, h5, h6 {
-    @apply font-jetbrainsmono font-bold;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-jetbrainsmono font-bold;
+    }
 
     button,
     a {
@@ -127,35 +129,62 @@
         animation: blink 1s step-end infinite;
     }
 
-    /* Profile card and overlay */
     .profile-card {
-        @apply relative bg-cover bg-center overflow-hidden border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-full;
+        @apply relative bg-cover bg-center overflow-hidden border-2 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] h-full;
     }
 
     .profile-overlay {
-        @apply absolute inset-0 border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] flex flex-col items-center justify-center opacity-0 transition-opacity duration-300;
+        @apply absolute inset-0 bg-[#f2f2f2] dark:bg-[#2f3e28] flex flex-col items-center justify-center opacity-0 transition-opacity duration-200 ease-in-out;
     }
 
-    .profile-bg{
-        @apply bg-[#f2f2f2] dark:bg-[#2f3e28] shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)]
+    .profile-bg {
+        @apply bg-[#f2f2f2] dark:bg-[#2f3e28] shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+        position: relative;
+        scroll-behavior: smooth;
     }
 
     .profile-card:hover .profile-overlay {
-        @apply opacity-100;
+        @apply opacity-90;
     }
 
-    .bg-badgeBg{
+    .bg-badgeBg {
         @apply bg-primary dark:bg-secondary;
     }
-    
+
     .hide-scrollbar {
         scrollbar-width: thin;
-        -ms-overflow-style: none;
+        scrollbar-color: transparent transparent;
+        -ms-overflow-style:;
     }
 
     .hide-scrollbar::-webkit-scrollbar {
         width: 0px;
         height: 0px;
+    }
+
+    //TODO: consertar isso
+    .profile-bg::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4rem;
+        pointer-events: none;
+        background: linear-gradient(
+            180deg,
+            rgba(242, 242, 242, 0) 0%,
+            rgba(242, 242, 242, 1) 100%
+        );
+        transition: opacity 200ms ease;
+    }
+
+    .dark .profile-bg::after {
+        background: linear-gradient(
+            180deg,
+            rgba(47, 62, 40, 0) 0%,
+            rgba(47, 62, 40, 1) 100%
+        );
     }
 }
 

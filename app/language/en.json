@@ -14,12 +14,60 @@
     },
     "home": {
         "title": "Home",
-        "description": "Full Stack software developer | I like to build things! 😉",
+        "description": "Full Stack software developer | I like to build things from beginnig to end! 😉",
         "button": "See projects"
     },
     "about": {
         "title": "About",
-        "description": "Here is a little bit about me."
+        "description": "Here is a little bit about me.",
+        "profile": {
+            "name": "João Tentis",
+            "role": "Full Stack Developer",
+            "contactHint": "Hover to see contact"
+        },
+        "whoami": {
+            "heading": "$ whoami",
+            "text": "Full Stack developer passionate about creating elegant, functional solutions. I turn ideas into clean code and memorable digital experiences."
+        },
+        "skills": {
+            "heading": "$ skills --list",
+            "heading2": "Tools",
+            "frontend": ["React", "TypeScript", "Tailwind CSS", "Next.js","Bootstrap", "Material UI"],
+            "backend": ["Node.js", "Python", "PostgreSQL", "MongoDB","MariaDB"],
+            "tools": ["Git", "Docker", "VS Code", "Figma"]
+        },
+        "experience": {
+            "heading": "$ ls experiência/",
+            "items": [
+                {
+                    "title": "Full Stack Developer",
+                    "period": "2022 - Present",
+                    "description": "Building modern web applications focused on performance and user experience."
+                },
+                {
+                    "title": "Frontend Developer",
+                    "period": "2020 - 2022",
+                    "description": "Built responsive, accessible interfaces using React and TypeScript."
+                }
+            ]
+        },
+        "education": {
+            "heading": "$ ls educacao/",
+            "items": [
+                {
+                    "title": "Computer Science",
+                    "meta": "University • 2018 - 2022"
+                },
+                {
+                    "title": "Certifications",
+                    "meta": "AWS, Google Cloud, Meta Frontend Developer"
+                }
+            ]
+        },
+        "hobbies": {
+            "heading": "$ echo $HOBBIES",
+            "text": "When I'm not coding, I contribute to open source, explore new tech, play video games and photograph."
+        }
     },
     "projects": {
         "title": "Projects",

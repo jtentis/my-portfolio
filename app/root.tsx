@@ -53,7 +53,7 @@ const LayoutShell = ({
                     <Tabs />
                     <div className="folder-bg">
                         <Title title={currentTitle} />
-                        <main>{children}</main>
+                        <main className="h-[485px]">{children}</main>
                     </div>
                 </div>
                 <Footer />

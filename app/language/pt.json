@@ -19,7 +19,55 @@
     },
     "about": {
         "title": "Sobre",
-        "description": "Aqui está um pouco sobre mim."
+        "description": "Aqui está um pouco sobre mim.",
+        "profile": {
+            "name": "João Tentis",
+            "role": "Desenvolvedor Full Stack",
+            "contactHint": "Passe o mouse para ver contato"
+        },
+        "whoami": {
+            "heading": "$ whoami",
+            "text": "Desenvolvedor Full Stack apaixonado por criar soluções elegantes e funcionais. Transformo ideias em código limpo e experiências digitais memoráveis."
+        },
+        "skills": {
+            "heading": "$ skills --list",
+            "heading2": "Ferramentas",
+            "frontend": ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+            "backend": ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+            "tools": ["Git", "Docker", "VS Code", "Figma"]
+        },
+        "experience": {
+            "heading": "$ ls experiência/",
+            "items": [
+                {
+                    "title": "Desenvolvedor Full Stack",
+                    "period": "2022 - Presente",
+                    "description": "Desenvolvimento de aplicações web modernas com foco em performance e experiência do usuário."
+                },
+                {
+                    "title": "Desenvolvedor Frontend",
+                    "period": "2020 - 2022",
+                    "description": "Criação de interfaces responsivas e acessíveis utilizando React e TypeScript."
+                }
+            ]
+        },
+        "education": {
+            "heading": "$ ls educacao/",
+            "items": [
+                {
+                    "title": "Ciência da Computação",
+                    "meta": "Universidade • 2018 - 2022"
+                },
+                {
+                    "title": "Certificações",
+                    "meta": "AWS, Google Cloud, Meta Frontend Developer"
+                }
+            ]
+        },
+        "hobbies": {
+            "heading": "$ echo $HOBBIES",
+            "text": "Quando não estou programando, gosto de contribuir com projetos open source, explorar novas tecnologias, jogar videogames e fotografar."
+        }
     },
     "projects": {
         "title": "Projetos",

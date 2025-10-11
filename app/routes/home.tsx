@@ -18,7 +18,7 @@ export default function Home() {
     }, [t.home.title, t.home.description]);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
             <div className="flex flex-col justify-center items-start h-[450px] gap-10">
                 <span className="list__item-col text-3xl">
                     <TextAnimator text="$ cat welcome.txt" blinkOnEnd={true} />
