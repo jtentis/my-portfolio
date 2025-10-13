@@ -14,7 +14,7 @@ export function ButtonWithIcon({
         <Link
             target={target}
             to={link}
-            className="navLinksHome group hover:bg-secondary dark:hover:bg-primary"
+            className="navLinksHome group xl:hover:bg-secondary xl:hover:dark:bg-primary"
         >
             <span className="group-hover-icon-fill">
                 {React.cloneElement(icon, {size: 14})}

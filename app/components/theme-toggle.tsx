@@ -15,14 +15,14 @@ export const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = ({
     const Icon = isDarkMode ? FaRegMoon : FaRegSun;
     
     const buttonClasses = clsx(
-        "navLinksHome cursor-pointer transition-all",
-        "hover:bg-secondary hover:dark:bg-primary",
+        "navLinksHome cursor-pointer",
+        "xl:transition-all xl:hover:bg-secondary xl:hover:dark:bg-primary",
         "group"
     );
     
     const iconWrapperClasses = clsx(
-        "transition-all",
-        "group-hover-icon-fill" 
+        "xl:transition-all",
+        "group-hover-icon-fill"
     );
 
     return (

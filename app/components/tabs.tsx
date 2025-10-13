@@ -10,7 +10,7 @@ export function Tabs() {
     ];
 
     return (
-        <div className="flex justify-end relative">
+        <div className="tabs-container flex justify-end relative">
             {tabs.map((tab, index) => {
                 const isActive = location.pathname === tab.path;
                 return (

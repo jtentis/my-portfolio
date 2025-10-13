@@ -78,16 +78,41 @@
         @apply border-2 border-secondary dark:border-primary bg-card-primary dark:bg-card-secondary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-full flex flex-col justify-between overflow-hidden p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none ease-in-out active:scale-99;
     }
 
+    .tabs-container {
+        @apply flex gap-2 items-end;
+        height: 38px;
+    }
+
     .tab {
-        @apply bg-folder-primary dark:bg-folder-secondary border-x-2 border-t-2 border-secondary dark:border-primary p-2 rounded-t-lg w-14;
-        @apply transition-transform duration-100 ease-out;
+        @apply bg-folder-primary dark:bg-folder-secondary border-x-2 border-t-2 border-secondary dark:border-primary p-2 rounded-t-lg relative;
+        width: 56px;
+        height: 18px;
+        transform-origin: bottom center;
+        transition: height 100ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tab:not(.active) {
+        transition: height 150ms cubic-bezier(0.4, 0, 1, 1);
     }
 
     .tab.active {
-        @apply scale-y-110;
-        margin-bottom: -2px;
+        height: 24px;
     }
 
+    .tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: var(--color-folder-primary);
+        z-index: 999;
+    }
+
+    .dark .tab.active::after {
+        background-color: var(--color-folder-secondary);
+    }
 
     .loading {
         opacity: 0;
@@ -106,10 +131,6 @@
         content: "";
         @apply absolute left-0 top-0 h-full w-full origin-left bg-gray-100 transition-transform duration-100 ease-in-out;
         transform: scaleX(0);
-    }
-
-    .group:hover .hover-effect-bg::after {
-        transform: scaleX(1);
     }
 
     @keyframes blink {

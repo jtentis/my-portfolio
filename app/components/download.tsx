@@ -18,7 +18,7 @@ export const DownloadCv = ({ children }: { children: React.ReactNode }) => {
     return (
         <button
             onClick={download}
-            className="navLinksInternal w-[130px] group hover:bg-secondary dark:hover:bg-primary"
+            className="navLinksInternal w-[130px] group xl:hover:bg-secondary xl:hover:dark:bg-primary"
             type="button"
         >
             <span className="group-hover-icon-fill flex gap-2 items-center">

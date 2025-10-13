@@ -7,7 +7,7 @@ export const ToggleLanguageButton = () => {
     return (
         <button
             onClick={toggleLanguage}
-            className="navLinksInternal group hover:bg-secondary dark:hover:bg-primary"
+            className="navLinksInternal group xl:hover:bg-secondary xl:hover:dark:bg-primary"
             type="button"
         >
             <span className="group-hover-icon-fill flex gap-2 items-center">

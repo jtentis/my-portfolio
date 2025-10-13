@@ -44,7 +44,7 @@ const LayoutShell = ({
                 <Links />
             </head>
             <body
-                className={`min-w-screen min-h-screen px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
+                className={`min-w-screen min-h-full px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
                     isLoading ? "loading" : "loaded"
                 }`}
             >
@@ -83,7 +83,6 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
     const fadeNavigate = useCallback((targetPath: string) => {
         if (isAnimatingRef.current) return;
         
-        // Find the main content element to animate
         const content = contentRef.current || containerRef.current?.querySelector('.folder-bg > main') as HTMLElement | null;
         if (!content) {
             navigate(targetPath);
@@ -92,7 +91,6 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
 
         isAnimatingRef.current = true;
 
-        // Fade out current content
         content.style.transition = 'opacity 150ms ease';
         content.style.opacity = '0';
 
@@ -105,7 +103,6 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
             content.removeEventListener('transitionend', onFadeOut);
             navigate(targetPath);
 
-            // Fade in new content after navigation
             setTimeout(() => {
                 const newContent = containerRef.current?.querySelector('.folder-bg > main') as HTMLElement | null;
                 if (newContent) {
@@ -114,13 +111,11 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
                     requestAnimationFrame(() => {
                         newContent.style.opacity = '1';
                         
-                        // Cleanup after fade in
                         const onFadeIn = () => {
                             cleanup(newContent);
                             isAnimatingRef.current = false;
                         };
                         newContent.addEventListener('transitionend', onFadeIn, { once: true });
-                        // Fallback cleanup
                         setTimeout(onFadeIn, 200);
                     });
                 } else {
@@ -130,7 +125,6 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
             }, 50);
         };
 
-        // Start fade out with fallback
         content.addEventListener('transitionend', onFadeOut, { once: true });
         setTimeout(onFadeOut, 200);
     }, [containerRef, navigate]);
