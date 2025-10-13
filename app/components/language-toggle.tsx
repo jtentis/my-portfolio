@@ -14,8 +14,8 @@ export const ToggleLanguageButton = () => {
                 <ReactSVG
                     src={
                         language === "pt"
-                            ? "/assets/flagBR.svg"
-                            : "/assets/flagUS.svg"
+                            ? "/flagBR.svg"
+                            : "/flagUS.svg"
                     }
                 ></ReactSVG>
                 {language}
