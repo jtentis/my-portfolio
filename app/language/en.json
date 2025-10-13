@@ -227,7 +227,7 @@
     },
     "curriculum": {
         "name": "curriculum",
-        "path": "app/assets/Resume_JOAO_TENTIS.pdf",
+        "path": "/Resume_JOAO_TENTIS.pdf",
         "file": "Resume_JOAO_TENTIS.pdf"
     },
     "footer": {

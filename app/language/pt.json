@@ -233,7 +233,7 @@
     },
     "curriculum": {
         "name": "currículo",
-        "path": "app/assets/Curriculo_JOAO_TENTIS.pdf",
+        "path": "/Curriculo_JOAO_TENTIS.pdf",
         "file": "Curriculo_JOAO_TENTIS.pdf"
     },
     "footer": {
