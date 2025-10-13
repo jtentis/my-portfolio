@@ -22,11 +22,9 @@ const AboutMe = () => {
     const startScrollTopRef = useRef(0);
 
     function handlePointerDown(e: any) {
-        // only start drag for left (0) or middle (1) button
         if (e.button !== 0 && e.button !== 1) return;
         const el = scrollRef.current;
         if (!el) return;
-        // prevent native middle-click auto-scroll and text selection
         e.preventDefault();
         isDraggingRef.current = true;
         startXRef.current = e.clientX;
@@ -37,7 +35,6 @@ const AboutMe = () => {
         try {
             (e.target as Element).setPointerCapture(e.pointerId);
         } catch (err) {
-            // ignore
         }
     }
 
@@ -59,7 +56,6 @@ const AboutMe = () => {
             try {
                 (e.target as Element).releasePointerCapture(e.pointerId);
             } catch (err) {
-                // ignore
             }
         }
         isDraggingRef.current = false;

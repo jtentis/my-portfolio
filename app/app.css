@@ -199,7 +199,6 @@
             rgba(47, 62, 40, 1) 100%
         );
     }
-}
 
 @layer utilities {
     .group:hover .group-hover-icon-fill {
