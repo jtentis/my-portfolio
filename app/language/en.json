@@ -22,8 +22,7 @@
         "description": "Here is a little bit about me.",
         "profile": {
             "name": "João Tentis",
-            "role": "Full Stack Developer",
-            "contactHint": "Hover to see contact"
+            "role": "Full Stack Developer"
         },
         "whoami": {
             "heading": "$ whoami",
@@ -31,42 +30,122 @@
         },
         "skills": {
             "heading": "$ skills --list",
-            "heading2": "Tools",
-            "frontend": ["React", "TypeScript", "Tailwind CSS", "Next.js","Bootstrap", "Material UI"],
-            "backend": ["Node.js", "Python", "PostgreSQL", "MongoDB","MariaDB"],
-            "tools": ["Git", "Docker", "VS Code", "Figma"]
+            "technologies": {
+                "title": "Technologies",
+                "items": [
+                    "JavaScript",
+                    "TypeScript",
+                    "HTML",
+                    "CSS",
+                    "Excel",
+                    "Python",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Oracle",
+                    "MariaDB"
+                ]
+            },
+            "tools": {
+                "title": "Tools",
+                "items": [
+                    "Git",
+                    "GitHub",
+                    "VSCode",
+                    "DataGrip",
+                    "Docker",
+                    "HostGator",
+                    "cPanel",
+                    "Figma",
+                    "Trello"
+                ]
+            },
+            "frameworks": {
+                "title": "Frameworks",
+                "items": [
+                    "Nest.js",
+                    "Electron.js",
+                    "Express.js",
+                    "React",
+                    "React Native",
+                    "Vue.js",
+                    "Next.js",
+                    "Tailwind CSS"
+                ]
+            }
         },
         "experience": {
-            "heading": "$ ls experiência/",
+            "heading": "$ ls experience/",
             "items": [
+                {
+                    "title": "Junior Systems Analyst",
+                    "period": "2024 - present",
+                    "description": [
+                        {
+                            "text": "Responsible for the maintenance and evolution of the company's internal system, ensuring its efficient operation and suitability to user demands."
+                        },
+                        {
+                            "text": "Management of Oracle database, focusing on performance, SQL query development, report extraction, and system integration."
+                        }
+                    ]
+                },
                 {
                     "title": "Full Stack Developer",
                     "period": "2022 - Present",
-                    "description": "Building modern web applications focused on performance and user experience."
+                    "description": [
+                        {
+                            "text": "Building modern web applications focused on performance and user experience."
+                        }
+                    ]
                 },
                 {
-                    "title": "Frontend Developer",
+                    "title": "IT Intern",
+                    "period": "2022 - 2024",
+                    "description": [
+                        {
+                            "text": "Automated internal processes using Python and Bash scripts."
+                        },
+                        {
+                            "text": "Managed spreadsheets using Excel and Google Sheets for data analysis."
+                        }
+                    ]
+                },
+                {
+                    "title": "Computer Operator",
                     "period": "2020 - 2022",
-                    "description": "Built responsive, accessible interfaces using React and TypeScript."
+                    "description": [
+                        {
+                            "text": "Assisted the general public, helping with questions and providing information about available services."
+                        },
+                        {
+                            "text": "Maintained and organized the work environment, ensuring a clean and functional space for all users."
+                        },
+                        {
+                            "text": "Operated computer systems to manage data entry, retrieval, and processing tasks efficiently."
+                        }
+                    ]
                 }
             ]
         },
         "education": {
-            "heading": "$ ls educacao/",
+            "heading": "$ ls education/",
             "items": [
                 {
-                    "title": "Computer Science",
-                    "meta": "University • 2018 - 2022"
+                    "title": "Information Systems",
+                    "meta": "CEFET • 2021 - 2025"
+                },
+                {
+                    "title": "Postgraduate",
+                    "meta": "Coming soon"
                 },
                 {
                     "title": "Certifications",
-                    "meta": "AWS, Google Cloud, Meta Frontend Developer"
+                    "meta": "Power BI, DIO, Azure Devops"
                 }
             ]
         },
         "hobbies": {
             "heading": "$ echo $HOBBIES",
-            "text": "When I'm not coding, I contribute to open source, explore new tech, play video games and photograph."
+            "text": "When I'm not coding, I enjoy exploring new technologies, playing video games, and watching movies. I also love spending time with my loved ones."
         }
     },
     "projects": {

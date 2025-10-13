@@ -80,10 +80,8 @@
     }
 
     .tab.active {
-        @apply scale-y-120;
-        .tab-fill {
-            @apply bg-secondary dark:bg-primary w-full h-1 rounded-t;
-        }
+        @apply scale-y-110;
+        margin-bottom: -2px;
     }
 
     .tab:nth-child(3) {

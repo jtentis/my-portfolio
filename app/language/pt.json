@@ -12,18 +12,17 @@
         "path": "Sim, temos a página not found. Agora pode voltar...",
         "return": "Voltar para o Início"
     },
-    "home":{
+    "home": {
         "title": "Início",
-        "description":"Desenvolvedor Full Stack | Gosto de criar coisas! 😉",
-        "button":"Ver projetos"
+        "description": "Desenvolvedor Full Stack | Gosto de criar coisas! 😉",
+        "button": "Ver projetos"
     },
     "about": {
         "title": "Sobre",
         "description": "Aqui está um pouco sobre mim.",
         "profile": {
             "name": "João Tentis",
-            "role": "Desenvolvedor Full Stack",
-            "contactHint": "Passe o mouse para ver contato"
+            "role": "Desenvolvedor Full Stack"
         },
         "whoami": {
             "heading": "$ whoami",
@@ -31,23 +30,105 @@
         },
         "skills": {
             "heading": "$ skills --list",
-            "heading2": "Ferramentas",
-            "frontend": ["React", "TypeScript", "Tailwind CSS", "Next.js"],
-            "backend": ["Node.js", "Python", "PostgreSQL", "MongoDB"],
-            "tools": ["Git", "Docker", "VS Code", "Figma"]
+            "technologies": {
+                "title": "Tecnologias",
+                "items": [
+                    "JavaScript",
+                    "TypeScript",
+                    "HTML",
+                    "CSS",
+                    "Excel",
+                    "Python",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Oracle",
+                    "MariaDB"
+                ]
+            },
+            "tools": {
+                "title": "Ferramentas",
+                "items": [
+                    "Git",
+                    "GitHub",
+                    "VSCode",
+                    "DataGrip",
+                    "Docker",
+                    "HostGator",
+                    "cPanel",
+                    "Figma",
+                    "Trello"
+                ]
+            },
+            "frameworks": {
+                "title": "Frameworks",
+                "items": [
+                    "Nest.js",
+                    "Electron.js",
+                    "Express.js",
+                    "React",
+                    "React Native",
+                    "Vue.js",
+                    "Next.js",
+                    "Tailwind CSS"
+                ]
+            }
         },
         "experience": {
-            "heading": "$ ls experiência/",
+            "heading": "$ ls experiencia/",
             "items": [
                 {
-                    "title": "Desenvolvedor Full Stack",
-                    "period": "2022 - Presente",
-                    "description": "Desenvolvimento de aplicações web modernas com foco em performance e experiência do usuário."
+                    "title": "Analista de Sistemas Júnior",
+                    "period": "2024 - presente",
+                    "description": [
+                        {
+                            "text": "Responsável pela manutenção e evolução do sistema interno da empresa, garantindo seu funcionamento eficiente e adequado as demandas dos usuarios."
+                        },
+                        {
+                            "text": "Gerenciamento de banco de dados Oracle, com foco em desempenho, desenvolvimento de consultas SQL, extração de relatórios e integração entre sistemas."
+                        }
+                    ]
                 },
                 {
-                    "title": "Desenvolvedor Frontend",
+                    "title": "Full Stack Developer",
+                    "period": "2024 - 2025",
+                    "description": [
+                        {
+                            "text": "Desenvolvi um bot desktop para WhatsApp com Node.js com Nest.js, Electron.js, TypeScript e TailwindCSS."
+                        },
+                        {
+                            "text": "Desenvolvimento, personalização e deploy de plataforma EAD com Moodle usando PHP e SCSS."
+                        },
+                        {
+                            "text": "Criação de Dashboards dinâmicos com PowerBI, usando Excel VBA e Python."
+                        }
+                    ]
+                },
+                {
+                    "title": "Estagiário TI",
+                    "period": "2022 - 2024",
+                    "description": [
+                        {
+                            "text": "Automatização de processos internos utilizando scripts em Python e Bash."
+                        },
+                        {
+                            "text": "Controle de planilhas usando Excel e Google Sheets para análise de dados."
+                        }
+                    ]
+                },
+                {
+                    "title": "Operador de Computador",
                     "period": "2020 - 2022",
-                    "description": "Criação de interfaces responsivas e acessíveis utilizando React e TypeScript."
+                    "description": [
+                        {
+                            "text": "Atendimento ao público em geral, auxiliando em dúvidas e fornecendo informações sobre os serviços disponíveis."
+                        },
+                        {
+                            "text": "Manutenção e organização do ambiente de trabalho, garantindo um espaço limpo e funcional para todos os usuários."
+                        },
+                        {
+                            "text": "Suporte técnico básico, ajudando usuários com problemas comuns relacionados a hardware e software."
+                        }
+                    ]
                 }
             ]
         },
@@ -55,18 +136,22 @@
             "heading": "$ ls educacao/",
             "items": [
                 {
-                    "title": "Ciência da Computação",
-                    "meta": "Universidade • 2018 - 2022"
+                    "title": "Sistemas de Informação",
+                    "meta": "CEFET • 2021 - 2025"
+                },
+                {
+                    "title": "Pós graduação",
+                    "meta": "Em breve"
                 },
                 {
                     "title": "Certificações",
-                    "meta": "AWS, Google Cloud, Meta Frontend Developer"
+                    "meta": "Power BI, DIO, Azure Devops"
                 }
             ]
         },
         "hobbies": {
             "heading": "$ echo $HOBBIES",
-            "text": "Quando não estou programando, gosto de contribuir com projetos open source, explorar novas tecnologias, jogar videogames e fotografar."
+            "text": "Quando não estou programando, gosto de explorar novas tecnologias, jogar videogames e ver filmes. Além de passar tempo com quem eu amo."
         }
     },
     "projects": {
@@ -77,7 +162,12 @@
                 "id": 1,
                 "title": "Meu Portfólio",
                 "description": "Este site! Um portfólio pessoal para mostrar meus projetos e habilidades, construído com React, TypeScript e Tailwind CSS.",
-                "stack": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+                "stack": [
+                    "React",
+                    "TypeScript",
+                    "Tailwind CSS",
+                    "Vite"
+                ],
                 "completedDate": "Outubro 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -85,7 +175,10 @@
                 "id": 2,
                 "title": "Projeto 2",
                 "description": "Descrição para o projeto 2.",
-                "stack": ["Next.js", "Stripe"],
+                "stack": [
+                    "Next.js",
+                    "Stripe"
+                ],
                 "completedDate": "Novembro 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -93,7 +186,10 @@
                 "id": 3,
                 "title": "Projeto 3",
                 "description": "Descrição para o projeto 3.",
-                "stack": ["Python", "FastAPI"],
+                "stack": [
+                    "Python",
+                    "FastAPI"
+                ],
                 "completedDate": "Dezembro 2025",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             },
@@ -101,7 +197,10 @@
                 "id": 4,
                 "title": "Projeto 4",
                 "description": "Descrição para o projeto 4.",
-                "stack": ["Go", "Gin"],
+                "stack": [
+                    "Go",
+                    "Gin"
+                ],
                 "completedDate": "Janeiro 2026",
                 "githubUrl": "https://github.com/jtentis/my-portfolio"
             }

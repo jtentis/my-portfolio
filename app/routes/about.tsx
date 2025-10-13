@@ -41,25 +41,25 @@ const AboutMe = () => {
                             <h2 className="mb-3  text-2xl">{t.about.skills.heading}</h2>
                             <div className="space-y-3">
                                 <div>
-                                    <h3 className="mb-2  text-lg">Frontend</h3>
+                                    <h3 className="mb-2  text-lg">{t.about.skills.technologies.title}</h3>
                                     <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.frontend.map((s) => (
+                                        {t.about.skills.technologies.items.map((s) => (
                                             <span key={s} className="bg-badgeBg px-2 py-1  text-sm">{s}</span>
                                         ))}
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="mb-2  text-lg">Backend</h3>
+                                    <h3 className="mb-2  text-lg">{t.about.skills.tools.title}</h3>
                                     <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.backend.map((s) => (
+                                        {t.about.skills.tools.items.map((s) => (
                                             <span key={s} className="bg-badgeBg px-2 py-1  text-sm">{s}</span>
                                         ))}
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="mb-2  text-lg">{t.about.skills.heading2}</h3>
+                                    <h3 className="mb-2  text-lg">{t.about.skills.frameworks.title}</h3>
                                     <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.tools.map((s) => (
+                                        {t.about.skills.frameworks.items.map((s) => (
                                             <span key={s} className="bg-badgeBg px-2 py-1 text-sm">{s}</span>
                                         ))}
                                     </div>
@@ -70,11 +70,25 @@ const AboutMe = () => {
                         <section>
                             <h2 className="mb-3  text-2xl">{t.about.experience.heading}</h2>
                             <div className="space-y-4 text-muted-foreground">
-                                {t.about.experience.items.map((it) => (
-                                    <div key={it.title}>
+                                {(t.about.experience.items || []).map((it, idx) => (
+                                    <div key={`${it.title ?? 'item'}-${idx}`}>
                                         <p className="font-semibold text-lg">{it.title}</p>
-                                        <p className="text-base">{it.period}</p>
-                                        <p className="mt-1 text-base">{it.description}</p>
+                                        <p className="text-base">
+                                            <time>{it.period}</time>
+                                        </p>
+                                        {Array.isArray(it.description) ? (
+                                            <div className="mt-1 space-y-2">
+                                                {it.description.map((d, i) => (
+                                                    <ul key={i} className="text-base list-disc list-inside">
+                                                        <li>
+                                                            {d.text}
+                                                        </li>
+                                                    </ul>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <p className="mt-1 text-base">{it.description}</p>
+                                        )}
                                     </div>
                                 ))}
                             </div>
