@@ -161,7 +161,7 @@
             {
                 "id": 1,
                 "title": "Meu Portfólio",
-                "description": "Este site! Um portfólio pessoal para mostrar meus projetos e habilidades, construído com React, TypeScript e Tailwind CSS.",
+                "description": "Este site! Um portfólio pessoal para mostrar meus projetos e habilidades, construído com React Router, TypeScript e Tailwind CSS.",
                 "stack": [
                     "React",
                     "TypeScript",
@@ -173,36 +173,61 @@
             },
             {
                 "id": 2,
-                "title": "Projeto 2",
-                "description": "Descrição para o projeto 2.",
+                "title": "Match Movie",
+                "description": "Um aplicativo de recomnadação de filmes para grupos, com redirecionamento para Ingresso.com e calculo de cinema mais próximo. Divido em 2 repositórios: frontend e backend.",
                 "stack": [
-                    "Next.js",
-                    "Stripe"
+                    "TypeScript",
+                    "React Native",
+                    "Expo",
+                    "Node.js",
+                    "Nest.js",
+                    "Express.js"
                 ],
-                "completedDate": "Novembro 2025",
-                "githubUrl": "https://github.com/jtentis/my-portfolio"
+                "completedDate": "Fevereiro 2025",
+                "githubUrl": "https://github.com/jtentis/MatchMovie-Native"
             },
             {
                 "id": 3,
-                "title": "Projeto 3",
-                "description": "Descrição para o projeto 3.",
+                "title": "Desafio",
+                "description": "Desafio para uma vaga de backend em Node.js, com criação de API RESTful para gerenciamento de planos de assinatura, utilizando Nest.js, TypeScript e PostgreSQL.",
                 "stack": [
-                    "Python",
-                    "FastAPI"
+                    "Node.js",
+                    "Nest.js",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "PrismaORM",
+                    "Docker"
                 ],
-                "completedDate": "Dezembro 2025",
-                "githubUrl": "https://github.com/jtentis/my-portfolio"
+                "completedDate": "Janeiro 2025",
+                "githubUrl": "https://github.com/jtentis/desafio_backend_vexpenses"
             },
             {
                 "id": 4,
-                "title": "Projeto 4",
-                "description": "Descrição para o projeto 4.",
+                "title": "Commodities",
+                "description": "Aplicativo web para consulta de análise e variancia de commodities e ativos, com gráficos interativos, correlaçõeos e filtros avançados.",
                 "stack": [
-                    "Go",
-                    "Gin"
+                    "Python",
+                    "Streamlit",
+                    "Pandas",
+                    "Plotly",
+                    "Yfinance"
                 ],
-                "completedDate": "Janeiro 2026",
-                "githubUrl": "https://github.com/jtentis/my-portfolio"
+                "completedDate": "Outubro 2024",
+                "githubUrl": "https://github.com/jtentis/Commodities"
+            },
+            {
+                "id": 5,
+                "title": "HorseCare",
+                "description": "Website para hospedagem de cavalos, com sistema de reservas, galeria de fotos e informações sobre os serviços oferecidos.",
+                "stack": [
+                    "PHP",
+                    "MySQL",
+                    "HTML",
+                    "CSS",
+                    "JavaScript"
+                ],
+                "completedDate": "Dezembro 2023",
+                "githubUrl": "https://github.com/jtentis/HorseCare"
             }
         ]
     },

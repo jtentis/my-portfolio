@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 
 const AboutMe = () => {
@@ -13,6 +13,57 @@ const AboutMe = () => {
             descriptionMeta.setAttribute("content", t.about.description);
         }
     }, [t.about.title, t.about.description]);
+
+    const scrollRef = useRef<HTMLDivElement | null>(null);
+    const isDraggingRef = useRef(false);
+    const startXRef = useRef(0);
+    const startYRef = useRef(0);
+    const startScrollLeftRef = useRef(0);
+    const startScrollTopRef = useRef(0);
+
+    function handlePointerDown(e: any) {
+        // only start drag for left (0) or middle (1) button
+        if (e.button !== 0 && e.button !== 1) return;
+        const el = scrollRef.current;
+        if (!el) return;
+        // prevent native middle-click auto-scroll and text selection
+        e.preventDefault();
+        isDraggingRef.current = true;
+        startXRef.current = e.clientX;
+        startYRef.current = e.clientY;
+        startScrollLeftRef.current = el.scrollLeft;
+        startScrollTopRef.current = el.scrollTop;
+        el.classList.add("dragging");
+        try {
+            (e.target as Element).setPointerCapture(e.pointerId);
+        } catch (err) {
+            // ignore
+        }
+    }
+
+    function handlePointerMove(e: any) {
+        if (!isDraggingRef.current) return;
+        const el = scrollRef.current;
+        if (!el) return;
+        const dx = e.clientX - startXRef.current;
+        const dy = e.clientY - startYRef.current;
+        el.scrollLeft = startScrollLeftRef.current - dx;
+        el.scrollTop = startScrollTopRef.current - dy;
+    }
+
+    function stopDrag(e: any) {
+        if (!isDraggingRef.current) return;
+        const el = scrollRef.current;
+        if (el) {
+            el.classList.remove("dragging");
+            try {
+                (e.target as Element).releasePointerCapture(e.pointerId);
+            } catch (err) {
+                // ignore
+            }
+        }
+        isDraggingRef.current = false;
+    }
 
     return (
         <section className="w-full flex flex-col gap-4 h-full">
@@ -30,7 +81,15 @@ const AboutMe = () => {
                     </div>
                 </div>
 
-                <div className="w-full md:w-3/4 h-full overflow-auto hide-scrollbar p-10 border-2 profile-bg ">
+                <div
+                    ref={scrollRef}
+                    className="w-full md:w-3/4 h-full overflow-auto hide-scrollbar p-10 border-2 profile-bg "
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={stopDrag}
+                    onPointerCancel={stopDrag}
+                    onPointerLeave={stopDrag}
+                >
                     <div className="space-y-12 text-2xl leading-relaxed">
                         <section>
                             <h2 className="mb-3 text-2xl">{t.about.whoami.heading}</h2>
