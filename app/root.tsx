@@ -32,6 +32,10 @@ const LayoutShell = ({
     const currentTitle =
         t.nav && t.nav[titleKey] ? t.nav[titleKey] : t.nav.notFound;
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <html lang={t.language} className="w-full h-full">
             <head>
