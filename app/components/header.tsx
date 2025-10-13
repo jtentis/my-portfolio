@@ -52,40 +52,39 @@ export function Header() {
 
     return (
         <>
-            {/* Mobile header (small screens) - unchanged desktop appearance for md+ */}
             <header className="xl:hidden w-full">
-                <div className="flex items-center justify-between border-2 rounded-2xl p-4 bg-secondary dark:bg-primary mb-4">
-                    <div className="flex items-center gap-2">
-                        <button
-                            aria-label="Toggle menu"
-                            aria-expanded={mobileOpen}
-                            onClick={() => setMobileOpen((s) => !s)}
-                            className="p-2 border-2 rounded bg-secondary dark:bg-primary text-primary dark:text-secondary"
-                        >
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+                <div className={`mobile-menu-container border-2 bg-folder-primary dark:bg-folder-secondary mb-4 overflow-hidden transition-all duration-100 ${mobileOpen ? 'mobile-open' : ''}`}>
+                    <div className="flex items-center justify-between p-4">
+                        <div className="flex items-center gap-2">
+                            <button
+                                aria-label="Toggle menu"
+                                aria-expanded={mobileOpen}
+                                onClick={() => setMobileOpen((s) => !s)}
+                                className="p-2 border-2 rounded bg-secondary dark:bg-primary text-primary dark:text-secondary"
                             >
-                                <path d="M3 12h18"></path>
-                                <path d="M3 6h18"></path>
-                                <path d="M3 18h18"></path>
-                            </svg>
-                        </button>
-                    </div>
-                        <div className="flex items-center gap-4 bg-secondary dark:bg-primary">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <path d="M3 12h18"></path>
+                                    <path d="M3 6h18"></path>
+                                    <path d="M3 18h18"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="flex items-center gap-4">
                             <ToggleLanguageButton />
                             <ThemeToggleButton isDarkMode={Boolean(isDarkMode)} toggleTheme={toggleTheme} />
                         </div>
-                </div>
+                    </div>
 
-                {mobileOpen && (
-                    <div className="w-full py-4 rounded-2xl p-4 bg-secondary/50 dark:bg-primary/50 mb-4">
+                    <div className="mobile-menu-content px-4 pb-4 opacity-0 pointer-events-none">
                         <ul className="flex flex-col gap-3">
                             <li>
                                 <Link to="/" className="navLinksInternal w-full block text-center" onClick={() => setMobileOpen(false)}>
@@ -114,7 +113,7 @@ export function Header() {
                             </li>
                         </ul>
                     </div>
-                )}
+                </div>
             </header>
             <main className="hidden xl:flex items-center justify-center relative">
                 <div className="absolute left-0 flex gap-4">

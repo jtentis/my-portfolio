@@ -59,11 +59,11 @@
     }
 
     .navLinksInternal {
-        @apply bg-primary dark:bg-secondary border-2 px-4 h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] py-2 xl:py-0;
+        @apply bg-primary dark:bg-secondary border-2 px-4 h-[35px] flex justify-center items-center shadow-none dark:shadow-none xl:shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] xl:dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] py-2 xl:py-0;
     }
 
     .navLinksHome {
-        @apply bg-primary dark:bg-secondary border-2 w-[35px] h-[35px] flex justify-center items-center shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+        @apply bg-primary dark:bg-secondary border-2 w-[35px] h-[35px] flex justify-center items-center shadow-none dark:shadow-none xl:shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] xl:dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
     }
 
     .footerHover {
@@ -88,10 +88,6 @@
         margin-bottom: -2px;
     }
 
-    .tab:nth-child(3) {
-        @apply shadow-[3px_0px_0px_0px_rgba(30,34,41,0.30)]
-         dark:shadow-[3px_0px_0px_0px_rgba(245,245,244,0.3)];
-    }
 
     .loading {
         opacity: 0;
@@ -123,7 +119,7 @@
     }
 
     .active-cursor::after {
-        content: "█"; /* The cursor character */
+        content: "█";
         display: inline-block;
         vertical-align: top;
         margin-left: 2px;
@@ -131,7 +127,6 @@
         animation: blink 1s step-end infinite;
     }
 
-    /* Text animation helpers: keep chars inline-block for transforms */
     .char { display: inline-block; }
 
     .profile-card {
@@ -139,7 +134,7 @@
     }
 
     .profile-overlay {
-        @apply absolute inset-0 bg-card-primary dark:bg-card-secondary flex flex-col items-center justify-center opacity-0 transition-opacity duration-200 ease-in-out;
+        @apply absolute inset-0 bg-card-primary dark:bg-card-secondary flex flex-col items-center justify-center text-center opacity-0 transition-opacity duration-200 ease-in-out;
     }
 
     .profile-bg {
@@ -147,7 +142,6 @@
         position: relative;
         scroll-behavior: smooth;
     }
-        /* Drag-to-scroll visual cues */
         .profile-bg {
             cursor: grab;
         }
@@ -204,14 +198,66 @@
     }
 }
 
-/* Mobile: avoid breaking inside words created by the splitter */
+@media (max-width: 1280px) {
+    .mobile-menu-container { max-height: 72px; transition: max-height 300ms ease; }
+    .mobile-menu-container.mobile-open { max-height: 500px; }
+    .mobile-menu-content { transition: opacity 220ms ease, transform 220ms ease; transform: translateY(-6px); padding-bottom: 0; }
+    .mobile-menu-container.mobile-open .mobile-menu-content { opacity: 1; transform: translateY(0); pointer-events: auto; padding-bottom: 1rem; }
+}
+
 @media (max-width: 640px) {
-    /* On mobile, prevent breaking inside the word wrapper so words will only wrap between words */
     .word { display: inline-block; white-space: nowrap; }
+}
+
+@media (max-width: 640px) {
+    .folder-bg { 
+        touch-action: pan-y; 
+    }
+    /* Ensure project cards and other interactive elements don't block swipes */
+    .folder-bg a,
+    .folder-bg button,
+    .folder-bg [role="button"] {
+        pointer-events: none;
+    }
+    /* But allow their children to receive events for visual feedback */
+    .folder-bg a *,
+    .folder-bg button *,
+    .folder-bg [role="button"] * {
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .swipe-hint { opacity: 0; transform: translateY(8px) scale(0.96); transition: opacity 200ms ease, transform 200ms ease;}
+    .swipe-hint.visible { opacity: 1; transform: translateY(0) scale(1); }
+    .swipe-hint.dragging { transform: translateY(0) scale(0.98); }
+    .swipe-hint .dot { display: inline-block; width: 8px; height: 8px; border-radius: 99px; background: rgba(255,255,255,0.5); transform: scale(0.9); transition: transform 180ms ease, background 180ms ease; }
+    .swipe-hint .dot.active { background: transparent; transform: scale(1.15); }
+    .swipe-hint.dragging .dot { transform: scale(1.05); }
+    .swipe-hint.hidden { display: none; }
+    .swipe-hint { pointer-events: auto; }
+    .swipe-btn { background: transparent; border: none; padding: 6px; display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.9); }
+    .swipe-btn:disabled { opacity: 0.30;}
+}
+
+.swipe-hint .dot {
+    @apply bg-card-secondary dark:bg-card-primary;
+}
+
+.swipe-btn{
+    @apply text-card-primary dark:text-card-secondary
+}
+
+.swipe-hint .dot.active{
+    @apply bg-card-primary dark:bg-card-secondary;
+}
+
+.swipe-btn:disabled{
+    @apply text-card-primary dark:text-card-secondary;
 }
 
 @layer utilities {
     .group:hover .group-hover-icon-fill {
-        @apply text-primary dark:text-secondary;
+        @apply xl:text-primary xl:dark:text-secondary text-secondary dark:text-primary ;
     }
 }

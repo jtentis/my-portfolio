@@ -21,7 +21,17 @@ export const ProjectCard = ({
     githubUrl,
 }: ProjectCardProps) => {
     return (
-        <a className="project-card overflow-auto hide-scrollbar" href={githubUrl} target="_blank" rel="noopener noreferrer">
+        <a 
+            className="project-card overflow-auto hide-scrollbar" 
+            href={githubUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            onPointerDown={e => {
+                if (window.matchMedia("(max-width: 640px)").matches) {
+                    e.preventDefault();
+                }
+            }}
+        >
             <div>
                 <div className="mb-4 flex items-start justify-between">
                     <h3 className="text-xl font-bold">{title}</h3>

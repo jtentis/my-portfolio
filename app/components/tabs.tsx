@@ -3,8 +3,6 @@ import { useLocation } from "react-router";
 export function Tabs() {
     const location = useLocation();
 
-    // The zIndex is now defined directly in the object.
-    // Home ('/') has the highest zIndex (3), and 'about' has the lowest (1).
     const tabs = [
         { path: "/", zIndex: 1 },
         { path: "/projects", zIndex: 2 },
