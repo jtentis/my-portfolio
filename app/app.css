@@ -172,7 +172,6 @@
         height: 0px;
     }
 
-    //TODO: consertar isso
     .profile-bg::after {
         content: "";
         position: absolute;
