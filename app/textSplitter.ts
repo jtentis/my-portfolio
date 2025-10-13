@@ -10,16 +10,31 @@ export class TextSplitter {
     }
 
     private splitText(): void {
-        let charsHtml = '';
         const textContent = this.element.textContent || '';
-        for (const char of textContent) {
-            if (char.trim() === '') {
-                charsHtml += '<span class="word"> </span>';
-            } else {
-                charsHtml += `<span class="word"><span class="char" style="display: inline-block;">${char}</span></span>`;
+        // Keep spaces as separate tokens so we can preserve word boundaries
+        const tokens = textContent.split(/(\s+)/);
+
+        let html = '';
+
+        for (const token of tokens) {
+            if (token.trim() === '') {
+                // preserve whitespace as plain text so the browser can wrap between words
+                // convert any whitespace token into a single space to avoid multiple consecutive
+                // breaking issues while keeping word separation behavior
+                html += ' ';
+                continue;
             }
+
+            // Wrap entire word in a container so it won't break mid-word
+            let wordInner = '';
+            for (const ch of token) {
+                const escaped = ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
+                wordInner += `<span class="char" style="display: inline-block;">${escaped}</span>`;
+            }
+            html += `<span class="word">${wordInner}</span>`;
         }
-        this.element.innerHTML = charsHtml;
+
+        this.element.innerHTML = html;
     }
 
     public getChars(): HTMLElement[] {

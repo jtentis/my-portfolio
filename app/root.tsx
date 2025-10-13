@@ -44,7 +44,7 @@ const LayoutShell = ({
                 <Links />
             </head>
             <body
-                className={`min-w-screen min-h-screen px-54 py-18 flex flex-col justify-between ${
+                className={`min-w-screen min-h-screen px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
                     isLoading ? "loading" : "loaded"
                 }`}
             >
@@ -53,7 +53,7 @@ const LayoutShell = ({
                     <Tabs />
                     <div className="folder-bg">
                         <Title title={currentTitle} />
-                        <main className="h-[485px]">{children}</main>
+                        <main className="xl:h-[485px]">{children}</main>
                     </div>
                 </div>
                 <Footer />
