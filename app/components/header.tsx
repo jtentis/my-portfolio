@@ -54,7 +54,7 @@ export function Header() {
         <>
             <header className="xl:hidden w-full">
                 <div className={`mobile-menu-container border-2 bg-folder-primary dark:bg-folder-secondary mb-4 overflow-hidden transition-all duration-100 ${mobileOpen ? 'mobile-open' : ''}`}>
-                    <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center flex-row-reverse justify-between p-4">
                         <div className="flex items-center gap-2">
                             <button
                                 aria-label="Toggle menu"
@@ -79,8 +79,8 @@ export function Header() {
                             </button>
                         </div>
                         <div className="flex items-center gap-4">
-                            <ToggleLanguageButton />
                             <ThemeToggleButton isDarkMode={Boolean(isDarkMode)} toggleTheme={toggleTheme} />
+                            <ToggleLanguageButton />
                         </div>
                     </div>
 

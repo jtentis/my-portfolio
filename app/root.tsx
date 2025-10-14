@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Links, Meta, Outlet, Scripts, useLocation, useNavigate } from "react-router";
+import {
+    Links,
+    Meta,
+    Outlet,
+    Scripts,
+    useLocation,
+    useNavigate,
+} from "react-router";
 import { useLanguage } from "~/hooks/useLanguage";
 import "./app.css";
 import { Footer } from "./components/footer";
@@ -33,7 +40,10 @@ const LayoutShell = ({
         t.nav && t.nav[titleKey] ? t.nav[titleKey] : t.nav.notFound;
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }, [location.pathname]);
 
     return (
@@ -75,85 +85,144 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [showHint, setShowHint] = useState(false);
     const [dragging, setDragging] = useState(false);
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > screen.height * 3 / 4) {
+                setShowButton(true);
+            } else {
+                setShowButton(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    const buttonClassName = showButton ? 'scrollToTop visible' : 'scrollToTop';
 
     const routes = ["/", "/projects", "/about"];
 
-    const pointer = useRef<{ id: number; startX: number; startY: number; moved: boolean } | null>(null);
+    const pointer = useRef<{
+        id: number;
+        startX: number;
+        startY: number;
+        moved: boolean;
+    } | null>(null);
     const contentRef = useRef<HTMLElement | null>(null);
     const isAnimatingRef = useRef(false);
 
     const currentIndex = routes.indexOf(location.pathname);
 
-    const fadeNavigate = useCallback((targetPath: string) => {
-        if (isAnimatingRef.current) return;
-        
-        const content = contentRef.current || containerRef.current?.querySelector('.folder-bg > main') as HTMLElement | null;
-        if (!content) {
-            navigate(targetPath);
-            return;
-        }
+    const fadeNavigate = useCallback(
+        (targetPath: string) => {
+            if (isAnimatingRef.current) return;
 
-        isAnimatingRef.current = true;
+            const content =
+                contentRef.current ||
+                (containerRef.current?.querySelector(
+                    ".folder-bg > main"
+                ) as HTMLElement | null);
+            if (!content) {
+                navigate(targetPath);
+                return;
+            }
 
-        content.style.transition = 'opacity 150ms ease';
-        content.style.opacity = '0';
+            isAnimatingRef.current = true;
 
-        const cleanup = (element: HTMLElement) => {
-            element.style.transition = '';
-            element.style.opacity = '';
-        };
+            content.style.transition = "opacity 150ms ease";
+            content.style.opacity = "0";
 
-        const onFadeOut = () => {
-            content.removeEventListener('transitionend', onFadeOut);
-            navigate(targetPath);
+            const cleanup = (element: HTMLElement) => {
+                element.style.transition = "";
+                element.style.opacity = "";
+            };
 
-            setTimeout(() => {
-                const newContent = containerRef.current?.querySelector('.folder-bg > main') as HTMLElement | null;
-                if (newContent) {
-                    newContent.style.opacity = '0';
-                    newContent.style.transition = 'opacity 150ms ease';
-                    requestAnimationFrame(() => {
-                        newContent.style.opacity = '1';
-                        
-                        const onFadeIn = () => {
-                            cleanup(newContent);
-                            isAnimatingRef.current = false;
-                        };
-                        newContent.addEventListener('transitionend', onFadeIn, { once: true });
-                        setTimeout(onFadeIn, 200);
-                    });
-                } else {
-                    cleanup(content);
-                    isAnimatingRef.current = false;
-                }
-            }, 50);
-        };
+            const onFadeOut = () => {
+                content.removeEventListener("transitionend", onFadeOut);
+                navigate(targetPath);
 
-        content.addEventListener('transitionend', onFadeOut, { once: true });
-        setTimeout(onFadeOut, 200);
-    }, [containerRef, navigate]);
+                setTimeout(() => {
+                    const newContent = containerRef.current?.querySelector(
+                        ".folder-bg > main"
+                    ) as HTMLElement | null;
+                    if (newContent) {
+                        newContent.style.opacity = "0";
+                        newContent.style.transition = "opacity 150ms ease";
+                        requestAnimationFrame(() => {
+                            newContent.style.opacity = "1";
+
+                            const onFadeIn = () => {
+                                cleanup(newContent);
+                                isAnimatingRef.current = false;
+                            };
+                            newContent.addEventListener(
+                                "transitionend",
+                                onFadeIn,
+                                { once: true }
+                            );
+                            setTimeout(onFadeIn, 200);
+                        });
+                    } else {
+                        cleanup(content);
+                        isAnimatingRef.current = false;
+                    }
+                }, 50);
+            };
+
+            content.addEventListener("transitionend", onFadeOut, {
+                once: true,
+            });
+            setTimeout(onFadeOut, 200);
+        },
+        [containerRef, navigate]
+    );
 
     const goPrev = useCallback(() => {
         if (currentIndex > 0) fadeNavigate(routes[currentIndex - 1]);
     }, [currentIndex, fadeNavigate]);
 
     const goNext = useCallback(() => {
-        if (currentIndex >= 0 && currentIndex < routes.length - 1) fadeNavigate(routes[currentIndex + 1]);
+        if (currentIndex >= 0 && currentIndex < routes.length - 1)
+            fadeNavigate(routes[currentIndex + 1]);
     }, [currentIndex, fadeNavigate]);
 
     const onPointerDown = useCallback((e: PointerEvent) => {
-        if (typeof window === "undefined" || !window.matchMedia("(max-width: 640px)").matches) return;
+        if (
+            typeof window === "undefined" ||
+            !window.matchMedia("(max-width: 640px)").matches
+        )
+            return;
         if (isAnimatingRef.current) return;
 
         e.preventDefault();
-        
+
         const el = containerRef.current;
         if (!el) return;
 
-        contentRef.current = el.querySelector('.folder-bg > main') as HTMLElement | null;
-        if (!contentRef.current) contentRef.current = el.querySelector('main') as HTMLElement | null;
+        contentRef.current = el.querySelector(
+            ".folder-bg > main"
+        ) as HTMLElement | null;
+        if (!contentRef.current)
+            contentRef.current = el.querySelector("main") as HTMLElement | null;
 
-        pointer.current = { id: e.pointerId, startX: e.clientX, startY: e.clientY, moved: false };
+        pointer.current = {
+            id: e.pointerId,
+            startX: e.clientX,
+            startY: e.clientY,
+            moved: false,
+        };
         setDragging(true);
         el.setPointerCapture(e.pointerId);
     }, []);
@@ -171,47 +240,52 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
         if (Math.abs(dx) > 20) pointer.current.moved = true;
     }, []);
 
-    const onPointerUp = useCallback((e: PointerEvent) => {
-        if (!pointer.current || pointer.current.id !== e.pointerId) return;
+    const onPointerUp = useCallback(
+        (e: PointerEvent) => {
+            if (!pointer.current || pointer.current.id !== e.pointerId) return;
 
-        const dx = e.clientX - pointer.current.startX;
-        const threshold = 60;
+            const dx = e.clientX - pointer.current.startX;
+            const threshold = 60;
 
-        const content = contentRef.current;
-        
-        if (pointer.current.moved && Math.abs(dx) > threshold) {
-            const currentIndex = routes.indexOf(location.pathname);
-            if (currentIndex === -1) {
-                pointer.current = null;
-                return;
+            const content = contentRef.current;
+
+            if (pointer.current.moved && Math.abs(dx) > threshold) {
+                const currentIndex = routes.indexOf(location.pathname);
+                if (currentIndex === -1) {
+                    pointer.current = null;
+                    return;
+                }
+
+                if (dx < 0 && currentIndex < routes.length - 1) {
+                    fadeNavigate(routes[currentIndex + 1]);
+                } else if (dx > 0 && currentIndex > 0) {
+                    fadeNavigate(routes[currentIndex - 1]);
+                }
+            } else if (content) {
+                content.style.transition = "opacity 150ms ease";
+                content.style.opacity = "1";
             }
 
-            if (dx < 0 && currentIndex < routes.length - 1) {
-                fadeNavigate(routes[currentIndex + 1]);
-            } else if (dx > 0 && currentIndex > 0) {
-                fadeNavigate(routes[currentIndex - 1]);
-            }
-        } else if (content) {
-            content.style.transition = 'opacity 150ms ease';
-            content.style.opacity = '1';
-        }
+            const el = containerRef.current;
+            try {
+                if (el) el.releasePointerCapture(e.pointerId);
+            } catch (err) {}
 
-        const el = containerRef.current;
-        try {
-            if (el) el.releasePointerCapture(e.pointerId);
-        } catch (err) {
-        }
-
-        pointer.current = null;
-        setDragging(false);
-    }, [location.pathname, navigate]);
+            pointer.current = null;
+            setDragging(false);
+        },
+        [location.pathname, navigate]
+    );
 
     useEffect(() => {
         const el = containerRef.current;
         if (!el) return;
 
         try {
-            if (typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches) {
+            if (
+                typeof window !== "undefined" &&
+                window.matchMedia("(max-width: 640px)").matches
+            ) {
                 (el as HTMLElement).style.touchAction = "pan-y";
             } else {
                 (el as HTMLElement).style.touchAction = "auto";
@@ -226,19 +300,26 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
         el.addEventListener("pointercancel", onPointerUp, { capture: true });
 
         return () => {
-            el.removeEventListener("pointerdown", onPointerDown, { capture: true });
-            el.removeEventListener("pointermove", onPointerMove, { capture: true });
+            el.removeEventListener("pointerdown", onPointerDown, {
+                capture: true,
+            });
+            el.removeEventListener("pointermove", onPointerMove, {
+                capture: true,
+            });
             el.removeEventListener("pointerup", onPointerUp, { capture: true });
-            el.removeEventListener("pointercancel", onPointerUp, { capture: true });
+            el.removeEventListener("pointercancel", onPointerUp, {
+                capture: true,
+            });
         };
     }, [onPointerDown, onPointerMove, onPointerUp]);
 
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        const isSmallViewport = window.matchMedia?.("(max-width: 640px)")?.matches;
+        const isSmallViewport =
+            window.matchMedia?.("(max-width: 640px)")?.matches;
         const isTouchDevice = !!(
-            ('ontouchstart' in window) ||
+            "ontouchstart" in window ||
             (navigator && (navigator as any).maxTouchPoints > 0)
         );
 
@@ -251,22 +332,93 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <div ref={containerRef} className={`w-full relative ${dragging ? 'swipe-dragging' : ''}`}>
+        <div
+            ref={containerRef}
+            className={`w-full relative ${dragging ? "swipe-dragging" : ""}`}
+        >
             {children}
-            <div className={`swipe-hint fixed left-1/2 -translate-x-1/2 bottom-6 z-50 ${showHint ? 'visible' : 'hidden'} ${dragging ? 'dragging' : ''}`}>
+            <div
+                className={`swipe-hint fixed left-1/2 -translate-x-1/2 bottom-6 z-50 ${showHint ? "visible" : "hidden"} ${dragging ? "dragging" : ""}`}
+            >
                 <div className="swipe-hint-inner flex items-center gap-4 bg-secondary dark:bg-primary bg-opacity-60 text-white px-4 py-2 rounded-full">
-                    <button aria-label="Previous" className="swipe-btn" onClick={goPrev} disabled={currentIndex <= 0}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <button
+                        aria-label="Previous"
+                        className="swipe-btn"
+                        onClick={goPrev}
+                        disabled={currentIndex <= 0}
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M15 6L9 12L15 18"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
                     </button>
                     <div className="dots flex gap-2 pointer-events-none">
-                        <span className={`dot ${currentIndex === 0 ? 'active' : ''}`} />
-                        <span className={`dot ${currentIndex === 1 ? 'active' : ''}`} />
-                        <span className={`dot ${currentIndex === 2 ? 'active' : ''}`} />
+                        <span
+                            className={`dot ${currentIndex === 0 ? "active" : ""}`}
+                        />
+                        <span
+                            className={`dot ${currentIndex === 1 ? "active" : ""}`}
+                        />
+                        <span
+                            className={`dot ${currentIndex === 2 ? "active" : ""}`}
+                        />
                     </div>
-                    <button aria-label="Next" className="swipe-btn" onClick={goNext} disabled={currentIndex >= routes.length - 1}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <button
+                        aria-label="Next"
+                        className="swipe-btn"
+                        onClick={goNext}
+                        disabled={currentIndex >= routes.length - 1}
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M9 6L15 12L9 18"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
                     </button>
                 </div>
+            </div>
+            <div>
+                <button
+                    className={buttonClassName}
+                    onClick={scrollToTop}
+                >
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M15 6L9 12L15 18"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </button>
             </div>
         </div>
     );
