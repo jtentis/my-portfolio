@@ -34,8 +34,7 @@ const AboutMe = () => {
         el.classList.add("dragging");
         try {
             (e.target as Element).setPointerCapture(e.pointerId);
-        } catch (err) {
-        }
+        } catch (err) {}
     }
 
     function handlePointerMove(e: any) {
@@ -55,8 +54,7 @@ const AboutMe = () => {
             el.classList.remove("dragging");
             try {
                 (e.target as Element).releasePointerCapture(e.pointerId);
-            } catch (err) {
-            }
+            } catch (err) {}
         }
         isDraggingRef.current = false;
     }
@@ -70,101 +68,164 @@ const AboutMe = () => {
                         role="img"
                         aria-label="profile"
                     >
-                        <div className="profile-overlay">
-                            <h3 className="text-base">{t.about.profile.name}</h3>
+                        <div className="profile-overlay px-2">
+                            <h3 className="text-base">
+                                {t.about.profile.name}
+                            </h3>
                             <p className="text-2xl">{t.about.profile.role}</p>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    ref={scrollRef}
-                    className="w-full md:w-3/4 h-full overflow-auto hide-scrollbar p-10 border-2 profile-bg "
-                    onPointerDown={handlePointerDown}
+                <div className="w-full md:w-3/4 h-full overflow-auto hide-scrollbar border-2 profile-bg">
+                    <div className="w-full h-full overflow-auto hide-scrollbar p-10 fade"
+                        ref={scrollRef}
+                        onPointerDown={handlePointerDown}
                     onPointerMove={handlePointerMove}
                     onPointerUp={stopDrag}
                     onPointerCancel={stopDrag}
                     onPointerLeave={stopDrag}
-                >
-                    <div className="space-y-12 text-2xl leading-relaxed">
-                        <section>
-                            <h2 className="mb-3 text-2xl">{t.about.whoami.heading}</h2>
-                            <p className="text-base">{t.about.whoami.text}</p>
-                        </section>
+                    >
+                        <div className="space-y-12 text-2xl leading-relaxed">
+                            <section>
+                                <h2 className="mb-3 text-2xl">
+                                    {t.about.whoami.heading}
+                                </h2>
+                                <p className="text-base">
+                                    {t.about.whoami.text}
+                                </p>
+                            </section>
 
-                        <section>
-                            <h2 className="mb-3  text-2xl">{t.about.skills.heading}</h2>
-                            <div className="space-y-3">
-                                <div>
-                                    <h3 className="mb-2  text-lg">{t.about.skills.technologies.title}</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.technologies.items.map((s) => (
-                                            <span key={s} className="bg-badgeBg px-2 py-1  text-sm">{s}</span>
-                                        ))}
+                            <section>
+                                <h2 className="mb-3  text-2xl">
+                                    {t.about.skills.heading}
+                                </h2>
+                                <div className="space-y-3">
+                                    <div>
+                                        <h3 className="mb-2  text-lg">
+                                            {t.about.skills.technologies.title}
+                                        </h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {t.about.skills.technologies.items.map(
+                                                (s) => (
+                                                    <span
+                                                        key={s}
+                                                        className="bg-badgeBg px-2 py-1  text-sm"
+                                                    >
+                                                        {s}
+                                                    </span>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="mb-2  text-lg">
+                                            {t.about.skills.tools.title}
+                                        </h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {t.about.skills.tools.items.map(
+                                                (s) => (
+                                                    <span
+                                                        key={s}
+                                                        className="bg-badgeBg px-2 py-1  text-sm"
+                                                    >
+                                                        {s}
+                                                    </span>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="mb-2  text-lg">
+                                            {t.about.skills.frameworks.title}
+                                        </h3>
+                                        <div className="flex flex-wrap gap-2">
+                                            {t.about.skills.frameworks.items.map(
+                                                (s) => (
+                                                    <span
+                                                        key={s}
+                                                        className="bg-badgeBg px-2 py-1 text-sm"
+                                                    >
+                                                        {s}
+                                                    </span>
+                                                )
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <h3 className="mb-2  text-lg">{t.about.skills.tools.title}</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.tools.items.map((s) => (
-                                            <span key={s} className="bg-badgeBg px-2 py-1  text-sm">{s}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="mb-2  text-lg">{t.about.skills.frameworks.title}</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {t.about.skills.frameworks.items.map((s) => (
-                                            <span key={s} className="bg-badgeBg px-2 py-1 text-sm">{s}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                            </section>
 
-                        <section>
-                            <h2 className="mb-3  text-2xl">{t.about.experience.heading}</h2>
-                            <div className="space-y-4 text-muted-foreground">
-                                {(t.about.experience.items || []).map((it, idx) => (
-                                    <div key={`${it.title ?? 'item'}-${idx}`}>
-                                        <p className="font-semibold text-lg">{it.title}</p>
-                                        <p className="text-base">
-                                            <time>{it.period}</time>
-                                        </p>
-                                        {Array.isArray(it.description) ? (
-                                            <div className="mt-1 space-y-2">
-                                                {it.description.map((d, i) => (
-                                                    <ul key={i} className="text-base list-disc list-inside">
-                                                        <li>
-                                                            {d.text}
-                                                        </li>
-                                                    </ul>
-                                                ))}
+                            <section>
+                                <h2 className="mb-3  text-2xl">
+                                    {t.about.experience.heading}
+                                </h2>
+                                <div className="space-y-4 text-muted-foreground">
+                                    {(t.about.experience.items || []).map(
+                                        (it, idx) => (
+                                            <div
+                                                key={`${it.title ?? "item"}-${idx}`}
+                                            >
+                                                <p className="font-semibold text-lg">
+                                                    {it.title}
+                                                </p>
+                                                <p className="text-base">
+                                                    <time>{it.period}</time>
+                                                </p>
+                                                {Array.isArray(
+                                                    it.description
+                                                ) ? (
+                                                    <div className="mt-1 space-y-2">
+                                                        {it.description.map(
+                                                            (d, i) => (
+                                                                <ul
+                                                                    key={i}
+                                                                    className="text-base list-disc list-inside"
+                                                                >
+                                                                    <li>
+                                                                        {d.text}
+                                                                    </li>
+                                                                </ul>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                ) : (
+                                                    <p className="mt-1 text-base">
+                                                        {it.description}
+                                                    </p>
+                                                )}
                                             </div>
-                                        ) : (
-                                            <p className="mt-1 text-base">{it.description}</p>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
+                                        )
+                                    )}
+                                </div>
+                            </section>
 
-                        <section>
-                            <h2 className="mb-3  text-2xl">{t.about.education.heading}</h2>
-                            <div className="space-y-2 text-muted-foreground">
-                                {t.about.education.items.map((ed) => (
-                                    <div key={ed.title}>
-                                        <p className="font-semibold text-lg">{ed.title}</p>
-                                        <p className="text-base">{ed.meta}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
+                            <section>
+                                <h2 className="mb-3  text-2xl">
+                                    {t.about.education.heading}
+                                </h2>
+                                <div className="space-y-2 text-muted-foreground">
+                                    {t.about.education.items.map((ed) => (
+                                        <div key={ed.title}>
+                                            <p className="font-semibold text-lg">
+                                                {ed.title}
+                                            </p>
+                                            <p className="text-base">
+                                                {ed.meta}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
 
-                        <section>
-                            <h2 className="mb-3  text-2xl">{t.about.hobbies.heading}</h2>
-                            <p className="text-muted-foreground text-base">{t.about.hobbies.text}</p>
-                        </section>
+                            <section>
+                                <h2 className="mb-3  text-2xl">
+                                    {t.about.hobbies.heading}
+                                </h2>
+                                <p className="text-muted-foreground text-base">
+                                    {t.about.hobbies.text}
+                                </p>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>

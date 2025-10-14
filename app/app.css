@@ -75,7 +75,7 @@
     }
 
     .project-card {
-        @apply border-2 border-secondary dark:border-primary bg-card-primary dark:bg-card-secondary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] h-full flex flex-col justify-between overflow-hidden p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none ease-in-out active:scale-99;
+        @apply border-2 border-secondary dark:border-primary bg-card-primary dark:bg-card-secondary  h-full flex flex-col justify-between overflow-hidden p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none ease-in-out active:scale-99;
     }
 
     .tabs-container {
@@ -153,7 +153,7 @@
     }
 
     .profile-card {
-        @apply relative bg-cover bg-center overflow-hidden border-2 shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] h-full;
+        @apply relative bg-cover bg-center overflow-hidden border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] h-full;
     }
 
     .profile-overlay {
@@ -161,12 +161,31 @@
     }
 
     .profile-bg {
-        @apply bg-card-primary dark:bg-card-secondary shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)];
+        @apply bg-card-primary dark:bg-card-secondary;
         position: relative;
-        scroll-behavior: smooth;
     }
+
     .profile-bg {
         cursor: grab;
+    }
+
+    @media (min-width: 1280px) {
+        .fade {
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent,
+                black 10%,
+                black 95%,
+                transparent 100%
+            );
+            mask-image: linear-gradient(
+                to bottom,
+                transparent,
+                black 10%,
+                black 95%,
+                transparent 100%
+            );
+        }
     }
 
     .profile-bg.dragging {
@@ -176,8 +195,8 @@
         -ms-user-select: none;
     }
 
-    .profile-card:hover .profile-overlay {
-        @apply opacity-90;
+    .profile-card:active .profile-overlay {
+        @apply opacity-90 select-none;
     }
 
     .bg-badgeBg {
