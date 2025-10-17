@@ -84,20 +84,42 @@ export function Header() {
                         </div>
                     </div>
 
-                    <div className="mobile-menu-content px-4 pb-4 opacity-0 pointer-events-none">
+                    <div
+                        className="mobile-menu-content px-4 pb-4 opacity-0 pointer-events-none"
+                        aria-hidden={!mobileOpen}
+                        tabIndex={-1}
+                    >
                         <ul className="flex flex-col gap-3">
                             <li>
-                                <Link to="/" className="navLinksInternal w-full block text-center" onClick={() => setMobileOpen(false)}>
+                                <Link 
+                                    to="/"
+                                    title={t.home.title}
+                                    aria-label={t.home.accessibility}
+                                    className="navLinksInternal w-full block text-center"
+                                    onClick={() => setMobileOpen(false)}
+                                >
                                     {t.nav.home}
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/projects" className="navLinksInternal w-full block text-center" onClick={() => setMobileOpen(false)}>
+                                <Link 
+                                    to="/projects"
+                                    title={t.projects.title}
+                                    aria-label={t.projects.accessibility}
+                                    className="navLinksInternal w-full block text-center"
+                                    onClick={() => setMobileOpen(false)}
+                                >
                                     {t.nav.projects}
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/about" className="navLinksInternal w-full block text-center" onClick={() => setMobileOpen(false)}>
+                                <Link
+                                    to="/about"
+                                    title={t.about.title}
+                                    aria-label={t.about.accessibility}
+                                    className="navLinksInternal w-full block text-center"
+                                    onClick={() => setMobileOpen(false)}
+                                >
                                     {t.nav.about}
                                 </Link>
                             </li>
@@ -106,9 +128,9 @@ export function Header() {
                                     <FaDownload size={14} /> {t.curriculum.name}
                                 </DownloadCv>
                                 <div className="ml-auto flex items-center gap-2">
-                                    <ButtonWithIcon target="_blank" icon={<FaEnvelope />} link={"mailto:jps.tentis@gmail.com"} />
-                                    <ButtonWithIcon target="_blank" icon={<FaLinkedin />} link={"https://www.linkedin.com/in/jtentis/"} />
-                                    <ButtonWithIcon target="_blank" icon={<FaGithub />} link={"https://github.com/jtentis"} />
+                                    <ButtonWithIcon target="_blank" icon={<FaEnvelope />} link={"mailto:jps.tentis@gmail.com"} title={"E-mail"} aria-label={t.header.mailto} />
+                                    <ButtonWithIcon target="_blank" icon={<FaLinkedin />} link={"https://www.linkedin.com/in/jtentis/"} title={"Linkedin"} aria-label={t.header.linkedin} />
+                                    <ButtonWithIcon target="_blank" icon={<FaGithub />} link={"https://github.com/jtentis"} title={"GitHub"} aria-label={t.header.github} />
                                 </div>
                             </li>
                         </ul>

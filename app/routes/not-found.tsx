@@ -27,9 +27,9 @@ export default function NotFound() {
     );
 
     const codeClasses =
-        "font-fira text-4xl mb-4 font-bold text-red-700 dark:text-red-400";
+        "font-jetbrainsmono text-4xl mb-4 font-bold text-red-700 dark:text-red-400";
 
-    const messageClasses = "font-fira text-xl mb-6 text-center";
+    const messageClasses = "font-jetbrainsmono text-xl mb-6 text-center";
 
     const linkClasses = clsx(
         "navLinksInternal",

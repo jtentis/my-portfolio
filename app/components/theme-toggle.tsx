@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React from "react";
 import { FaRegMoon, FaRegSun } from "react-icons/fa";
+import { useLanguage } from '~/hooks/useLanguage';
 
 interface ThemeToggleButtonProps {
     isDarkMode: boolean;
@@ -11,7 +12,7 @@ export const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = ({
     isDarkMode,
     toggleTheme,
 }) => {
-    
+    const { t } = useLanguage();
     const Icon = isDarkMode ? FaRegMoon : FaRegSun;
     
     const buttonClasses = clsx(
@@ -30,6 +31,7 @@ export const ThemeToggleButton: React.FC<ThemeToggleButtonProps> = ({
             onClick={toggleTheme}
             className={buttonClasses}
             type="button"
+            aria-label={t.header.theme}
         >
             <span className={iconWrapperClasses}>
                 <Icon size={14} />
