@@ -64,7 +64,7 @@ const AboutMe = () => {
             <div className="w-full flex flex-col md:flex-row gap-4 h-full">
                 <div className="w-full md:w-1/4 h-64 xl:h-full">
                     <div
-                        className="profile-card bg-[url('./assets/picture.png')] bg-cover bg-center"
+                        className="profile-card bg-[url('./assets/picture.avif')] bg-cover bg-center"
                         role="img"
                         aria-label="profile"
                     >

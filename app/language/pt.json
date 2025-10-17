@@ -1,10 +1,21 @@
 {
     "language": "pt",
+    "metadata": {
+        "title": "Meu Portfólio",
+        "description": "Portfólio pessoal de João Tentis, mostrando projetos e habilidades como Desenvolvedor Full Stack."
+    },
     "nav": {
         "home": "/inicio",
         "projects": "/projetos",
         "about": "/sobre",
         "notFound": "/error"
+    },
+    "header": {
+        "linkedin": "Link para meu LinkedIn (nova aba)",
+        "github": "Link para meu GitHub (nova aba)",
+        "mailto": "Enviar email para mim",
+        "theme": "Alternar tema claro/escuro",
+        "language": "Alternar idioma"
     },
     "notFound": {
         "title": "404 - Não Encontrado",
@@ -14,11 +25,13 @@
     },
     "home": {
         "title": "Início",
+        "accessibility": "Navegue para a página Início",
         "description": "Desenvolvedor Full Stack | Gosto de criar coisas do início ao fim! 😉",
         "button": "Ver projetos"
     },
     "about": {
         "title": "Sobre",
+        "accessibility": "Navegue para a página Sobre",
         "description": "Aqui está um pouco sobre mim.",
         "profile": {
             "name": "João Tentis",
@@ -156,6 +169,7 @@
     },
     "projects": {
         "title": "Projetos",
+        "accessibility": "Navegue para a página Projetos",
         "description": "Aqui estão alguns dos meus projetos.",
         "projectList": [
             {

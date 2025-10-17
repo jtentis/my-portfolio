@@ -1,10 +1,21 @@
 {
     "language": "en",
+    "metadata": {
+        "title": "My Portfolio",
+        "description": "João Tentis' personal portfolio showcasing projects and skills as a Full Stack Developer."
+    },
     "nav": {
         "home": "/home",
         "projects": "/projects",
         "about": "/about",
         "notFound": "/error"
+    },
+    "header": {
+        "linkedin": "Link to my LinkedIn (new tab)",
+        "github": "Link to my GitHub (new tab)",
+        "mailto": "Send me an email",
+        "theme": "Toggle light/dark theme",
+        "language": "Toggle language"
     },
     "notFound": {
         "title": "404 - Not Found",
@@ -14,11 +25,13 @@
     },
     "home": {
         "title": "Home",
+        "accessibility": "Navigate to Home page",
         "description": "Full Stack software developer | I like to build things from beginnig to end! 😉",
         "button": "See projects"
     },
     "about": {
         "title": "About",
+        "accessibility": "Navigate to About page",
         "description": "Here is a little bit about me.",
         "profile": {
             "name": "João Tentis",
@@ -150,6 +163,7 @@
     },
     "projects": {
         "title": "Projects",
+        "accessibility": "Navigate to Projects page",
         "description": "Here are some of my projects.",
         "projectList": [
             {
