@@ -33,7 +33,7 @@
 
     html,
     body {
-        @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-jetbrainsmono text-sm bg-[url(./assets/noise.avif)];
+        @apply bg-primary text-secondary dark:bg-secondary dark:text-primary font-jetbrainsmono text-sm bg-[url(./assets/noise.png)];
     }
 
     h1,
