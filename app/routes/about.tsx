@@ -212,6 +212,12 @@ const AboutMe = () => {
                                             <p className="text-base">
                                                 {ed.meta}
                                             </p>
+                                            <p className="text-base">
+                                                {ed.meta2}
+                                            </p>
+                                            <p className="text-base">
+                                                {ed.meta3}
+                                            </p>
                                         </div>
                                     ))}
                                 </div>

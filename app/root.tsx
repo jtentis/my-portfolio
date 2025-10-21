@@ -60,7 +60,7 @@ const LayoutShell = ({
                 <Links />
             </head>
             <body
-                className={`min-w-screen min-h-full px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
+                className={`min-w-screen xl:min-h-full px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
                     isLoading ? "loading" : "loaded"
                 }`}
             >
