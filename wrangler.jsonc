@@ -3,7 +3,6 @@
 	"name": "my-portfolio",
 	"compatibility_date": "2025-01-01",
 	"compatibility_flags": ["nodejs_compat"],
-	"main": "./workers/app.ts",
 	"vars": {
 		"VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
 	},
@@ -11,7 +10,4 @@
 		"enabled": true
 	},
 	"pages_build_output_dir": "./build/client",
-	"assets": {
-		"directory": "./build/client"
-	}
 }
