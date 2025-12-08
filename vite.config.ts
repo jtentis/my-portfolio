@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     reactRouter({
-      ssr: false, // Enable SPA mode - no server-side rendering
+      ssr: false,
     }),
     tsconfigPaths(),
   ],
