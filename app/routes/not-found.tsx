@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 import { TextAnimator } from "~/components/text";
 import { useLanguage } from "~/hooks/useLanguage";
 
-export function loader() {
-    return new Response("Not Found", { status: 404 });
-}
-
 export default function NotFound() {
     const { t } = useLanguage();
 

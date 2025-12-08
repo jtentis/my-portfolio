@@ -4,16 +4,14 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
-  ssr: {
-    external: ["react-router"],
-  },
+  plugins: [
+    tailwindcss(),
+    reactRouter({
+      ssr: false, // Enable SPA mode - no server-side rendering
+    }),
+    tsconfigPaths(),
+  ],
   build: {
     minify: false,
-    rollupOptions: {
-      output: {
-        format: "es",
-      },
-    },
   },
 });

@@ -1,62 +1,34 @@
 {
   "buildManifest": {
-    "serverBundles": {
-      "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0": {
-        "id": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
-        "file": "build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
-        "config": {
-          "runtime": "nodejs"
-        }
-      }
-    },
-    "routeIdToServerBundleId": {
-      "routes/home": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
-      "routes/about": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
-      "routes/projects": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0",
-      "routes/not-found": "nodejs_eyJydW50aW1lIjoibm9kZWpzIn0"
-    },
     "routes": {
       "root": {
         "id": "root",
-        "file": "app/root.tsx",
-        "path": "",
-        "config": {}
+        "file": "root.tsx",
+        "path": ""
       },
       "routes/home": {
         "id": "routes/home",
         "parentId": "root",
-        "file": "app/routes/home.tsx",
-        "index": true,
-        "config": {
-          "runtime": "nodejs"
-        }
+        "file": "routes/home.tsx",
+        "index": true
       },
       "routes/about": {
         "id": "routes/about",
         "parentId": "root",
-        "file": "app/routes/about.tsx",
-        "path": "about",
-        "config": {
-          "runtime": "nodejs"
-        }
+        "file": "routes/about.tsx",
+        "path": "about"
       },
       "routes/projects": {
         "id": "routes/projects",
         "parentId": "root",
-        "file": "app/routes/projects.tsx",
-        "path": "projects",
-        "config": {
-          "runtime": "nodejs"
-        }
+        "file": "routes/projects.tsx",
+        "path": "projects"
       },
       "routes/not-found": {
         "id": "routes/not-found",
         "parentId": "root",
-        "file": "app/routes/not-found.tsx",
-        "path": "*",
-        "config": {
-          "runtime": "nodejs"
-        }
+        "file": "routes/not-found.tsx",
+        "path": "*"
       }
     }
   },
@@ -69,7 +41,7 @@
       "unstable_optimizeDeps": false,
       "unstable_splitRouteModules": false,
       "unstable_subResourceIntegrity": false,
-      "unstable_viteEnvironmentApi": false
+      "unstable_viteEnvironmentApi": true
     },
     "routes": {
       "root": {
@@ -103,12 +75,11 @@
       }
     },
     "routeDiscovery": {
-      "mode": "lazy",
-      "manifestPath": "/__manifest"
+      "mode": "initial"
     },
     "serverBuildFile": "index.js",
     "serverModuleFormat": "esm",
-    "ssr": true,
+    "ssr": false,
     "unstable_routeConfig": [
       {
         "id": "root",
