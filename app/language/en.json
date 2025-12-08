@@ -103,10 +103,16 @@
                 },
                 {
                     "title": "Full Stack Developer",
-                    "period": "2022 - Present",
+                    "period": "2024 - 2025",
                     "description": [
                         {
                             "text": "Building modern web applications focused on performance and user experience."
+                        },
+                        {
+                            "text": "Devlopment, personalization and deploy of distance-learning platform using PHP and SCSS."
+                        },
+                        {
+                            "text": "Creation of dynamic dashboards using Power Bi, Excel VBA and Python."
                         }
                     ]
                 },
