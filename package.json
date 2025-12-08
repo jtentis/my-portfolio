@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "rm -rf .wrangler && npm run build && wrangler pages deploy",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/nodejs_eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
     "typecheck": "react-router typegen && tsc"
