@@ -78,6 +78,9 @@
                     "Nest.js",
                     "Electron.js",
                     "Express.js",
+                    "Streamlit",
+                    "Flask",
+                    "FastAPI",
                     "React",
                     "React Native",
                     "Vue.js",
@@ -90,7 +93,7 @@
             "heading": "$ ls experiencia/",
             "items": [
                 {
-                    "title": "Analista de Sistemas Júnior",
+                    "title": "Analista de Sistemas",
                     "period": "2025 - presente",
                     "description": [
                         {
@@ -98,11 +101,14 @@
                         },
                         {
                             "text": "Gerenciamento de banco de dados Oracle, com foco em desempenho, desenvolvimento de consultas SQL, extração de relatórios e integração entre sistemas."
+                        },
+                        {
+                            "text": "Desenvolvimento de soluções de middleware utilizando Python e Node.js para processamento de arquivos XML e consumo de APIs externas, convertendo insumos dos arquivos em requisições nas APIs, facilitando a conectividade e mantendo a sincronia entre os produtos corporativos e os sistemas externos."
                         }
                     ]
                 },
                 {
-                    "title": "Full Stack Developer",
+                    "title": "Desenvolvedor Full Stack",
                     "period": "2024 - 2025",
                     "description": [
                         {

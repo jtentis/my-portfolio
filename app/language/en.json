@@ -78,6 +78,9 @@
                     "Nest.js",
                     "Electron.js",
                     "Express.js",
+                    "Streamlit",
+                    "Flask",
+                    "FastAPI",
                     "React",
                     "React Native",
                     "Vue.js",
@@ -90,7 +93,7 @@
             "heading": "$ ls experience/",
             "items": [
                 {
-                    "title": "Junior Systems Analyst",
+                    "title": "Systems Analyst",
                     "period": "2025 - present",
                     "description": [
                         {
@@ -98,6 +101,9 @@
                         },
                         {
                             "text": "Management of Oracle database, focusing on performance, SQL query development, report extraction, and system integration."
+                        },
+                        {
+                            "text": "Development of middleware solutions using Python and Node.js for XML file processing and consumption of external APIs, converting file inputs into API requests, facilitating connectivity, and maintaining synchronization between corporate products and external systems."
                         }
                     ]
                 },

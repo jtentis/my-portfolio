@@ -153,7 +153,7 @@
     }
 
     .profile-card {
-        @apply relative bg-cover bg-center overflow-hidden border-2 border-secondary dark:border-primary bg-[#f2f2f2] dark:bg-[#2f3e28] h-full;
+        @apply relative bg-cover bg-center overflow-hidden border-2 border-secondary dark:border-primary bg-card-primary dark:bg-card-secondary h-full;
     }
 
     .profile-overlay {
