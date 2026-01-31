@@ -253,8 +253,7 @@
     },
     "curriculum": {
         "name": "curriculum",
-        "path": "/Resume_JOAO_TENTIS.pdf",
-        "file": "Resume_JOAO_TENTIS.pdf"
+        "link": "https://github.com/jtentis/curriculum/releases/download/latest/RESUME_JOAO_TENTIS.pdf"
     },
     "footer": {
         "code": "Code",
