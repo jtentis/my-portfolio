@@ -248,6 +248,20 @@
                 ],
                 "completedDate": "December 2023",
                 "githubUrl": "https://github.com/jtentis/HorseCare"
+            },
+            {
+                "id": 6,
+                "title": "XML automation",
+                "description": "An automation to validate and verify inputs from XMLs files using exposed external API routes and webscraping. Made to make my work easier.",
+                "stack": [
+                    "Python",
+                    "JavaScript",
+                    "Flask",
+                    "ElementTree",
+                    "Tailwind CSS"
+                ],
+                "completedDate": "January 2026",
+                "githubUrl": "https://github.com/jtentis/automacao-xml"
             }
         ]
     },
