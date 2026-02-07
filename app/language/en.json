@@ -39,7 +39,7 @@
         },
         "whoami": {
             "heading": "$ whoami",
-            "text": "Full Stack developer passionate about creating elegant, functional solutions. I turn ideas into clean code and memorable digital experiences."
+            "text": "Software Developer specializing in Information Systems with a track record of building scalable solutions and automating complex workflows. Currently serving as a Systems Analyst at Di Santinni, I focus on Oracle database management and developing high-performance middleware using Python (Flask, FastAPI) and Node.js for API integration and XML data processing. My expertise spans full-stack development with TypeScript, Nest.js, and React Native, including experience architecturalizing microservices and desktop automation via Electron.js. I am proficient in modern infrastructure and DevOps tools, including Docker, AWS (S3, EC2, Lambda), and Cloudflare. Committed to software excellence through SOLID principles, unit testing, and a data-driven approach."
         },
         "skills": {
             "heading": "$ skills --list",
