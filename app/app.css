@@ -59,7 +59,7 @@
     }
 
     .navLinksInternal {
-        @apply bg-primary dark:bg-secondary border-2 px-4 h-[35px] flex justify-center items-center shadow-none dark:shadow-none xl:shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] xl:dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] py-2 xl:py-0;
+        @apply bg-primary dark:bg-secondary border-2 px-4 h-[35px] flex justify-center items-center shadow-none dark:shadow-none xl:shadow-[3px_3px_0px_0px_rgba(30,_34,_41,_0.30)] xl:dark:shadow-[3px_3px_0px_0px_rgba(245,245,244,0.3)] py-2 xl:py-0 whitespace-nowrap;
     }
 
     .navLinksHome {
@@ -115,12 +115,11 @@
     }
 
     .loading {
-        opacity: 0;
+        /* Removed opacity: 0 to allow instant interaction */
     }
 
     .loaded {
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
+        /* Removed transition to allow instant rendering */
     }
 
     .hover-effect-bg {

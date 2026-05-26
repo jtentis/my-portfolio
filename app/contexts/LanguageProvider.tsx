@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import en from "../language/en.json";
 import pt from "../language/pt.json";
 import { LanguageContext } from "./LanguageContext";
@@ -8,16 +8,12 @@ type Language = "pt" | "en";
 const translations = { pt, en };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<Language>("pt");
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const storedLanguage = localStorage.getItem("language");
-        if (storedLanguage && (storedLanguage === "pt" || storedLanguage === "en")) {
-            setLanguage(storedLanguage);
-        }
-        setIsLoading(false);
-    }, []);
+    const storedLanguage = typeof window !== "undefined" ? localStorage.getItem("language") : null;
+    const initialLanguage: Language = 
+        (storedLanguage === "pt" || storedLanguage === "en") ? storedLanguage : "pt";
+    
+    const [language, setLanguage] = useState<Language>(initialLanguage);
+    const [isLoading, setIsLoading] = useState(false);
 
     const toggleLanguage = () => {
         const newLanguage = language === "pt" ? "en" : "pt";
@@ -25,8 +21,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("language", newLanguage);
     };
 
+    const value = useMemo(
+        () => ({ language, toggleLanguage, t: translations[language], isLoading }),
+        [language, isLoading]
+    );
+
     return (
-        <LanguageContext.Provider value={{ language, toggleLanguage, t: translations[language], isLoading }}>
+        <LanguageContext.Provider value={value}>
             {children}
         </LanguageContext.Provider>
     );

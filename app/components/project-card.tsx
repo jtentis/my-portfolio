@@ -55,7 +55,7 @@ export const ProjectCard = ({
                 </div>
 
                 <div className="flex items-center gap-2 text-xs text-secondary/80 dark:text-primary/80">
-                    <Calendar className="h-3 w-3" />
+                    <Calendar className="size-3" />
                     <span>{completedDate}</span>
                 </div>
             </div>

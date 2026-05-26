@@ -178,7 +178,7 @@ const AboutMe = () => {
                                                         {it.description.map(
                                                             (d, i) => (
                                                                 <ul
-                                                                    key={i}
+                                                                    key={`${it.title || 'item'}-desc-${i}`}
                                                                     className="text-base list-disc list-inside"
                                                                 >
                                                                     <li>

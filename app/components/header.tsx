@@ -19,13 +19,12 @@ function isThemeSetToDark() {
 
 export function Header() {
     const location = useLocation();
-    const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(() => isThemeSetToDark());
     const { language, toggleLanguage, t, isLoading } = useLanguage();
     const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
         const currentTheme = isThemeSetToDark();
-        setIsDarkMode(currentTheme);
 
         if (currentTheme) {
             document.documentElement.classList.add("dark");
@@ -46,7 +45,7 @@ export function Header() {
         }
     };
 
-    if (isDarkMode === null || isLoading) {
+    if (isLoading) {
         return null;
     }
 
@@ -57,6 +56,7 @@ export function Header() {
                     <div className="flex items-center flex-row-reverse justify-between p-4">
                         <div className="flex items-center gap-2">
                             <button
+                                type="button"
                                 aria-label="Toggle menu"
                                 aria-expanded={mobileOpen}
                                 onClick={() => setMobileOpen((s) => !s)}

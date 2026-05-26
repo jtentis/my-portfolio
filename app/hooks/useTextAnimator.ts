@@ -77,7 +77,7 @@ export const useTextAnimator = (textElementRef: RefObject<HTMLElement | null>, o
             ).set(char, { innerHTML: initialHTML, delay: 0.03 }, position * 0.03 + 0.02 * 3 + 0.02 * 3);
         });
 
-    }, [options.blinkOnEnd, textElementRef]);
+    }, [options.blinkOnEnd]);
 
     return { animate };
 };

@@ -44,9 +44,9 @@ const LayoutShell = ({
     useEffect(() => {
         window.scrollTo({
             top: 0,
-            behavior: "smooth",
+            behavior: "auto",
         });
-    }, [location.pathname]);
+    }, []);
 
     return (
         <html lang={t.language} className="w-full h-full">
@@ -280,7 +280,7 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
             pointer.current = null;
             setDragging(false);
         },
-        [location.pathname, navigate]
+        [navigate]
     );
 
     useEffect(() => {
@@ -348,6 +348,7 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
             >
                 <div className="swipe-hint-inner flex items-center gap-4 bg-secondary dark:bg-primary bg-opacity-60 text-white px-4 py-2 rounded-full">
                     <button
+                        type="button"
                         aria-label="Previous"
                         className="swipe-btn"
                         onClick={goPrev}
@@ -381,6 +382,7 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
                         />
                     </div>
                     <button
+                        type="button"
                         aria-label="Next"
                         className="swipe-btn"
                         onClick={goNext}
@@ -406,6 +408,7 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
             </div>
             <div>
                 <button
+                    type="button"
                     className={buttonClassName}
                     onClick={scrollToTop}
                 >
@@ -431,7 +434,9 @@ function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(
+        typeof document !== "undefined" && document.readyState !== "complete"
+    );
 
     useEffect(() => {
         const handleLoad = () => {
@@ -439,7 +444,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         };
 
         if (document.readyState === "complete") {
-            handleLoad();
+            setIsLoading(false);
         } else {
             window.addEventListener("load", handleLoad);
         }
