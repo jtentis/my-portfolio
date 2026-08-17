@@ -32,60 +32,69 @@
     "about": {
         "title": "About",
         "accessibility": "Navigate to About page",
-        "description": "Here is a little bit about me.",
+        "description": "Software Engineer focused on backend systems, APIs, and systems integration.",
         "profile": {
             "name": "João Tentis",
-            "role": "Full Stack Developer"
+            "role": "Software Engineer | Backend"
         },
         "whoami": {
             "heading": "$ whoami",
-            "text": "Software Developer specializing in Information Systems with a track record of building scalable solutions and automating complex workflows. Currently serving as a Systems Analyst at Di Santinni, I focus on Oracle database management and developing high-performance middleware using Python (Flask, FastAPI) and Node.js for API integration and XML data processing. My expertise spans full-stack development with TypeScript, Nest.js, and React Native, including experience architecturalizing microservices and desktop automation via Electron.js. I am proficient in modern infrastructure and DevOps tools, including Docker, AWS (S3, EC2, Lambda), and Cloudflare. Committed to software excellence through SOLID principles, unit testing, and a data-driven approach."
+            "text": "Software Engineer focused on backend systems, systems integration, and operational reliability. I currently work as a Mid-Level Software Developer at Info Sistemas, evolving an ERP with enterprise integrations that supports approximately 50,000 daily requests. My work combines Node.js, NestJS, REST APIs, middleware, Redis, Azure, and contract design. At Di Santinni, I delivered Python and Node.js integrations, reduced XML workflow processing time by 60%, and optimized Oracle queries across a database with more than 10 million records."
         },
         "skills": {
             "heading": "$ skills --list",
             "technologies": {
-                "title": "Technologies",
+                "title": "Backend & Data",
                 "items": [
                     "JavaScript",
                     "TypeScript",
-                    "HTML",
-                    "CSS",
-                    "Excel",
                     "Python",
                     "Node.js",
+                    "NestJS",
+                    "Express",
+                    "FastAPI",
+                    "Flask",
                     "PostgreSQL",
                     "Oracle",
-                    "MariaDB"
+                    "MariaDB",
+                    "MySQL",
+                    "MongoDB",
+                    "Redis",
+                    "Prisma",
+                    "TypeORM",
+                    "React",
+                    "Angular"
                 ]
             },
             "tools": {
-                "title": "Tools",
+                "title": "Cloud, Operations & Messaging",
                 "items": [
-                    "Git",
-                    "GitHub",
-                    "VSCode",
-                    "DataGrip",
                     "Docker",
-                    "HostGator",
-                    "cPanel",
-                    "Figma",
-                    "Trello"
+                    "Azure",
+                    "AWS",
+                    "Kubernetes",
+                    "Helm",
+                    "Terraform",
+                    "CI/CD",
+                    "Railway",
+                    "RabbitMQ",
+                    "Kafka",
+                    "AWS SQS"
                 ]
             },
             "frameworks": {
-                "title": "Frameworks",
+                "title": "Quality & Applied AI",
                 "items": [
-                    "Nest.js",
-                    "Electron.js",
-                    "Express.js",
-                    "Streamlit",
-                    "Flask",
-                    "FastAPI",
-                    "React",
-                    "React Native",
-                    "Vue.js",
-                    "Next.js",
-                    "Tailwind CSS"
+                    "Jest",
+                    "Playwright",
+                    "OpenAPI",
+                    "API Versioning",
+                    "Migrations",
+                    "OpenTelemetry",
+                    "OAuth",
+                    "JWT",
+                    "LLMs",
+                    "Entity Matching"
                 ]
             }
         },
@@ -93,53 +102,29 @@
             "heading": "$ ls experience/",
             "items": [
                 {
-                    "title": "Systems Analyst",
-                    "period": "2025 - 2026",
+                    "title": "Mid-Level Software Developer — Info Sistemas",
+                    "period": "07/2026 - Present",
+                    "description": [
+                    ]
+                },
+                {
+                    "title": "Systems Analyst — Di Santinni",
+                    "period": "03/2025 - 07/2026",
                     "description": [
                         {
-                            "text": "Responsible for the maintenance and evolution of the company's internal system, ensuring its efficient operation and suitability to user demands."
-                        },
-                        {
-                            "text": "Management of Oracle database, focusing on performance, SQL query development, report extraction, and system integration."
-                        },
-                        {
-                            "text": "Development of middleware solutions using Python and Node.js for XML file processing and consumption of external APIs, converting file inputs into API requests, facilitating connectivity, and maintaining synchronization between corporate products and external systems."
+                            "text": "Delivered REST APIs in Python (Flask, FastAPI) and Node.js for XML processing and external-system integrations, reducing processing time by 60%."
                         }
                     ]
                 },
                 {
-                    "title": "Full Stack Developer",
-                    "period": "2022 - Present",
+                    "title": "Information Assistant I — Viva Rio",
+                    "period": "01/2024 - 03/2025",
                     "description": [
                         {
-                            "text": "Building modern web applications focused on performance and user experience."
-                        }
-                    ]
-                },
-                {
-                    "title": "IT Intern",
-                    "period": "2022 - 2024",
-                    "description": [
-                        {
-                            "text": "Automated internal processes using Python and Bash scripts."
+                            "text": "Developed a desktop WhatsApp application with Node.js, NestJS, Electron, TypeScript, and Tailwind CSS, serving over 1,200 monthly users."
                         },
                         {
-                            "text": "Managed spreadsheets using Excel and Google Sheets for data analysis."
-                        }
-                    ]
-                },
-                {
-                    "title": "Computer Operator",
-                    "period": "2020 - 2022",
-                    "description": [
-                        {
-                            "text": "Assisted the general public, helping with questions and providing information about available services."
-                        },
-                        {
-                            "text": "Maintained and organized the work environment, ensuring a clean and functional space for all users."
-                        },
-                        {
-                            "text": "Operated computer systems to manage data entry, retrieval, and processing tasks efficiently."
+                            "text": "Designed a microservices architecture with over 80% unit-test coverage, reducing production bugs by 55%."
                         }
                     ]
                 }
@@ -194,7 +179,7 @@
             {
                 "id": 2,
                 "title": "Match Movie",
-                "description": "A movie recommendation app for groups, with redirection to Ingresso.com and a calculation of the nearest cinema. It's divided into 2 repositories: frontend and backend.",
+                "description": "Node.js/NestJS and PostgreSQL backend for a collaborative movie-selection application, with REST APIs, room persistence, and catalog, geolocation, and cinema integrations.",
                 "stack": [
                     "TypeScript",
                     "React Native",
@@ -223,31 +208,31 @@
             },
             {
                 "id": 4,
-                "title": "Commodities",
-                "description": "A web application for consulting analysis and variance of commodities and assets, with interactive charts, correlations, and advanced filters.",
+                "title": "Sabor de Casa",
+                "description": "Full-stack meal-ordering platform covering menus, orders, deliveries, inventory, and administration. Includes a persistent print queue, operational alerts, and Railway workers.",
                 "stack": [
-                    "Python",
-                    "Streamlit",
-                    "Pandas",
-                    "Plotly",
-                    "Yfinance"
+                    "Next.js",
+                    "TypeScript",
+                    "Prisma",
+                    "PostgreSQL",
+                    "Railway"
                 ],
-                "completedDate": "October 2024",
-                "githubUrl": "https://github.com/jtentis/Commodities"
+                "completedDate": "2026",
+                "githubUrl": "https://github.com/jtentis/sabor-de-casa-app"
             },
             {
                 "id": 5,
-                "title": "HorseCare",
-                "description": "A website for horse boarding, with a reservation system, photo gallery, and information about the services offered.",
+                "title": "CBO Classifier",
+                "description": "An LLM-assisted entity-matching pipeline that classifies job postings into official six-digit CBO codes, with staged inference, traceability, and structured outputs.",
                 "stack": [
-                    "PHP",
-                    "MySQL",
-                    "HTML",
-                    "CSS",
-                    "JavaScript"
+                    "Python",
+                    "LLMs",
+                    "Gemini",
+                    "Ollama",
+                    "Entity Matching"
                 ],
-                "completedDate": "December 2023",
-                "githubUrl": "https://github.com/jtentis/HorseCare"
+                "completedDate": "2026",
+                "githubUrl": "https://github.com/jtentis/cbo-classifier"
             },
             {
                 "id": 6,

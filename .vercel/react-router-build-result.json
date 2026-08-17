@@ -1,0 +1,114 @@
+{
+  "buildManifest": {
+    "routes": {
+      "root": {
+        "id": "root",
+        "file": "root.tsx",
+        "path": ""
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "routes/home.tsx",
+        "index": true
+      },
+      "routes/about": {
+        "id": "routes/about",
+        "parentId": "root",
+        "file": "routes/about.tsx",
+        "path": "about"
+      },
+      "routes/projects": {
+        "id": "routes/projects",
+        "parentId": "root",
+        "file": "routes/projects.tsx",
+        "path": "projects"
+      },
+      "routes/not-found": {
+        "id": "routes/not-found",
+        "parentId": "root",
+        "file": "routes/not-found.tsx",
+        "path": "*"
+      }
+    }
+  },
+  "reactRouterConfig": {
+    "appDirectory": "D:/Repos/my-portfolio/app",
+    "basename": "/",
+    "buildDirectory": "D:/Repos/my-portfolio/build",
+    "future": {
+      "v8_middleware": false,
+      "unstable_optimizeDeps": false,
+      "unstable_splitRouteModules": false,
+      "unstable_subResourceIntegrity": false,
+      "unstable_viteEnvironmentApi": true
+    },
+    "routes": {
+      "root": {
+        "id": "root",
+        "file": "root.tsx",
+        "path": ""
+      },
+      "routes/home": {
+        "id": "routes/home",
+        "parentId": "root",
+        "file": "routes/home.tsx",
+        "index": true
+      },
+      "routes/about": {
+        "id": "routes/about",
+        "parentId": "root",
+        "file": "routes/about.tsx",
+        "path": "about"
+      },
+      "routes/projects": {
+        "id": "routes/projects",
+        "parentId": "root",
+        "file": "routes/projects.tsx",
+        "path": "projects"
+      },
+      "routes/not-found": {
+        "id": "routes/not-found",
+        "parentId": "root",
+        "file": "routes/not-found.tsx",
+        "path": "*"
+      }
+    },
+    "routeDiscovery": {
+      "mode": "initial"
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": false,
+    "unstable_routeConfig": [
+      {
+        "id": "root",
+        "path": "",
+        "file": "root.tsx",
+        "children": [
+          {
+            "file": "routes/home.tsx",
+            "index": true
+          },
+          {
+            "file": "routes/about.tsx",
+            "path": "about"
+          },
+          {
+            "file": "routes/projects.tsx",
+            "path": "projects"
+          },
+          {
+            "file": "routes/not-found.tsx",
+            "path": "*"
+          }
+        ]
+      }
+    ]
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}

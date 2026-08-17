@@ -16,7 +16,7 @@ export const Projects = () => {
     }, [t.projects.title, t.projects.description]);
 
     return (
-        <div className="grid md:grid-cols-3 md:grid-rows-2 gap-4 h-full">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 h-full">
             {t.projects.projectList.map((project) => (
                 <ProjectCard
                     key={project.id}
