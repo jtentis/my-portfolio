@@ -46,66 +46,40 @@
         "description": "Aqui estão alguns dos meus projetos.",
         "openRepo": "abrir no GitHub",
         "completed": "concluído em",
+        "ongoing": "em andamento",
         "projectList": [
             {
                 "id": 1,
-                "title": "Meu Portfólio",
-                "description": "Este site! Um portfólio pessoal para mostrar meus projetos e habilidades, construído com React Router, TypeScript e Tailwind CSS.",
+                "title": "Meta-plataforma",
+                "description": "Em desenvolvimento no meu mestrado: um laboratório para montar redes sociais experimentais e estudar como padrões de design que prendem a atenção afetam as pessoas. O pesquisador cria estudos com condições A/B, os participantes usam a rede e cada evento fica registrado com a versão que viram. Hoje roda o primeiro módulo (comentários contínuos x em blocos); a meta é cobrir os 15 pares de padrões e alternativas do catálogo, com módulos trocáveis sem reconstruir o núcleo.",
                 "stack": [
-                    "React",
                     "TypeScript",
-                    "Tailwind CSS",
-                    "Vite"
+                    "Bun",
+                    "TanStack Start",
+                    "tRPC",
+                    "PostgreSQL",
+                    "Drizzle"
                 ],
-                "completedDate": "Outubro 2025",
-                "githubUrl": "https://github.com/jtentis/my-portfolio"
+                "completedDate": "",
+                "githubUrl": "https://github.com/jtentis/meta-plataforma"
             },
             {
                 "id": 2,
-                "title": "Match Movie",
-                "description": "Backend em Node.js/NestJS e PostgreSQL para uma aplicação colaborativa de escolha de filmes, com APIs REST, persistência de salas e integrações de catálogo, geolocalização e cinemas.",
+                "title": "Faturas Lumi",
+                "description": "Monorepo full stack que lê faturas de energia em PDF com o Gemini (multimodal, JSON Mode), guarda os dados estruturados no PostgreSQL e mostra consumo e valores num dashboard React com gráficos e biblioteca de faturas.",
                 "stack": [
-                    "TypeScript",
-                    "React Native",
-                    "Expo",
-                    "Node.js",
-                    "Nest.js",
-                    "Express.js"
+                    "NestJS",
+                    "Prisma",
+                    "PostgreSQL",
+                    "Gemini",
+                    "React",
+                    "Tailwind CSS"
                 ],
-                "completedDate": "Fevereiro 2025",
-                "githubUrl": "https://github.com/jtentis/MatchMovie-Native"
+                "completedDate": "Março 2026",
+                "githubUrl": "https://github.com/jtentis/lumi-desafio"
             },
             {
                 "id": 3,
-                "title": "Desafio",
-                "description": "Desafio para uma vaga de backend em Node.js, com criação de API RESTful para gerenciamento de planos de assinatura, utilizando Nest.js, TypeScript e PostgreSQL.",
-                "stack": [
-                    "Node.js",
-                    "Nest.js",
-                    "TypeScript",
-                    "PostgreSQL",
-                    "PrismaORM",
-                    "Docker"
-                ],
-                "completedDate": "Janeiro 2025",
-                "githubUrl": "https://github.com/jtentis/desafio_backend_vexpenses"
-            },
-            {
-                "id": 4,
-                "title": "Sabor de Casa",
-                "description": "Plataforma full-stack para operação de marmitas, cobrindo cardápio, pedidos, entregas, estoque e administração. Inclui fila de impressão persistente, alertas operacionais e workers na Railway.",
-                "stack": [
-                    "Next.js",
-                    "TypeScript",
-                    "Prisma",
-                    "PostgreSQL",
-                    "Railway"
-                ],
-                "completedDate": "2026",
-                "githubUrl": "https://github.com/jtentis/sabor-de-casa-app"
-            },
-            {
-                "id": 5,
                 "title": "CBO Classifier",
                 "description": "Pipeline de entity matching assistido por LLMs para classificar vagas nos códigos oficiais de seis dígitos da CBO, com inferência em estágios, rastreabilidade e saídas estruturadas.",
                 "stack": [
@@ -115,22 +89,52 @@
                     "Ollama",
                     "Entity Matching"
                 ],
-                "completedDate": "2026",
+                "completedDate": "Junho 2026",
                 "githubUrl": "https://github.com/jtentis/cbo-classifier"
             },
             {
-                "id": 6,
-                "title": "Automação XML",
-                "description": "Automação para validação e verificação de insumos de XMLs utilizando rotas expostas API de externa e webscraping. Feita para facilitar meu trabalho diário.",
+                "id": 4,
+                "title": "Chat de Pedidos",
+                "description": "API em FastAPI com WebSocket para atendimento de e-commerce: status do pedido, cancelamento com confirmação explícita e política de troca, com eventos de progresso e tratamento de erros de protocolo. As mensagens podem ser interpretadas por regras locais ou pelo Gemini, sem mudar o contrato.",
                 "stack": [
                     "Python",
-                    "JavaScript",
-                    "Flask",
-                    "ElementTree",
-                    "Tailwind CSS"
+                    "FastAPI",
+                    "WebSocket",
+                    "Pydantic",
+                    "Pytest",
+                    "Gemini"
                 ],
-                "completedDate": "Janeiro 2026",
-                "githubUrl": "https://github.com/jtentis/automacao-xml"
+                "completedDate": "Abril 2026",
+                "githubUrl": "https://github.com/jtentis/desafio-1STi"
+            },
+            {
+                "id": 5,
+                "title": "Orbit",
+                "description": "App de bandeja do Windows que controla o ar-condicionado Samsung e a lâmpada Tuya pela rede local (CoAP/DTLS e protocolo Tuya 3.5), sem depender da nuvem. Cada comando é confirmado pelo aparelho e as chaves ficam protegidas pelo Windows DPAPI.",
+                "stack": [
+                    "Python",
+                    "PySide6",
+                    "CoAP/DTLS",
+                    "Tuya",
+                    "Pytest"
+                ],
+                "completedDate": "Outubro 2026",
+                "githubUrl": "https://github.com/jtentis/orbit"
+            },
+            {
+                "id": 6,
+                "title": "Match Movie",
+                "description": "Backend em Node.js/NestJS e PostgreSQL para uma aplicação colaborativa de escolha de filmes, com APIs REST, salas em tempo real via WebSocket e integrações com TMDb, OpenCage e Ingresso.com.",
+                "stack": [
+                    "NestJS",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "Prisma",
+                    "WebSocket",
+                    "React Native"
+                ],
+                "completedDate": "Fevereiro 2025",
+                "githubUrl": "https://github.com/jtentis/MatchMovie-API"
             }
         ]
     },

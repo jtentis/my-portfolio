@@ -105,8 +105,9 @@ export const Projects = () => {
                 >
                     {t.projects.openRepo}
                 </a>
+                {/* completedDate vazio = projeto em andamento */}
                 <span>
-                    {t.projects.completed} {project.completedDate}
+                    {project.completedDate ? `${t.projects.completed} ${project.completedDate}` : t.projects.ongoing}
                 </span>
             </div>
         </>
@@ -143,7 +144,7 @@ export const Projects = () => {
                         >
                             <span className="proj-name">{slugify(project.title)}</span>
                             <span className="proj-meta">{project.stack.slice(0, 3).join(", ")}</span>
-                            <span className="proj-year">{yearOf(project.completedDate)}</span>
+                            <span className="proj-year">{yearOf(project.completedDate) || t.projects.ongoing}</span>
                         </button>
                         {mobile && active === i && (
                             <article className="proj-inline swap">{detail(project)}</article>

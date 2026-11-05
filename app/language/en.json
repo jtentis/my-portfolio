@@ -46,66 +46,40 @@
         "description": "Here are some of my projects.",
         "openRepo": "open on GitHub",
         "completed": "completed",
+        "ongoing": "in progress",
         "projectList": [
             {
                 "id": 1,
-                "title": "My Portfolio",
-                "description": "This website! A personal portfolio to showcase my projects and skills, built with React Router, TypeScript, and Tailwind CSS.",
+                "title": "Meta-platform",
+                "description": "In progress as part of my master's: a lab for building experimental social networks and studying how attention-capturing design patterns affect people. Researchers set up studies with A/B conditions, participants use the network and every event is recorded with the version they saw. The first module (continuous vs. paged comments) works today; the goal is to cover all 15 pattern/alternative pairs from the catalog, with modules that can be swapped without rebuilding the core.",
                 "stack": [
-                    "React",
                     "TypeScript",
-                    "Tailwind CSS",
-                    "Vite"
+                    "Bun",
+                    "TanStack Start",
+                    "tRPC",
+                    "PostgreSQL",
+                    "Drizzle"
                 ],
-                "completedDate": "October 2025",
-                "githubUrl": "https://github.com/jtentis/my-portfolio"
+                "completedDate": "",
+                "githubUrl": "https://github.com/jtentis/meta-plataforma"
             },
             {
                 "id": 2,
-                "title": "Match Movie",
-                "description": "Node.js/NestJS and PostgreSQL backend for a collaborative movie-selection application, with REST APIs, room persistence, and catalog, geolocation, and cinema integrations.",
+                "title": "Lumi Invoices",
+                "description": "Full-stack monorepo that reads energy bills in PDF with Gemini (multimodal, JSON Mode), stores the structured data in PostgreSQL and shows consumption and costs in a React dashboard with charts and an invoice library.",
                 "stack": [
-                    "TypeScript",
-                    "React Native",
-                    "Expo",
-                    "Node.js",
-                    "Nest.js",
-                    "Express.js"
+                    "NestJS",
+                    "Prisma",
+                    "PostgreSQL",
+                    "Gemini",
+                    "React",
+                    "Tailwind CSS"
                 ],
-                "completedDate": "February 2025",
-                "githubUrl": "https://github.com/jtentis/MatchMovie-Native"
+                "completedDate": "March 2026",
+                "githubUrl": "https://github.com/jtentis/lumi-desafio"
             },
             {
                 "id": 3,
-                "title": "Challenge",
-                "description": "A challenge for a backend position in Node.js, with the creation of a RESTful API for managing subscription plans, using Nest.js, TypeScript, and PostgreSQL.",
-                "stack": [
-                    "Node.js",
-                    "Nest.js",
-                    "TypeScript",
-                    "PostgreSQL",
-                    "PrismaORM",
-                    "Docker"
-                ],
-                "completedDate": "January 2025",
-                "githubUrl": "https://github.com/jtentis/desafio_backend_vexpenses"
-            },
-            {
-                "id": 4,
-                "title": "Sabor de Casa",
-                "description": "Full-stack meal-ordering platform covering menus, orders, deliveries, inventory, and administration. Includes a persistent print queue, operational alerts, and Railway workers.",
-                "stack": [
-                    "Next.js",
-                    "TypeScript",
-                    "Prisma",
-                    "PostgreSQL",
-                    "Railway"
-                ],
-                "completedDate": "2026",
-                "githubUrl": "https://github.com/jtentis/sabor-de-casa-app"
-            },
-            {
-                "id": 5,
                 "title": "CBO Classifier",
                 "description": "An LLM-assisted entity-matching pipeline that classifies job postings into official six-digit CBO codes, with staged inference, traceability, and structured outputs.",
                 "stack": [
@@ -115,22 +89,52 @@
                     "Ollama",
                     "Entity Matching"
                 ],
-                "completedDate": "2026",
+                "completedDate": "June 2026",
                 "githubUrl": "https://github.com/jtentis/cbo-classifier"
             },
             {
-                "id": 6,
-                "title": "XML automation",
-                "description": "An automation to validate and verify inputs from XMLs files using exposed external API routes and webscraping. Made to make my work easier.",
+                "id": 4,
+                "title": "Order Chat",
+                "description": "FastAPI WebSocket API for e-commerce support: order status, cancellation with explicit confirmation and exchange policy, with progress events and protocol error handling. Messages can be interpreted by local rules or by Gemini without changing the contract.",
                 "stack": [
                     "Python",
-                    "JavaScript",
-                    "Flask",
-                    "ElementTree",
-                    "Tailwind CSS"
+                    "FastAPI",
+                    "WebSocket",
+                    "Pydantic",
+                    "Pytest",
+                    "Gemini"
                 ],
-                "completedDate": "January 2026",
-                "githubUrl": "https://github.com/jtentis/automacao-xml"
+                "completedDate": "April 2026",
+                "githubUrl": "https://github.com/jtentis/desafio-1STi"
+            },
+            {
+                "id": 5,
+                "title": "Orbit",
+                "description": "Windows tray app that controls a Samsung air conditioner and a Tuya lamp over the local network (CoAP/DTLS and Tuya protocol 3.5), without relying on the cloud. Every command is confirmed by the device and keys are protected with Windows DPAPI.",
+                "stack": [
+                    "Python",
+                    "PySide6",
+                    "CoAP/DTLS",
+                    "Tuya",
+                    "Pytest"
+                ],
+                "completedDate": "October 2026",
+                "githubUrl": "https://github.com/jtentis/orbit"
+            },
+            {
+                "id": 6,
+                "title": "Match Movie",
+                "description": "Node.js/NestJS and PostgreSQL backend for a collaborative movie-picking app, with REST APIs, real-time rooms over WebSocket and integrations with TMDb, OpenCage and Ingresso.com.",
+                "stack": [
+                    "NestJS",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "Prisma",
+                    "WebSocket",
+                    "React Native"
+                ],
+                "completedDate": "February 2025",
+                "githubUrl": "https://github.com/jtentis/MatchMovie-API"
             }
         ]
     },
