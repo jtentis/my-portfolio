@@ -5,10 +5,17 @@
         "description": "João Tentis' personal portfolio showcasing projects and skills as a Full Stack Developer."
     },
     "nav": {
-        "home": "/home",
-        "projects": "/projects",
-        "about": "/about",
-        "notFound": "/error"
+        "home": "home",
+        "projects": "projects",
+        "about": "about",
+        "notFound": "error"
+    },
+    "shell": {
+        "pathRoot": "~/joao-tentis",
+        "sections": "Sections",
+        "shortcuts": "shortcuts: 1 2 3 and ↑ ↓",
+        "copyEmail": "Copy email",
+        "copied": "email copied"
     },
     "header": {
         "linkedin": "Link to my LinkedIn (new tab)",
@@ -27,141 +34,18 @@
         "title": "Home",
         "accessibility": "Navigate to Home page",
         "description": "Full Stack software developer | I like to build things from beginnig to end! 😉",
-        "button": "See projects"
-    },
-    "about": {
-        "title": "About",
-        "accessibility": "Navigate to About page",
-        "description": "Software Engineer focused on backend systems, APIs, and systems integration.",
-        "profile": {
-            "name": "João Tentis",
-            "role": "Software Engineer | Backend"
-        },
-        "whoami": {
-            "heading": "$ whoami",
-            "text": "Software Engineer focused on backend systems, systems integration, and operational reliability. I currently work as a Mid-Level Software Developer at Info Sistemas, evolving an ERP with enterprise integrations that supports approximately 50,000 daily requests. My work combines Node.js, NestJS, REST APIs, middleware, Redis, Azure, and contract design. At Di Santinni, I delivered Python and Node.js integrations, reduced XML workflow processing time by 60%, and optimized Oracle queries across a database with more than 10 million records."
-        },
-        "skills": {
-            "heading": "$ skills --list",
-            "technologies": {
-                "title": "Backend & Data",
-                "items": [
-                    "JavaScript",
-                    "TypeScript",
-                    "Python",
-                    "Node.js",
-                    "NestJS",
-                    "Express",
-                    "FastAPI",
-                    "Flask",
-                    "PostgreSQL",
-                    "Oracle",
-                    "MariaDB",
-                    "MySQL",
-                    "MongoDB",
-                    "Redis",
-                    "Prisma",
-                    "TypeORM",
-                    "React",
-                    "Angular"
-                ]
-            },
-            "tools": {
-                "title": "Cloud, Operations & Messaging",
-                "items": [
-                    "Docker",
-                    "Azure",
-                    "AWS",
-                    "Kubernetes",
-                    "Helm",
-                    "Terraform",
-                    "CI/CD",
-                    "Railway",
-                    "RabbitMQ",
-                    "Kafka",
-                    "AWS SQS"
-                ]
-            },
-            "frameworks": {
-                "title": "Quality & Applied AI",
-                "items": [
-                    "Jest",
-                    "Playwright",
-                    "OpenAPI",
-                    "API Versioning",
-                    "Migrations",
-                    "OpenTelemetry",
-                    "OAuth",
-                    "JWT",
-                    "LLMs",
-                    "Entity Matching"
-                ]
-            }
-        },
-        "experience": {
-            "heading": "$ ls experience/",
-            "items": [
-                {
-                    "title": "Mid-Level Software Developer — Info Sistemas",
-                    "period": "07/2026 - Present",
-                    "description": [
-                    ]
-                },
-                {
-                    "title": "Systems Analyst — Di Santinni",
-                    "period": "03/2025 - 07/2026",
-                    "description": [
-                        {
-                            "text": "Delivered REST APIs in Python (Flask, FastAPI) and Node.js for XML processing and external-system integrations, reducing processing time by 60%."
-                        }
-                    ]
-                },
-                {
-                    "title": "Information Assistant I — Viva Rio",
-                    "period": "01/2024 - 03/2025",
-                    "description": [
-                        {
-                            "text": "Developed a desktop WhatsApp application with Node.js, NestJS, Electron, TypeScript, and Tailwind CSS, serving over 1,200 monthly users."
-                        },
-                        {
-                            "text": "Designed a microservices architecture with over 80% unit-test coverage, reducing production bugs by 55%."
-                        }
-                    ]
-                }
-            ]
-        },
-        "education": {
-            "heading": "$ ls education/",
-            "items": [
-                {
-                    "title": "Graduation in Information Systems",
-                    "meta": "CEFET • 2021 - 2025"
-                },
-                {
-                    "title": "Master's in Data Engineering",
-                    "meta": "UFRJ • 2026 - 2028"
-                },
-                {
-                    "title": "Certifications",
-                    "meta": "Power BI, DIO, Azure Devops"
-                },
-                {
-                    "title": "Languages",
-                    "meta": "English - C2 Level",
-                    "meta2": "Spanish - B1 Level",
-                    "meta3": "Portuguese - Native speaker"
-                }
-            ]
-        },
-        "hobbies": {
-            "heading": "$ echo $HOBBIES",
-            "text": "When I'm not coding, I enjoy exploring new technologies, playing video games, and watching movies. I also love spending time with my loved ones."
-        }
+        "status": "Mid-Level Software Developer at Info Sistemas",
+        "lede": "Software Engineer focused on backend systems, APIs, and systems integration.",
+        "primaryCta": "see projects",
+        "secondaryCta": "download résumé",
+        "portraitAlt": "Portrait of João Tentis drawn with characters"
     },
     "projects": {
         "title": "Projects",
         "accessibility": "Navigate to Projects page",
         "description": "Here are some of my projects.",
+        "openRepo": "open on GitHub",
+        "completed": "completed",
         "projectList": [
             {
                 "id": 1,
@@ -250,13 +134,172 @@
             }
         ]
     },
-    "curriculum": {
-        "name": "curriculum",
-        "link": "https://github.com/jtentis/curriculum/releases/download/latest/RESUME_JOAO_TENTIS.pdf"
+    "about": {
+        "title": "About",
+        "accessibility": "Navigate to About page",
+        "description": "Software Engineer focused on backend systems, APIs, and systems integration.",
+        "intro": {
+            "heading": "About me",
+            "text": "Software Engineer focused on backend systems, systems integration, and operational reliability. I currently work as a Mid-Level Software Developer at Info Sistemas, evolving an ERP with enterprise integrations that supports approximately 50,000 daily requests. My work combines Node.js, NestJS, REST APIs, middleware, Redis, Azure, and contract design. At Di Santinni, I delivered Python and Node.js integrations, reduced XML workflow processing time by 60%, and optimized Oracle queries across a database with more than 10 million records."
+        },
+        "skills": {
+            "heading": "Skills",
+            "groups": [
+                {
+                    "title": "Backend & Data",
+                    "items": [
+                        "JavaScript",
+                        "TypeScript",
+                        "Python",
+                        "Node.js",
+                        "NestJS",
+                        "Express",
+                        "FastAPI",
+                        "Flask",
+                        "PostgreSQL",
+                        "Oracle",
+                        "MariaDB",
+                        "MySQL",
+                        "MongoDB",
+                        "Redis",
+                        "Prisma",
+                        "TypeORM",
+                        "React",
+                        "Angular"
+                    ]
+                },
+                {
+                    "title": "Cloud, Operations & Messaging",
+                    "items": [
+                        "Docker",
+                        "Azure",
+                        "AWS",
+                        "Kubernetes",
+                        "Helm",
+                        "Terraform",
+                        "CI/CD",
+                        "Railway",
+                        "RabbitMQ",
+                        "Kafka",
+                        "AWS SQS"
+                    ]
+                },
+                {
+                    "title": "Quality & Applied AI",
+                    "items": [
+                        "Jest",
+                        "Playwright",
+                        "OpenAPI",
+                        "API Versioning",
+                        "Migrations",
+                        "OpenTelemetry",
+                        "OAuth",
+                        "JWT",
+                        "LLMs",
+                        "Entity Matching"
+                    ]
+                }
+            ]
+        },
+        "journey": {
+            "work": "Work",
+            "education": "Education",
+            "present": "present"
+        },
+        "more": "More",
+        "back": "back",
+        "languagesAndCertifications": "Languages and certifications",
+        "counts": {
+            "technologies": "technologies",
+            "languages": "languages",
+            "certifications": "certifications"
+        },
+        "experience": [
+            {
+                "company": "Info Sistemas",
+                "role": "Mid-Level Software Developer",
+                "start": "2026-07",
+                "end": null,
+                "highlights": [
+                    "Evolving an ERP with enterprise integrations that supports approximately 50,000 daily requests.",
+                    "Working with Node.js, NestJS, REST APIs, middleware, Redis, Azure, and contract design."
+                ]
+            },
+            {
+                "company": "Di Santinni",
+                "role": "Systems Analyst",
+                "start": "2025-03",
+                "end": "2026-07",
+                "highlights": [
+                    "Delivered REST APIs in Python (Flask, FastAPI) and Node.js for XML processing and external-system integrations, reducing processing time by 60%.",
+                    "Optimized Oracle queries over a database with more than 10 million records, improving response time for critical reports by 45%.",
+                    "Designed XML-to-HTTP transformation middleware and resilient integrations with external APIs."
+                ]
+            },
+            {
+                "company": "Viva Rio",
+                "role": "Information Assistant I",
+                "start": "2024-01",
+                "end": "2025-03",
+                "highlights": [
+                    "Developed a desktop WhatsApp application with Node.js, NestJS, Electron, TypeScript, and Tailwind CSS, serving over 1,200 monthly users.",
+                    "Designed a microservices architecture with over 80% unit-test coverage, reducing production bugs by 55%."
+                ]
+            }
+        ],
+        "education": [
+            {
+                "institution": "UFRJ",
+                "course": "Master's in Data Engineering",
+                "start": "2026",
+                "end": "2028"
+            },
+            {
+                "institution": "CEFET",
+                "course": "Bachelor's in Information Systems",
+                "start": "2021",
+                "end": "2025"
+            }
+        ],
+        "certifications": {
+            "heading": "Certifications",
+            "items": [
+                "Power BI",
+                "DIO",
+                "Azure DevOps"
+            ]
+        },
+        "languages": {
+            "heading": "Languages",
+            "items": [
+                {
+                    "name": "Portuguese",
+                    "level": "native"
+                },
+                {
+                    "name": "English",
+                    "level": "C2"
+                },
+                {
+                    "name": "Spanish",
+                    "level": "B1"
+                }
+            ]
+        },
+        "hobbies": {
+            "heading": "Outside of code",
+            "text": "When I'm not coding, I enjoy exploring new technologies, playing video games, and watching movies. I also love spending time with my loved ones."
+        },
+        "units": {
+            "year": "year",
+            "years": "years",
+            "month": "month",
+            "months": "months",
+            "and": "and"
+        }
     },
-    "footer": {
-        "code": "Code",
-        "madeBy": "Made by João Tentis",
-        "contact": "Contact"
+    "curriculum": {
+        "name": "résumé",
+        "link": "https://github.com/jtentis/curriculum/releases/download/latest/RESUME_JOAO_TENTIS.pdf"
     }
 }

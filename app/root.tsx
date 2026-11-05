@@ -1,7 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+    Link,
     Links,
     Meta,
     Outlet,
@@ -9,47 +10,111 @@ import {
     useLocation,
     useNavigate,
 } from "react-router";
+import { LanguageProvider } from "~/contexts/LanguageProvider";
 import { useLanguage } from "~/hooks/useLanguage";
+import { CONTACTS } from "~/lib/contacts";
+import { glide } from "~/lib/glide";
+import { scramble } from "~/lib/scramble";
 import "./app.css";
-import { Footer } from "./components/footer";
-import { Header } from "./components/header";
-import { Tabs } from "./components/tabs";
-import { Title } from "./components/title";
-import { LanguageProvider } from "./contexts/LanguageProvider";
+import "~/styles/shell.css";
 
-const routeKeyMap: { [key: string]: string } = {
-    "/": "home",
-    "/projects": "projects",
-    "/about": "about",
-};
+/* Aplica o tema salvo (ou o do sistema) antes da primeira pintura, para não piscar. */
+const THEME_SCRIPT = `try{var s=localStorage.getItem("theme"),d=s==="dark"||(!s&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}`;
 
-type NavKey = "home" | "projects" | "about";
+const NAV = [
+    { to: "/", label: "home", hint: "1" },
+    { to: "/projects", label: "projects", hint: "2" },
+    { to: "/about", label: "about", hint: "3" },
+] as const;
 
-const LayoutShell = ({
-    children,
-    isLoading,
-}: {
-    children: React.ReactNode;
-    isLoading: boolean;
-}) => {
-    const location = useLocation();
-    const { t } = useLanguage();
+function Shell({ children }: { children: React.ReactNode }) {
+    const { t, language, toggleLanguage } = useLanguage();
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+    const segRef = useRef<HTMLSpanElement>(null);
+    const navRef = useRef<HTMLElement>(null);
+    const pillRef = useRef<HTMLSpanElement>(null);
+    const copyTimer = useRef<number | undefined>(undefined);
+    const [copied, setCopied] = useState(false);
 
-    const routeKey = routeKeyMap[location.pathname] || "/";
-
-    const titleKey = routeKey as NavKey;
-    const currentTitle =
-        t.nav && t.nav[titleKey] ? t.nav[titleKey] : t.nav.notFound;
-
+    // caminho e pílula acompanham a rota e o idioma
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "auto",
-        });
+        const segment =
+            pathname === "/"
+                ? ""
+                : pathname === "/projects"
+                  ? `/${t.nav.projects}`
+                  : pathname === "/about"
+                    ? `/${t.nav.about}`
+                    : `/${t.nav.notFound}`;
+        if (segRef.current) scramble(segRef.current, segment, 240);
+
+        const pill = pillRef.current;
+        if (!pill) return;
+        const active =
+            navRef.current?.querySelector<HTMLElement>('[aria-current="page"]') ??
+            null;
+        pill.classList.toggle("off", !active);
+        glide(pill, active, "x");
+    }, [pathname, t]);
+
+    // a pílula tem largura de texto: mede de novo no resize e quando as fontes chegam
+    useEffect(() => {
+        const place = () => {
+            const active =
+                navRef.current?.querySelector<HTMLElement>(
+                    '[aria-current="page"]'
+                ) ?? null;
+            if (pillRef.current) glide(pillRef.current, active, "x");
+        };
+        window.addEventListener("resize", place);
+        document.fonts.ready.then(place);
+        return () => window.removeEventListener("resize", place);
     }, []);
 
+    // 1/2/3 trocam de rota
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.metaKey || e.ctrlKey || e.altKey) return;
+            const target = e.target as HTMLElement | null;
+            if (
+                target &&
+                (/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName) ||
+                    target.isContentEditable)
+            )
+                return;
+            const to =
+                e.key === "1"
+                    ? "/"
+                    : e.key === "2"
+                      ? "/projects"
+                      : e.key === "3"
+                        ? "/about"
+                        : null;
+            if (to) navigate(to);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+    }, [navigate]);
+
+    const toggleTheme = () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    const copyEmail = async () => {
+        try {
+            await navigator.clipboard.writeText(CONTACTS.email);
+            setCopied(true);
+            clearTimeout(copyTimer.current);
+            copyTimer.current = window.setTimeout(() => setCopied(false), 1400);
+        } catch {
+            window.location.href = `mailto:${CONTACTS.email}`;
+        }
+    };
+
     return (
-        <html lang={t.language} className="w-full h-full">
+        <html lang={language}>
             <head>
                 <meta charSet="utf-8" />
                 <meta
@@ -58,405 +123,127 @@ const LayoutShell = ({
                 />
                 <title>{t.metadata.title}</title>
                 <meta name="description" content={t.metadata.description} />
+                <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
                 <Meta />
                 <Links />
             </head>
-            <body
-                className={`min-w-screen xl:min-h-full px-5 xl:px-54 xl:py-18 py-5 flex flex-col justify-between ${
-                    isLoading ? "loading" : "loaded"
-                }`}
-            >
-                <Header />
-                <div className="flex flex-col justify-center">
-                    <Tabs />
-                    <FolderSwipeWrapper>
-                        <div className="folder-bg">
-                            <Title title={currentTitle} />
-                            <main className="xl:h-[485px]">{children}</main>
+            <body>
+                <div className="shell-app">
+                    <header className="shell-top">
+                        <Link to="/" className="shell-path">
+                            <span className="shell-home">{t.shell.pathRoot}</span>
+                            <span ref={segRef} />
+                            <span className="caret" aria-hidden="true" />
+                        </Link>
+                        <nav
+                            className="shell-nav"
+                            aria-label={t.shell.sections}
+                            ref={navRef}
+                        >
+                            <span
+                                className="glide"
+                                ref={pillRef}
+                                aria-hidden="true"
+                            />
+                            {NAV.map((item) => (
+                                <Link
+                                    key={item.to}
+                                    to={item.to}
+                                    aria-current={
+                                        pathname === item.to
+                                            ? "page"
+                                            : undefined
+                                    }
+                                >
+                                    {t.nav[item.label]}
+                                    <kbd aria-hidden="true">{item.hint}</kbd>
+                                </Link>
+                            ))}
+                        </nav>
+                        <div className="shell-icons">
+                            <button
+                                type="button"
+                                className="shell-lang"
+                                aria-label={t.header.language}
+                                onClick={toggleLanguage}
+                            >
+                                <span key={language} className="swap">
+                                    {language.toUpperCase()}
+                                </span>
+                            </button>
+                            <button
+                                type="button"
+                                className="shell-icon"
+                                aria-label={t.header.theme}
+                                onClick={toggleTheme}
+                            >
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="1.8"
+                                >
+                                    <circle cx="12" cy="12" r="8.5" />
+                                    <path
+                                        d="M12 3.5a8.5 8.5 0 0 1 0 17z"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                            </button>
                         </div>
-                    </FolderSwipeWrapper>
+                    </header>
+                    <main className="relative min-h-0">{children}</main>
+                    <footer className="shell-foot">
+                        <button
+                            type="button"
+                            className={`shell-link shell-copy${copied ? " ok" : ""}`}
+                            title={t.shell.copyEmail}
+                            onClick={copyEmail}
+                        >
+                            {copied ? t.shell.copied : CONTACTS.email}
+                        </button>
+                        <a
+                            className="shell-link"
+                            href={CONTACTS.github}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            github
+                        </a>
+                        <a
+                            className="shell-link"
+                            href={CONTACTS.linkedin}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            linkedin
+                        </a>
+                        <a
+                            className="shell-link"
+                            href={t.curriculum.link}
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            {t.curriculum.name}
+                        </a>
+                        <span className="shell-spacer" />
+                        <span className="shell-hint">{t.shell.shortcuts}</span>
+                    </footer>
                 </div>
-                <Footer />
-                <Analytics/>
-                <SpeedInsights/>
+                <Analytics />
+                <SpeedInsights />
                 <Scripts />
             </body>
         </html>
     );
-};
-
-function FolderSwipeWrapper({ children }: { children: React.ReactNode }) {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const containerRef = useRef<HTMLDivElement | null>(null);
-    const [showHint, setShowHint] = useState(false);
-    const [dragging, setDragging] = useState(false);
-    const [showButton, setShowButton] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > screen.height * 3 / 4) {
-                setShowButton(true);
-            } else {
-                setShowButton(false);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    const buttonClassName = showButton ? 'scrollToTop visible' : 'scrollToTop';
-
-    const routes = ["/", "/projects", "/about"];
-
-    const pointer = useRef<{
-        id: number;
-        startX: number;
-        startY: number;
-        moved: boolean;
-    } | null>(null);
-    const contentRef = useRef<HTMLElement | null>(null);
-    const isAnimatingRef = useRef(false);
-
-    const currentIndex = routes.indexOf(location.pathname);
-
-    const fadeNavigate = useCallback(
-        (targetPath: string) => {
-            if (isAnimatingRef.current) return;
-
-            const content =
-                contentRef.current ||
-                (containerRef.current?.querySelector(
-                    ".folder-bg > main"
-                ) as HTMLElement | null);
-            if (!content) {
-                navigate(targetPath);
-                return;
-            }
-
-            isAnimatingRef.current = true;
-
-            content.style.transition = "opacity 150ms ease";
-            content.style.opacity = "0";
-
-            const cleanup = (element: HTMLElement) => {
-                element.style.transition = "";
-                element.style.opacity = "";
-            };
-
-            const onFadeOut = () => {
-                content.removeEventListener("transitionend", onFadeOut);
-                navigate(targetPath);
-
-                setTimeout(() => {
-                    const newContent = containerRef.current?.querySelector(
-                        ".folder-bg > main"
-                    ) as HTMLElement | null;
-                    if (newContent) {
-                        newContent.style.opacity = "0";
-                        newContent.style.transition = "opacity 150ms ease";
-                        requestAnimationFrame(() => {
-                            newContent.style.opacity = "1";
-
-                            const onFadeIn = () => {
-                                cleanup(newContent);
-                                isAnimatingRef.current = false;
-                            };
-                            newContent.addEventListener(
-                                "transitionend",
-                                onFadeIn,
-                                { once: true }
-                            );
-                            setTimeout(onFadeIn, 200);
-                        });
-                    } else {
-                        cleanup(content);
-                        isAnimatingRef.current = false;
-                    }
-                }, 50);
-            };
-
-            content.addEventListener("transitionend", onFadeOut, {
-                once: true,
-            });
-            setTimeout(onFadeOut, 200);
-        },
-        [containerRef, navigate]
-    );
-
-    const goPrev = useCallback(() => {
-        if (currentIndex > 0) fadeNavigate(routes[currentIndex - 1]);
-    }, [currentIndex, fadeNavigate]);
-
-    const goNext = useCallback(() => {
-        if (currentIndex >= 0 && currentIndex < routes.length - 1)
-            fadeNavigate(routes[currentIndex + 1]);
-    }, [currentIndex, fadeNavigate]);
-
-    const onPointerDown = useCallback((e: PointerEvent) => {
-        if (
-            typeof window === "undefined" ||
-            !window.matchMedia("(max-width: 640px)").matches
-        )
-            return;
-        if (isAnimatingRef.current) return;
-
-        e.preventDefault();
-
-        const el = containerRef.current;
-        if (!el) return;
-
-        contentRef.current = el.querySelector(
-            ".folder-bg > main"
-        ) as HTMLElement | null;
-        if (!contentRef.current)
-            contentRef.current = el.querySelector("main") as HTMLElement | null;
-
-        pointer.current = {
-            id: e.pointerId,
-            startX: e.clientX,
-            startY: e.clientY,
-            moved: false,
-        };
-        setDragging(true);
-        el.setPointerCapture(e.pointerId);
-    }, []);
-
-    const onPointerMove = useCallback((e: PointerEvent) => {
-        if (!pointer.current || pointer.current.id !== e.pointerId) return;
-        const dx = e.clientX - pointer.current.startX;
-        const dy = e.clientY - pointer.current.startY;
-
-        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) {
-            pointer.current = null;
-            return;
-        }
-
-        if (Math.abs(dx) > 20) pointer.current.moved = true;
-    }, []);
-
-    const onPointerUp = useCallback(
-        (e: PointerEvent) => {
-            if (!pointer.current || pointer.current.id !== e.pointerId) return;
-
-            const dx = e.clientX - pointer.current.startX;
-            const threshold = 60;
-
-            const content = contentRef.current;
-
-            if (pointer.current.moved && Math.abs(dx) > threshold) {
-                const currentIndex = routes.indexOf(location.pathname);
-                if (currentIndex === -1) {
-                    pointer.current = null;
-                    return;
-                }
-
-                if (dx < 0 && currentIndex < routes.length - 1) {
-                    fadeNavigate(routes[currentIndex + 1]);
-                } else if (dx > 0 && currentIndex > 0) {
-                    fadeNavigate(routes[currentIndex - 1]);
-                }
-            } else if (content) {
-                content.style.transition = "opacity 150ms ease";
-                content.style.opacity = "1";
-            }
-
-            const el = containerRef.current;
-            try {
-                if (el) el.releasePointerCapture(e.pointerId);
-            } catch (err) {}
-
-            pointer.current = null;
-            setDragging(false);
-        },
-        [navigate]
-    );
-
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
-
-        try {
-            if (
-                typeof window !== "undefined" &&
-                window.matchMedia("(max-width: 640px)").matches
-            ) {
-                (el as HTMLElement).style.touchAction = "pan-y";
-            } else {
-                (el as HTMLElement).style.touchAction = "auto";
-            }
-        } catch (err) {
-            // ignore
-        }
-
-        el.addEventListener("pointerdown", onPointerDown, { capture: true });
-        el.addEventListener("pointermove", onPointerMove, { capture: true });
-        el.addEventListener("pointerup", onPointerUp, { capture: true });
-        el.addEventListener("pointercancel", onPointerUp, { capture: true });
-
-        return () => {
-            el.removeEventListener("pointerdown", onPointerDown, {
-                capture: true,
-            });
-            el.removeEventListener("pointermove", onPointerMove, {
-                capture: true,
-            });
-            el.removeEventListener("pointerup", onPointerUp, { capture: true });
-            el.removeEventListener("pointercancel", onPointerUp, {
-                capture: true,
-            });
-        };
-    }, [onPointerDown, onPointerMove, onPointerUp]);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-
-        const isSmallViewport =
-            window.matchMedia?.("(max-width: 640px)")?.matches;
-        const isTouchDevice = !!(
-            "ontouchstart" in window ||
-            (navigator && (navigator as any).maxTouchPoints > 0)
-        );
-
-        if (!isSmallViewport && !isTouchDevice) {
-            setShowHint(false);
-            return;
-        }
-
-        setShowHint(true);
-    }, []);
-
-    return (
-        <div
-            ref={containerRef}
-            className={`w-full relative ${dragging ? "swipe-dragging" : ""}`}
-        >
-            {children}
-            <div
-                className={`swipe-hint fixed left-1/2 -translate-x-1/2 bottom-6 z-50 ${showHint ? "visible" : "hidden"} ${dragging ? "dragging" : ""}`}
-            >
-                <div className="swipe-hint-inner flex items-center gap-4 bg-secondary dark:bg-primary bg-opacity-60 text-white px-4 py-2 rounded-full">
-                    <button
-                        type="button"
-                        aria-label="Previous"
-                        className="swipe-btn"
-                        onClick={goPrev}
-                        disabled={currentIndex <= 0}
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M15 6L9 12L15 18"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
-                    <div className="dots flex gap-2 pointer-events-none">
-                        <span
-                            className={`dot ${currentIndex === 0 ? "active" : ""}`}
-                        />
-                        <span
-                            className={`dot ${currentIndex === 1 ? "active" : ""}`}
-                        />
-                        <span
-                            className={`dot ${currentIndex === 2 ? "active" : ""}`}
-                        />
-                    </div>
-                    <button
-                        type="button"
-                        aria-label="Next"
-                        className="swipe-btn"
-                        onClick={goNext}
-                        disabled={currentIndex >= routes.length - 1}
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M9 6L15 12L9 18"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div>
-                <button
-                    type="button"
-                    className={buttonClassName}
-                    onClick={scrollToTop}
-                >
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M15 6L9 12L15 18"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const [isLoading, setIsLoading] = useState(
-        typeof document !== "undefined" && document.readyState !== "complete"
-    );
-
-    useEffect(() => {
-        const handleLoad = () => {
-            setIsLoading(false);
-        };
-
-        if (document.readyState === "complete") {
-            setIsLoading(false);
-        } else {
-            window.addEventListener("load", handleLoad);
-        }
-
-        return () => {
-            window.removeEventListener("load", handleLoad);
-        };
-    }, []);
-
     return (
         <LanguageProvider>
-            <LayoutShell children={children} isLoading={isLoading} />
+            <Shell>{children}</Shell>
         </LanguageProvider>
     );
 }

@@ -1,0 +1,114 @@
+/* Início: nome gigante ancorado embaixo e a intro na coluna da direita. */
+.home-view {
+    grid-template-columns: 1fr minmax(0, 46ch);
+    grid-template-rows: 1fr auto;
+    row-gap: 24px;
+}
+
+/* a caixa de linha do nome gigante vaza ~12px */
+@media (min-width: 861px) {
+    .home-view {
+        overflow: hidden;
+    }
+}
+
+.home-intro,
+.home-hero {
+    position: relative;
+    z-index: 1;
+}
+
+.home-intro {
+    grid-column: 2;
+    align-self: start;
+}
+
+.home-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font: 13px var(--font-mono);
+    color: var(--muted);
+}
+
+.home-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--live) 18%, transparent);
+}
+
+.home-lede {
+    font-size: clamp(18px, 1.55vw, 22px);
+    line-height: 1.45;
+    margin: 14px 0 24px;
+    text-wrap: pretty;
+}
+
+.home-ctas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.home-hero {
+    grid-column: 1 / -1;
+    align-self: end;
+    margin: 0 0 0 -0.04em;
+    font: 700 clamp(64px, 12.5vw, 220px)/0.9 var(--font-mono);
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.home-contacts {
+    display: none;
+}
+
+/* Camada ASCII (ondas + retrato): cobre a home inteira, atrás do texto. */
+.home-ascii {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.home-ascii canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@media (max-width: 860px) {
+    .home-view {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .home-intro {
+        grid-column: 1;
+    }
+
+    .home-hero {
+        font-size: 19vw;
+        white-space: normal;
+        line-height: 0.92;
+    }
+
+    .home-contacts {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 20px 0 0;
+        font: 13px var(--font-mono);
+    }
+
+    .home-contacts a {
+        color: var(--muted);
+        text-decoration: none;
+    }
+}

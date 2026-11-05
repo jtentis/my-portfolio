@@ -1,51 +1,33 @@
-import clsx from "clsx";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { TextAnimator } from "~/components/text";
+import { useEffect, useRef } from "react";
+import { Link } from "react-router";
 import { useLanguage } from "~/hooks/useLanguage";
+import { scramble } from "~/lib/scramble";
 
 export default function NotFound() {
     const { t } = useLanguage();
+    const codeRef = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
         document.title = t.notFound.title;
-        const descriptionMeta = document.querySelector(
-            'meta[name="description"]'
-        );
-        if (descriptionMeta) {
-            descriptionMeta.setAttribute("content", t.notFound.path);
-        }
-    }, [t.notFound.title, t.notFound.message]);
+        document
+            .querySelector('meta[name="description"]')
+            ?.setAttribute("content", t.notFound.path);
+    }, [t]);
 
-    const containerClasses = clsx(
-        "flex flex-col items-center justify-center p-8",
-        "h-full w-full text-secondary dark:text-primary"
-    );
-
-    const codeClasses =
-        "font-jetbrainsmono text-4xl mb-4 font-bold text-red-700 dark:text-red-400";
-
-    const messageClasses = "font-jetbrainsmono text-xl mb-6 text-center";
-
-    const linkClasses = clsx(
-        "navLinksInternal",
-        "mt-4 flex items-center gap-2",
-        "group hover:bg-secondary dark:hover:bg-primary"
-    );
+    useEffect(() => {
+        if (codeRef.current) scramble(codeRef.current, "404", 420);
+    }, []);
 
     return (
-        <div className={containerClasses}>
-            <p className={codeClasses}><TextAnimator text="ERROR 404" blinkOnEnd={true}></TextAnimator></p>
-            <p className={messageClasses}>{t.notFound.message}</p>
-            <p className="text-sm mb-8 text-gray-500 dark:text-gray-400">
-                {t.notFound.path}
-            </p>
-
-            <Link to="/" className={linkClasses}>
-                <span className="group-hover-icon-fill">
+        <section className="view shell-404">
+            <div className="shell-404-box e">
+                <p className="shell-404-code" ref={codeRef} />
+                <p className="shell-404-msg">{t.notFound.message}</p>
+                <p className="shell-404-path">{t.notFound.path}</p>
+                <Link to="/" className="btn btn-primary">
                     {t.notFound.return}
-                </span>
-            </Link>
-        </div>
+                </Link>
+            </div>
+        </section>
     );
 }

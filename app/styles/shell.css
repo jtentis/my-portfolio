@@ -1,0 +1,237 @@
+/* Shell: barra superior (caminho + navegação), rodapé e a barra flutuante do mobile.
+   Mesma geometria do protótipo `.app`. */
+
+.shell-app {
+    height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0 var(--pad);
+}
+
+/* barra superior: caminho com cursor (a única referência literal ao terminal) + navegação */
+.shell-top {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 68px;
+    font: 13px var(--font-mono);
+}
+
+.shell-path {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    white-space: pre;
+}
+.shell-path .shell-home {
+    color: var(--muted);
+    transition: color 0.15s;
+}
+.shell-path:hover .shell-home {
+    color: var(--fg);
+}
+
+.shell-nav {
+    position: relative;
+    display: flex;
+    gap: 2px;
+    margin-left: auto;
+}
+.shell-nav a {
+    position: relative;
+    z-index: 1;
+    padding: 7px 14px;
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.18s var(--ease-soft);
+}
+.shell-nav a:hover {
+    color: var(--fg);
+}
+.shell-nav a[aria-current="page"] {
+    color: var(--bg);
+}
+.shell-nav kbd {
+    font: 11px var(--font-mono);
+    margin-left: 8px;
+    opacity: 0.45;
+}
+.shell-nav .glide {
+    height: 100%;
+    background: var(--fg);
+    border-radius: 8px;
+}
+.shell-nav .glide.off {
+    opacity: 0;
+}
+
+.shell-icons {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.shell-lang {
+    appearance: none;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: 13px var(--font-mono);
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+        background-color 0.15s,
+        transform 0.1s;
+}
+.shell-lang:hover {
+    background: var(--hover);
+}
+.shell-lang:active {
+    transform: scale(0.92);
+}
+
+.shell-icon {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+        background-color 0.15s,
+        transform 0.1s;
+}
+.shell-icon:hover {
+    background: var(--hover);
+}
+.shell-icon:active {
+    transform: scale(0.92);
+}
+.shell-icon svg {
+    transition: transform 0.4s var(--ease-soft);
+}
+.dark .shell-icon svg {
+    transform: rotate(180deg);
+}
+
+/* rodapé: contato sempre a um clique */
+.shell-foot {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    height: 58px;
+    border-top: 1px solid var(--faint);
+    font: 13px var(--font-mono);
+}
+.shell-link {
+    appearance: none;
+    border: 0;
+    background: none;
+    padding: 0;
+    color: var(--muted);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+.shell-link:hover {
+    color: var(--fg);
+}
+.shell-copy {
+    min-width: 21ch;
+    text-align: left;
+}
+.shell-copy.ok {
+    color: var(--live);
+    animation: swap 0.22s var(--ease-soft);
+}
+.shell-spacer {
+    flex: 1;
+}
+.shell-hint {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+/* 404: linha 1fr à frente empurra o conteúdo para o canto inferior esquerdo. */
+.shell-404 {
+    grid-template-rows: 1fr auto;
+}
+.shell-404-box {
+    grid-row: 2;
+    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.shell-404-code {
+    font: 700 clamp(64px, 10vw, 160px)/0.9 var(--font-mono);
+    letter-spacing: -0.05em;
+    user-select: none;
+}
+.shell-404-msg {
+    font-size: 18px;
+}
+.shell-404-path {
+    color: var(--muted);
+}
+.shell-404-box .btn {
+    margin-top: 12px;
+}
+
+/* atalhos de teclado não fazem sentido sem teclado */
+@media (hover: none) {
+    .shell-nav kbd,
+    .shell-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 860px) {
+    .shell-app {
+        grid-template-rows: auto 1fr;
+    }
+    .shell-foot {
+        display: none;
+    }
+    .shell-top {
+        height: 58px;
+    }
+    /* navegação vira barra flutuante translúcida embaixo, ao alcance do polegar */
+    .shell-nav {
+        position: fixed;
+        z-index: 10;
+        left: 12px;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        padding: 4px;
+        border: 1px solid var(--faint);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 72%, transparent);
+        backdrop-filter: blur(16px) saturate(160%);
+    }
+    .shell-nav a {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .shell-nav .glide {
+        top: 4px;
+        height: calc(100% - 8px);
+    }
+    .shell-nav kbd {
+        display: none;
+    }
+    .shell-icons {
+        margin-left: auto;
+    }
+}

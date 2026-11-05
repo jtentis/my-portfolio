@@ -1,44 +1,62 @@
-import { useEffect } from "react";
-import { IoMdArrowForward } from "react-icons/io";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "react-router";
-import { TextAnimator } from "~/components/text";
-import { useLanguage } from "../hooks/useLanguage";
+import { AsciiField } from "~/components/ascii-field";
+import { useLanguage } from "~/hooks/useLanguage";
+import { CONTACTS } from "~/lib/contacts";
+import { scramble } from "~/lib/scramble";
+import "~/styles/home.css";
 
 export default function Home() {
     const { t } = useLanguage();
+    const intro = useRef<HTMLDivElement>(null);
+    const hero = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
         document.title = t.home.title;
-        const descriptionMeta = document.querySelector(
-            'meta[name="description"]'
-        );
-        if (descriptionMeta) {
-            descriptionMeta.setAttribute("content", t.home.description);
-        }
+        document
+            .querySelector('meta[name="description"]')
+            ?.setAttribute("content", t.home.description);
     }, [t.home.title, t.home.description]);
 
+    useEffect(() => {
+        if (hero.current) scramble(hero.current, "João Tentis", 420);
+    }, []);
+
     return (
-        <div className="flex flex-col h-full">
-            <div className="flex flex-col justify-center items-start h-[450px] gap-10">
-                <span className="list__item-col text-3xl">
-                    <TextAnimator text="$ cat welcome.txt" blinkOnEnd={true} />
-                </span>
-                <span className="font-bold text-7xl">
-                    <TextAnimator text="João Tentis" />
-                </span>
-                <span className="text-3xl">
-                    <TextAnimator text={t.home.description} />
-                </span>
-                <Link
-                    to="/projects"
-                    className={`navLinksInternal group hover:bg-secondary dark:hover:bg-primary`}
-                >
-                    <span className="group-hover-icon-fill flex items-center">
-                        {t.home.button}
-                        <IoMdArrowForward className="ml-3" size={20} />
-                    </span>
-                </Link>
+        <section className="view home-view">
+            <AsciiField intro={intro} hero={hero} />
+            <div className="home-intro" ref={intro}>
+                <p className="home-status e" style={{ "--i": 0 } as CSSProperties}>
+                    <span className="home-dot" aria-hidden="true" />
+                    {t.home.status}
+                </p>
+                <p className="home-lede e" style={{ "--i": 1 } as CSSProperties}>
+                    {t.home.lede}
+                </p>
+                <div className="home-ctas e" style={{ "--i": 2 } as CSSProperties}>
+                    <Link to="/projects" className="btn btn-primary">
+                        {t.home.primaryCta}
+                    </Link>
+                    <a className="btn" href={t.curriculum.link} target="_blank" rel="noopener">
+                        {t.home.secondaryCta}
+                    </a>
+                </div>
+                <p className="home-contacts e" style={{ "--i": 3 } as CSSProperties}>
+                    <a href={`mailto:${CONTACTS.email}`}>{CONTACTS.email}</a>
+                    <a href={CONTACTS.github} target="_blank" rel="noopener">
+                        github
+                    </a>
+                    <a href={CONTACTS.linkedin} target="_blank" rel="noopener">
+                        linkedin
+                    </a>
+                    <a href={t.curriculum.link} target="_blank" rel="noopener">
+                        {t.curriculum.name}
+                    </a>
+                </p>
             </div>
-        </div>
+            <h1 className="home-hero" ref={hero}>
+                João Tentis
+            </h1>
+        </section>
     );
 }
