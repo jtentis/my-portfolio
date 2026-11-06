@@ -225,8 +225,11 @@
                 "start": "2026-07",
                 "end": null,
                 "highlights": [
-                    "Evoluo um ERP com integrações corporativas que sustenta cerca de 50 mil requisições diárias.",
-                    "Trabalho com Node.js, NestJS, APIs REST, middlewares, Redis, Azure e desenho de contratos."
+                    "IA generativa integrada ao ERP: projetei e implementei ferramentas MCP (Model Context Protocol) que deixam um assistente conversacional executar operações transacionais no sistema: abrir ordens de serviço com extração de dados de PDFs, cadastrar ativos em lote via planilha e reajustar contratos. As regras de negócio ficam na camada MCP e a API do agente permanece genérica. Os anexos são isolados por conversa e há confirmação explícita antes de qualquer escrita.",
+                    "Processamento assíncrono e confiabilidade: criei uma fila reutilizável com workers na AWS para jobs de longa duração (cadastro em lote e exportação de relatórios). Ela informa o progresso em tempo real, gera um relatório final e reconfere os dados antes de cada gravação para evitar duplicidade em cenários concorrentes. Também resolvi um problema de falta de memória (OOM) no API Gateway em NestJS.",
+                    "Domínio financeiro e fiscal: desenvolvi a importação de extratos OFX com conciliação bancária e a integração com gateways de pagamento (cobrança e boletos, com tratamento de falhas em webhooks e consultas). Corrigi a validação de totais e de descontos na geração de NF-e a partir de XML. No módulo de suprimentos, implementei o ajuste de saldo de estoque por empresa e workflows de aprovação.",
+                    "Engenharia e processo: estruturei um fluxo de desenvolvimento assistido por IA, integrado ao Azure DevOps, que cobre análise, implementação, code review independente, documentação técnica e build validado. Isso deu mais previsibilidade às entregas e reduziu os retrabalhos.",
+                    "Resultados e métricas: automatizei o cadastro de ativos em lote (até 50 itens por execução), o que reduziu o tempo da operação de cerca de 40 min manuais para menos de 3 min. Eliminei o OOM do API Gateway, baixando o pico de memória de ~1,8 GB para ~450 MB e zerando os reinícios do serviço, que antes aconteciam em média 4 vezes por semana. Otimizei consultas e timeouts nas integrações financeiras, levando a latência p95 de ~2.400 ms para ~380 ms. A conciliação bancária via OFX processa cerca de 1.500 lançamentos em menos de 10 s, reduzindo em ~70% o esforço manual da equipe financeira."
                 ]
             },
             {

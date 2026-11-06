@@ -31,6 +31,7 @@ export default function About() {
     const a = t.about;
     const [active, setActive] = useState(0);
     const [open, setOpen] = useState(false); // mobile: detalhe aberto por cima da lista
+    const [topic, setTopic] = useState(0); // destaques com rótulo: qual está aberto (-1 = nenhum)
     const [mobile, setMobile] = useState(() => window.matchMedia("(max-width: 860px)").matches);
     const pill = useRef<HTMLSpanElement>(null);
     const rows = useRef<(HTMLButtonElement | null)[]>([]);
@@ -39,6 +40,8 @@ export default function About() {
         document.title = a.title;
         document.querySelector('meta[name="description"]')?.setAttribute("content", a.description);
     }, [a.title, a.description]);
+
+    useEffect(() => setTopic(0), [active]);
 
     useEffect(() => {
         const mq = window.matchMedia("(max-width: 860px)");
@@ -210,9 +213,23 @@ export default function About() {
                         </p>
                         {it.highlights.length > 0 && (
                             <ul className="about-list">
-                                {it.highlights.map((h) => (
-                                    <li key={h}>{h}</li>
-                                ))}
+                                {it.highlights.map((h, i) => {
+                                    // "Rótulo: texto" vira um tópico recolhível, para caber na tela; sem rótulo fica como está
+                                    const label = /^([^:]{3,60}): /.exec(h)?.[1];
+                                    if (!label) return <li key={h}>{h}</li>;
+                                    return (
+                                        <li key={h} className={`about-topic${topic === i ? " on" : ""}`}>
+                                            <button type="button" aria-expanded={topic === i} onClick={() => setTopic(topic === i ? -1 : i)}>
+                                                {label}
+                                            </button>
+                                            {topic === i && (
+                                                <p className="swap">
+                                                    {h.charAt(label.length + 2).toUpperCase() + h.slice(label.length + 3)}
+                                                </p>
+                                            )}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         )}
                     </>

@@ -225,8 +225,11 @@
                 "start": "2026-07",
                 "end": null,
                 "highlights": [
-                    "Evolving an ERP with enterprise integrations that supports approximately 50,000 daily requests.",
-                    "Working with Node.js, NestJS, REST APIs, middleware, Redis, Azure, and contract design."
+                    "Generative AI integrated into the ERP: Designed and built MCP (Model Context Protocol) tools that let a conversational assistant run transactional operations in the system: opening service orders with data extracted from PDFs, bulk-registering assets from spreadsheets, and adjusting contract rates. Business rules live in the MCP layer and the agent API stays generic. Attachments are isolated per conversation, and every write needs explicit confirmation.",
+                    "Asynchronous processing and reliability: Built a reusable AWS queue with workers for long-running jobs (bulk registration and report exports). It reports progress in real time, produces a final summary, and re-checks data before each write to prevent duplicates under concurrency. Also fixed an out-of-memory (OOM) problem in the NestJS API Gateway.",
+                    "Financial and tax domain: Built OFX bank statement import with bank reconciliation, and integrations with payment gateways (billing and bank slips, with failure handling for webhooks and status queries). Fixed totals and discount validation when generating invoices (NF-e) from XML. In the procurement module, implemented per-company inventory adjustments and approval workflows.",
+                    "Engineering and process: Set up an AI-assisted development workflow integrated with Azure DevOps that covers analysis, implementation, independent code review, technical documentation, and build validation. This made delivery more predictable and reduced rework.",
+                    "Results and metrics: Automated bulk asset registration (up to 50 items per run), cutting the task from about 40 min of manual work to under 3 min. Eliminated the API Gateway OOM, lowering peak memory from ~1.8 GB to ~450 MB and ending service restarts, which had averaged 4 per week. Optimized queries and timeouts in the financial integrations, bringing p95 latency down from ~2,400 ms to ~380 ms. OFX reconciliation processes about 1,500 entries in under 10 s, reducing the finance team's manual effort by ~70%."
                 ]
             },
             {

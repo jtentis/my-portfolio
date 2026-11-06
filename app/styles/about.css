@@ -197,6 +197,32 @@
     color: var(--muted);
     font-family: var(--font-mono);
 }
+/* tópico recolhível: título clicável; o marcador gira quando abre */
+.about-topic::before {
+    transition: transform 0.18s var(--ease-soft);
+}
+.about-topic.on::before {
+    transform: rotate(90deg);
+}
+.about-topic button {
+    all: unset;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 0.18s var(--ease-soft);
+}
+.about-topic button:hover,
+.about-topic.on button {
+    color: var(--fg);
+}
+.about-topic button:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+.about-topic p {
+    margin-top: 4px;
+}
 
 /* Habilidades: grupos separados por uma linha fina; itens separados por um traço vertical. */
 .about-skills,
